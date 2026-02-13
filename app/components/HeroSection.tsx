@@ -732,7 +732,7 @@ export default function HeroSection() {
                 />
               </div>
 
-              <div className="absolute left-10 md:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+              <div className="absolute left-10 md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
                 {/* Left Phone */}
                 <div
                   ref={phoneLeftRef}
@@ -745,7 +745,7 @@ export default function HeroSection() {
                         height={900}
                         src="/iPhone-13-Pro-Front.svg"
                         alt="App Screen 1"
-                        className="w-full h-full md:-mt-12"
+                        className="w-full  h-full md:-mt-12"
                       />
                     </div>
                   </div>
