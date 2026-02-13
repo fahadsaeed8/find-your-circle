@@ -24,7 +24,7 @@ export default function WhereRealConnectionsSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 1200);
+    }, 1800);
 
     return () => clearInterval(interval);
   }, [current]);
