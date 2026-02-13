@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function FooterSection() {
   return (
-    <footer className="bg-[#F5F2ED] py-62 -mt-60 md:mt-0 px-6 md:py-16 md:px-12">
+    <footer className="bg-[#F5F2ED]  md:mt-0 px-6 md:py-16 md:px-12">
       <div className="mx-auto max-w-6xl flex flex-col items-center justify-center">
         {/* Logo - Centered at top */}
         <div className="mb-8 md:mb-12 flex items-center justify-center">
