@@ -207,10 +207,10 @@ export default function HowCircleSocietyWorksSection() {
               </div>
             </div>
 
-            <h3 className="mb-2 sm:mb-3 font-clash text-lg sm:text-xl md:text-3xl font-medium text-[#1B1B1B]">
+            <h3 className="mb-2 sm:mb-3 font-clash text-xl md:text-3xl font-medium text-[#1B1B1B]">
               Discover Activities
             </h3>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
+            <p className="text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
               Take our fun quiz, no boring questions. Just tell us what lights
               you up: Travel? Dogs? Memes?
             </p>
@@ -247,10 +247,10 @@ export default function HowCircleSocietyWorksSection() {
               </div>
             </div>
 
-            <h3 className="mb-2 sm:mb-3 font-clash text-lg sm:text-xl md:text-[27px] font-medium text-[#1B1B1B]">
+            <h3 className="mb-2 sm:mb-3 font-clash text-xl md:text-[27px] font-medium text-[#1B1B1B]">
               Join a Community or Event
             </h3>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
+            <p className="text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
               Our matching engine compares your vibe with everyone else's to
               find the strongest spark.
             </p>
@@ -287,10 +287,10 @@ export default function HowCircleSocietyWorksSection() {
               </div>
             </div>
 
-            <h3 className="mb-2 sm:mb-3 font-clash text-lg sm:text-xl md:text-3xl font-medium text-[#1B1B1B]">
+            <h3 className="mb-2 sm:mb-3 font-clash text-xl md:text-3xl font-medium text-[#1B1B1B]">
               Build Real Connections
             </h3>
-            <p className="text-xs sm:text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
+            <p className="text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
               No swiping. No awkward intros. Just show up and see who you
               matched with instantly.
             </p>

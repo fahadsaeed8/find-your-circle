@@ -48,13 +48,13 @@ export default function WhereRealConnectionsSection() {
   };
 
   return (
-    <section className="relative py-0 md:py-20 min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
+    <section className="relative  py-0 md:py-20 min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
       <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-white text-3xl md:text-5xl font-clash text-center">
         Where real <span className="text-[#BF822E]">connections</span> come to
         life
       </h2>
 
-      <div className="relative w-full mt-0 md:mt-40 max-w-6xl h-[500px] flex items-center justify-center">
+      <div className="relative w-full mt-0 md:mt-40 max-w-6xl md:h-[500px] flex items-center justify-center">
         {images.map((src, index) => {
           const position = getPosition(index);
 
@@ -82,8 +82,8 @@ export default function WhereRealConnectionsSection() {
                   relative transition-all duration-700
                   ${
                     position === "center"
-                      ? "w-[250px] h-[350px] md:w-[350px] md:h-[500px]"
-                      : "w-[220px] h-[300px] md:w-[320px] md:h-[380px]"
+                      ? "w-[350px] h-[450px] md:w-[350px] md:h-[500px]"
+                      : "w-[320px] h-[400px] md:w-[320px] md:h-[380px]"
                   }
                 `}
               >
