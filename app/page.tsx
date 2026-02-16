@@ -62,7 +62,7 @@ export default function Home() {
       <EasyAndSafeFeaturesSection />
       <FaithCommunitiesSection />
       <HowCircleSocietyWorksSection />
-      <VideoSection />
+      {/* <VideoSection /> */}
       <TestimonialsSection />
       <FindYourPeopleSection />
       <WhereRealConnectionsSection />
