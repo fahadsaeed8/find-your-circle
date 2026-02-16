@@ -56,41 +56,7 @@ export default function DownloadAppSection() {
     };
   }, []);
 
-  // Animate heading fade-in when section reaches center (Mobile)
-  useEffect(() => {
-    if (!downloadSectionRef.current || !mobileHeadingRef.current) return;
-
-    const isMobile = window.innerWidth < 768;
-    if (!isMobile) return; // Skip mobile animation on desktop
-
-    gsap.set(mobileHeadingRef.current, {
-      opacity: 0,
-      y: -30,
-    });
-
-    ScrollTrigger.create({
-      trigger: downloadSectionRef.current,
-      start: "top 80%",
-      toggleActions: "play none none none",
-      onEnter: () => {
-        gsap.to(mobileHeadingRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        });
-      },
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === downloadSectionRef.current) {
-          trigger.kill();
-        }
-      });
-      ScrollTrigger.refresh();
-    };
-  }, []);
+  // Mobile - No animations, phones visible by default
 
   // Pin section and animate phones sequentially (Desktop)
   useEffect(() => {
@@ -169,82 +135,7 @@ export default function DownloadAppSection() {
     };
   }, []);
 
-  // Pin section and animate phones sequentially (Mobile)
-  useEffect(() => {
-    if (!downloadSectionRef.current) return;
-
-    const isMobile = window.innerWidth < 768;
-    if (!isMobile) return; // Skip mobile animation on desktop
-
-    const section = downloadSectionRef.current;
-    const phone1 = mobilePhone1Ref.current;
-    const phone2 = mobilePhone2Ref.current;
-    const phone3 = mobilePhone3Ref.current;
-
-    if (!phone1 || !phone2 || !phone3) return;
-
-    // Set initial state - all phones hidden
-    gsap.set([phone1, phone2, phone3], {
-      opacity: 0,
-      scale: 0.8,
-    });
-
-    // Scroll distance for animation (shorter for mobile)
-    const scrollDistance = 800;
-
-    // Create timeline for phone animations
-    const phoneTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 70%",
-        end: `+=${scrollDistance}`,
-        pin: true,
-        pinSpacing: true,
-        scrub: 1, // Smooth scrubbing tied to scroll
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    // Animate phones sequentially
-    phoneTimeline
-      .to(phone1, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        ease: "power2.out",
-      })
-      .to(
-        phone2,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.2", // Start slightly before phone1 finishes
-      )
-      .to(
-        phone3,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.2", // Start slightly before phone2 finishes
-      );
-
-    return () => {
-      phoneTimeline.kill();
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === section) {
-          trigger.kill();
-        }
-      });
-      ScrollTrigger.refresh();
-    };
-  }, []);
+  // Mobile - No animations, phones visible by default (removed animation useEffect)
 
   return (
     <section
