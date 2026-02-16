@@ -128,13 +128,37 @@ export default function TestimonialsSection() {
       {/* Desktop View - Hidden on Mobile */}
       <div className="hidden md:block">
         <div className="max-w-7xl flex mx-auto">
-          <Image
+          {/* <Image
             src={"/text.svg"}
             alt={"Frame"}
             width={400}
             height={400}
             className="w-full h-auto -mt-50 rounded-xl max-w-[400px] md:max-w-[400px]"
-          />
+          /> */}
+          <div className="max-w-md text-left text-black">
+            <p className="text-gray-600 text-lg leading-relaxed font-normal">
+              I didn’t want another social app. I wanted
+              <br />
+              people who actually show up.
+              <br />
+              <br />
+              Circle Society helped me find a local
+              <br />
+              community that meets weekly. It feels real,
+              <br />
+              not forced.
+            </p>
+
+            <div className="mt-6">
+              <p className="font-semibold text-gray-800 text-lg">
+                Adeel, Dubai
+              </p>
+              <p className="text-gray-500 text-sm">
+                Joined a Fitness & Community Group
+              </p>
+            </div>
+          </div>
+
           <Image
             src={"/Layer 99.svg"}
             alt={"Frame"}
@@ -149,23 +173,57 @@ export default function TestimonialsSection() {
             height={300}
             className="w-full ml-5 h-auto rounded-xl max-w-[300] md:max-w-[300]"
           />
-          <Image
+          {/* <Image
             src={"/Frame 2131326919 (1).svg"}
             alt={"Frame"}
             width={300}
             height={300}
             className="w-full h-auto ml-10 mt-10 rounded-xl max-w-[400px] md:max-w-[400px]"
-          />
+          /> */}
+          <div className="max-w-md text-left ml-10 mt-40">
+            <p className="text-gray-600 text-lg leading-relaxed font-normal">
+              The events are what make this different.
+              <br />
+              <br />
+              From art meetups to group dinners,
+              <br />
+              everything is built around real activities. You
+              <br />
+              meet people naturally.
+            </p>
+
+            <div className="mt-6">
+              <p className="font-semibold text-gray-800 text-lg">
+                Sara, London
+              </p>
+              <p className="text-gray-500 text-sm">Event Host</p>
+            </div>
+          </div>
         </div>
         {/* next */}
         <div className="max-w-7xl flex mx-auto">
-          <Image
+          {/* <Image
             src={"/save.svg"}
             alt={"Frame"}
             width={250}
             height={250}
             className="w-full h-auto mt-30 rounded-xl max-w-[250px] md:max-w-[250px]"
-          />
+          /> */}
+          <div className="max-w-md mt-60 text-left">
+            <p className="text-gray-600 text-lg leading-relaxed font-normal">
+              It feels safe because you
+              <br />
+              meet through shared
+              <br />
+              interests.
+            </p>
+
+            <div className="mt-6">
+              <p className="font-semibold text-gray-800 text-lg">Noura, UAE</p>
+              <p className="text-gray-500 text-sm">Community Member</p>
+            </div>
+          </div>
+
           <Image
             src={"/Layer 101.svg"}
             alt={"Frame"}
