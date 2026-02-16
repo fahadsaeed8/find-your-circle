@@ -4,18 +4,14 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const images = [
-  "/Rectangle 40856.svg",
-  "/Rectangle 40857.svg",
-  "/Rectangle 40858.svg",
-  "/Rectangle 40859.svg",
-  "/Rectangle 40860.svg",
-  "/Rectangle 40862.svg",
-  "/Rectangle 40864.svg",
-  "/Rectangle 40865.svg",
-  "/Rectangle 40866.svg",
-  "/Rectangle 40867.svg",
-  "/Rectangle 40868.svg",
-  "/Rectangle 40820.svg",
+  "/Rectangle 40860.png",
+  "/Rectangle 40861.png",
+  "/Rectangle 40862.png",
+  "/Rectangle 40864.png",
+  "/Rectangle 40865.png",
+  "/Rectangle 40866.png",
+  "/Rectangle 40867.png",
+  "/Rectangle 40868.png",
 ];
 
 export default function WhereRealConnectionsSection() {

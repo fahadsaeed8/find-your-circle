@@ -716,13 +716,13 @@ export default function HeroSection() {
                   height={210}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-[900px] h-[900px] opacity-30"
                 />
-                <Image
+                {/* <Image
                   src="/Ellipse 2.svg"
                   alt="Decorative Ellipse"
                   width={210}
                   height={210}
-                  className="absolute top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-100"
-                />
+                  className="absolute top-40 left-1/2 rounded-full -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-100"
+                /> */}
                 <Image
                   src="/Ellipse 2.svg"
                   alt="Decorative Ellipse"
