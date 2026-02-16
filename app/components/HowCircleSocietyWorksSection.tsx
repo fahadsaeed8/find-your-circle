@@ -180,7 +180,7 @@ export default function HowCircleSocietyWorksSection() {
           <div className="text-center bg-white p-4 sm:p-5 mb-20 md:mb-0 rounded-2xl step-item">
             <div className="relative mb-4 sm:mb-5 flex items-start justify-center h-[220px] md:h-[280px] overflow-visible">
               {/* Golden Number */}
-              <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-20 md:-top-22 z-10">
+              <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-25 md:-top-22 z-10">
                 <Image
                   src="/1.svg"
                   alt="1"
@@ -195,7 +195,7 @@ export default function HowCircleSocietyWorksSection() {
                 ref={image1Ref}
                 className="relative mt-8 sm:mt-10 md:-mt-30 ml-8 sm:ml-12 md:ml-16 lg:ml-0 transform rotate-[0deg] sm:rotate-[0deg]"
               >
-                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 -ml-24 md:-ml-0 md:w-[500px] md:h-[500px]">
+                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 -ml-24 md:ml-10 md:w-[500px] md:h-[500px]">
                   <Image
                     src="/iPhone-13-Pro-Front.svg"
                     alt="Discover Activities"
