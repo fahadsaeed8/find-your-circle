@@ -143,7 +143,7 @@ export default function TestimonialsSection() {
             className="w-full -ml-10 h-auto rounded-xl max-w-[100px] md:max-w-[100px]"
           />
           <Image
-            src={"/Rectangle 40853.svg"}
+            src={"/iPhone-13-Pro-new (3).svg"}
             alt={"Frame"}
             width={300}
             height={300}
@@ -174,14 +174,14 @@ export default function TestimonialsSection() {
             className="w-full -ml-20 -mt-30 h-auto rounded-xl max-w-[100px] md:max-w-[100px]"
           />
           <Image
-            src={"/Rectangle 40854 (1).svg"}
+            src={"/iPhone-13-Pro-new (4).svg"}
             alt={"Frame"}
             width={900}
             height={900}
             className="w-full ml-5 -mt-65 h-auto max-w-[350px] md:max-w-[350px]"
           />
           <Image
-            src={"/Rectangle 40855 (1).svg"}
+            src={"/iPhone-13-Pro-new (5).svg"}
             alt={"Frame"}
             width={300}
             height={300}

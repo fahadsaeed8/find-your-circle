@@ -277,11 +277,11 @@ export default function HowCircleSocietyWorksSection() {
               >
                 <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 -ml-24 md:-ml-0 md:w-[500px] md:h-[500px]">
                   <Image
-                    src="/iPhone-13-Pro-Front (2).svg"
+                    src="/iPhone-13-Pro-new (2).svg"
                     alt="Build Real Connections"
                     width={173.6595458984375}
                     height={375.7525634765625}
-                    className="w-full h-full drop-shadow-2xl"
+                    className="w-full h-full  drop-shadow-2xl"
                   />
                 </div>
               </div>

@@ -705,7 +705,7 @@ export default function HeroSection() {
             </div>
 
             {/* Right Section - Three Phones - Desktop Only */}
-            <div className="relative flex items-center justify-center mt-10 h-[500px] md:h-[600px] order-2 lg:order-2">
+            <div className="relative flex items-center justify-center  h-[500px] md:h-[600px] order-2 lg:order-2">
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Circular Lines - Thin abstract circles */}
@@ -714,14 +714,14 @@ export default function HeroSection() {
                   alt="Decorative Circles"
                   width={210}
                   height={210}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-[900px] h-[900px] opacity-30"
+                  className="absolute top-1/2 left-1/2  w-[900px] h-[900px] opacity-30"
                 />
                 <Image
-                  src="/Ellipse 2.svg"
+                  src="/Ellipse-new.svg"
                   alt="Decorative Ellipse"
                   width={210}
                   height={210}
-                  className="absolute top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-100"
+                  className="absolute top-40 left-1/2 rounded-full -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-100"
                 />
                 <Image
                   src="/Ellipse 2.svg"
@@ -732,7 +732,7 @@ export default function HeroSection() {
                 />
               </div>
 
-              <div className="absolute left-10 md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+              <div className="absolute left-10 mt-10 md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
                 {/* Left Phone */}
                 <div
                   ref={phoneLeftRef}

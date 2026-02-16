@@ -69,7 +69,7 @@ export default function FooterSection() {
             />
           </a>
           {/* Twitter */}
-          <a
+          {/* <a
             href="#"
             className=" p-2 md:p-2.5 transition hover:opacity-80 flex items-center justify-center"
             aria-label="Twitter"
@@ -81,9 +81,9 @@ export default function FooterSection() {
               height={20}
               className="w-4 h-4 md:w-8 md:h-8"
             />
-          </a>
+          </a> */}
           {/* LinkedIn */}
-          <a
+          {/* <a
             href="#"
             className="p-2 md:p-2.5 transition hover:opacity-80 flex items-center justify-center"
             aria-label="LinkedIn"
@@ -95,7 +95,7 @@ export default function FooterSection() {
               height={20}
               className="w-4 h-4 md:w-8 md:h-8"
             />
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>
