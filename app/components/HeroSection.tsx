@@ -8,6 +8,7 @@ import gsap from "gsap";
 export default function HeroSection() {
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
   const [hasEntered, setHasEntered] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const portalLayer1Ref = useRef<HTMLDivElement>(null);
@@ -299,6 +300,10 @@ export default function HeroSection() {
         ease: "power2.in",
         onComplete: () => {
           setHasEntered(true);
+          // Save to localStorage so it doesn't show again on refresh
+          if (typeof window !== "undefined") {
+            localStorage.setItem("hasEnteredCircle", "true");
+          }
           document.body.style.overflow = "auto";
         },
       },
@@ -326,11 +331,21 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Scroll to top on page refresh to show "Enter the Circle" section
+  // Check localStorage on mount to see if user has already entered
   useEffect(() => {
-    // Scroll to top when component mounts (page refresh)
-    window.scrollTo({ top: 0, behavior: "instant" });
-    document.body.style.overflow = hasEntered ? "auto" : "hidden";
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("hasEnteredCircle");
+      if (saved === "true") {
+        setHasEntered(true);
+        document.body.style.overflow = "auto";
+      } else {
+        // First time visit - show hero section
+        setHasEntered(false);
+        window.scrollTo({ top: 0, behavior: "instant" });
+        document.body.style.overflow = "hidden";
+      }
+      setIsMounted(true);
+    }
   }, []);
 
   // Hero Section Entrance Animation
@@ -487,12 +502,12 @@ export default function HeroSection() {
       style={{ overflow: "hidden" }}
     >
       {/* Character Hero Overlay - Fixed on top */}
-      <div
-        ref={heroRef}
-        className={`fixed inset-0 z-50 flex items-center justify-center ${
-          hasEntered ? "pointer-events-none opacity-0" : ""
-        }`}
-      >
+      {!hasEntered && (
+        <div
+          ref={heroRef}
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ display: isMounted ? "flex" : "none" }}
+        >
         {/* Main Background - For entire hero section */}
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
 
@@ -604,6 +619,7 @@ export default function HeroSection() {
           </p>
         </div>
       </div>
+      )}
 
       {/* Light Background */}
       <div className="absolute inset-0 bg-[#F5F2ED]" />
