@@ -324,7 +324,6 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (hasEntered) return;
-    if (!isMounted) return;
 
     const character = characterRef.current;
     const hero = heroRef.current;
@@ -333,7 +332,18 @@ export default function HeroSection() {
 
     if (!character || !hero) return;
 
-    gsap.set(character, { opacity: 0, y: 20 });
+    // Character is already visible, just add subtle entrance animation
+    gsap.fromTo(character, 
+      { opacity: 0, y: 10 },
+      { 
+        opacity: 1, 
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0,
+      }
+    );
+    
     if (ctaButton) {
       gsap.set(ctaButton, {
         opacity: 0,
@@ -343,7 +353,16 @@ export default function HeroSection() {
         transformOrigin: "center center",
         force3D: true,
       });
+      
+      gsap.to(ctaButton, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "none",
+        delay: 0.3,
+      });
     }
+    
     if (instructionText) {
       gsap.set(instructionText, {
         opacity: 0,
@@ -353,15 +372,15 @@ export default function HeroSection() {
         transformOrigin: "center center",
         force3D: true,
       });
+      
+      gsap.to(instructionText, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "none",
+        delay: 0.5,
+      });
     }
-
-    gsap.to(character, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "none",
-      delay: 0,
-    });
 
     if (ctaButton) {
       gsap.to(ctaButton, {
@@ -467,11 +486,11 @@ export default function HeroSection() {
       style={{ overflow: "hidden" }}
     >
       {/* Character Hero Overlay - Fixed on top */}
-      {!hasEntered && isMounted && (
+      {!hasEntered && (
         <div
           ref={heroRef}
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ display: "flex" }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
+          style={{ display: "flex", opacity: 1 }}
         >
           {/* Main Background - For entire hero section */}
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
@@ -494,7 +513,8 @@ export default function HeroSection() {
           {/* Character Container - Centered */}
           <div
             ref={characterRef}
-            className="relative z-20  flex flex-col items-center justify-center"
+            className="relative z-20 flex flex-col items-center justify-center"
+            style={{ opacity: 1 }}
           >
             {/* Single Character - Premium Design */}
             <div className="relative">
@@ -590,7 +610,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[#F5F2ED]" />
 
       {/* Content */}
-      <div className="relative z-10 flex h-full flex-col">
+      <div className={`relative z-10 flex h-full flex-col ${!hasEntered ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 visible'}`}>
         {/* NAVBAR */}
         <header className="flex items-center bg-white justify-between px-4 sm:px-6 py-4 md:py-5 md:px-24">
           {/* Logo - White circle with line through it */}
