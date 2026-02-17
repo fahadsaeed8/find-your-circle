@@ -7,7 +7,12 @@ import gsap from "gsap";
 
 export default function HeroSection() {
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
-  const [hasEntered, setHasEntered] = useState(false);
+  const [hasEntered, setHasEntered] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("hasEnteredCircle") === "true";
+    }
+    return false;
+  });
   const [isMounted, setIsMounted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
@@ -319,6 +324,7 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (hasEntered) return;
+    if (!isMounted) return;
 
     const character = characterRef.current;
     const hero = heroRef.current;
@@ -354,7 +360,7 @@ export default function HeroSection() {
       y: 0,
       duration: 0.8,
       ease: "none",
-      delay: 0.2,
+      delay: 0,
     });
 
     if (ctaButton) {
@@ -461,11 +467,11 @@ export default function HeroSection() {
       style={{ overflow: "hidden" }}
     >
       {/* Character Hero Overlay - Fixed on top */}
-      {!hasEntered && (
+      {!hasEntered && isMounted && (
         <div
           ref={heroRef}
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ display: isMounted ? "flex" : "none" }}
+          style={{ display: "flex" }}
         >
           {/* Main Background - For entire hero section */}
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
