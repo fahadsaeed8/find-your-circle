@@ -71,7 +71,7 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#F5F2ED] py-20 px-4 sm:px-8 lg:px-24"
+      className="bg-[#F5F2ED] -mt-5 md:mt-0 py-20 px-4 sm:px-8 lg:px-24"
     >
       {/* Heading */}
       <div className="text-center mb-12 md:mb-20">
