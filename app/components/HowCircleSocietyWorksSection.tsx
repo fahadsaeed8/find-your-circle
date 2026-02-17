@@ -199,9 +199,9 @@ export default function HowCircleSocietyWorksSection() {
                   <Image
                     src="/iPhone-13-Pro-Front.svg"
                     alt="Discover Activities"
-                    width={900}
-                    height={900}
-                    className="w-full h-full drop-shadow-2xl"
+                    width={973.6595458984375}
+                    height={975.7525634765625}
+                    className="w-full h-full md:drop-shadow-2xl"
                   />
                 </div>
               </div>
@@ -239,9 +239,9 @@ export default function HowCircleSocietyWorksSection() {
                   <Image
                     src="/iPhone-13-Pro-Front-new.svg"
                     alt="Join a Community or Event"
-                    width={173.6595458984375}
-                    height={375.7525634765625}
-                    className="w-full h-full drop-shadow-2xl"
+                    width={973.6595458984375}
+                    height={975.7525634765625}
+                    className="w-full h-full md:drop-shadow-2xl"
                   />
                 </div>
               </div>
@@ -275,13 +275,13 @@ export default function HowCircleSocietyWorksSection() {
                 ref={image3Ref}
                 className="relative mt-8 sm:mt-10 md:-mt-30 ml-8 sm:ml-12 md:ml-16 lg:ml-20 transform rotate-[0deg] sm:rotate-[30deg]"
               >
-                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[500px] md:h-[500px]">
+                <div className="overflow-hidden w-[300px] h-[350px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[400px] md:h-[500px]">
                   <Image
-                    src="/iPhone-13-Pro-new (2).svg"
+                    src="/iPhone-13-Pro-Front.png"
                     alt="Build Real Connections"
-                    width={173.6595458984375}
-                    height={375.7525634765625}
-                    className="w-full h-full  drop-shadow-2xl"
+                    width={973.6595458984375}
+                    height={975.7525634765625}
+                    className="w-full h-full  md:drop-shadow-2xl"
                   />
                 </div>
               </div>
