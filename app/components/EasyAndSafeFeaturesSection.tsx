@@ -17,8 +17,6 @@ export default function EasyAndSafeFeaturesSection() {
   useEffect(() => {
     if (!backgroundRef.current) return;
 
-    // Continuous automatic animation - pulse/breathing effect
-    // Using opacity only to avoid overflow/scroll issues
     const tl = gsap.timeline({ repeat: -1, ease: "power1.inOut" });
 
     tl.to(backgroundRef.current, {
@@ -43,7 +41,6 @@ export default function EasyAndSafeFeaturesSection() {
     )
       return;
 
-    // Set initial states - text starts from above and invisible
     gsap.set([h2Ref1.current, h2Ref2.current], {
       opacity: 0,
       y: -30,
@@ -56,7 +53,6 @@ export default function EasyAndSafeFeaturesSection() {
       y: -30,
     });
 
-    // Create timeline for fade-in animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -66,7 +62,6 @@ export default function EasyAndSafeFeaturesSection() {
       },
     });
 
-    // Animate headings
     tl.to(h2Ref1.current, {
       opacity: 1,
       y: 0,

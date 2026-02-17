@@ -8,15 +8,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DownloadAppSection() {
-  // Desktop refs - only for desktop animations
   const desktopSectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const phone1Ref = useRef<HTMLDivElement>(null);
   const phone2Ref = useRef<HTMLDivElement>(null);
   const phone3Ref = useRef<HTMLDivElement>(null);
 
-  // Desktop animations - ONLY run on desktop (hidden md:block section)
-  // Animate heading fade-in when section reaches center
   useEffect(() => {
     if (!desktopSectionRef.current || !headingRef.current) return;
 
@@ -49,7 +46,6 @@ export default function DownloadAppSection() {
     };
   }, []);
 
-  // Pin section and animate phones sequentially (Desktop only)
   useEffect(() => {
     if (!desktopSectionRef.current) return;
 
@@ -60,16 +56,13 @@ export default function DownloadAppSection() {
 
     if (!phone1 || !phone2 || !phone3) return;
 
-    // Set initial state - all phones hidden
     gsap.set([phone1, phone2, phone3], {
       opacity: 0,
       scale: 0.8,
     });
 
-    // Scroll distance for animation (each phone gets ~400px)
     const scrollDistance = 1200;
 
-    // Create timeline for phone animations
     const phoneTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -77,13 +70,12 @@ export default function DownloadAppSection() {
         end: `+=${scrollDistance}`,
         pin: true,
         pinSpacing: true,
-        scrub: 1, // Smooth scrubbing tied to scroll
+        scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       },
     });
 
-    // Animate phones sequentially
     phoneTimeline
       .to(phone1, {
         opacity: 1,
@@ -99,7 +91,7 @@ export default function DownloadAppSection() {
           duration: 0.4,
           ease: "power2.out",
         },
-        "-=0.2", // Start slightly before phone1 finishes
+        "-=0.2",
       )
       .to(
         phone3,
@@ -109,7 +101,7 @@ export default function DownloadAppSection() {
           duration: 0.4,
           ease: "power2.out",
         },
-        "-=0.2", // Start slightly before phone2 finishes
+        "-=0.2",
       );
 
     return () => {
@@ -125,7 +117,6 @@ export default function DownloadAppSection() {
 
   return (
     <>
-      {/* Desktop Section - WITH animations, hidden on mobile */}
       <section
         ref={desktopSectionRef}
         className="hidden md:block bg-[#f5f5f0] py-12 sm:py-16 px-4 sm:px-6 md:pt-38 md:px-0 relative overflow-hidden"
@@ -160,102 +151,102 @@ export default function DownloadAppSection() {
           <div className="relative mb-12 sm:mb-16 md:mb-20">
             {/* Text and Phones Container */}
             <div className="relative min-h-[450px] lg:min-h-[550px] px-8">
-            {/* Text: "Download the App Now" - Centered, phones will overlap */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full px-4">
-              <div
-                ref={headingRef}
-                className="flex items-center justify-center"
-              >
+              {/* Text: "Download the App Now" - Centered, phones will overlap */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full px-4">
+                <div
+                  ref={headingRef}
+                  className="flex items-center justify-center"
+                >
+                  <Image
+                    src="/Download The App Now.svg"
+                    alt="Download The App Now"
+                    width={210}
+                    height={210}
+                    className="w-full max-w-full h-auto"
+                  />
+                </div>
+              </div>
+
+              {/* Phones - Diagonal arrangement from top-left to bottom-right, overlapping text */}
+              <div className="absolute left-[40%] top-1/2 md:mt-20 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+                {/* Left Phone - Appears on first scroll */}
+                <div
+                  ref={phone1Ref}
+                  className="relative z-10 w-40 lg:w-48 xl:w-56 transform -rotate-[6deg] -ml-18 -mt-12"
+                >
+                  <div className="relative p-2">
+                    <div className="aspect-[9/19] w-[650px] h-[650px] overflow-hidden">
+                      <Image
+                        width={900}
+                        height={900}
+                        src="/iPhone-13-Pro-Front.svg"
+                        alt="App Screen 1"
+                        className="w-full h-full -mt-12"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* Middle Phone - Appears on second scroll */}
+                <div
+                  ref={phone2Ref}
+                  className="relative z-10 w-40 lg:w-48 xl:w-56 transform -rotate-[6deg] -ml-18 -mt-12"
+                >
+                  <div className="relative p-2">
+                    <div className="aspect-[9/19] w-[650px] h-[650px] overflow-hidden">
+                      <Image
+                        width={900}
+                        height={900}
+                        src="/iPhone-13-Pro-Front (1).svg"
+                        alt="App Screen 2"
+                        className="w-full h-full -ml-5"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* Right Phone - Appears on third scroll */}
+                <div
+                  ref={phone3Ref}
+                  className="relative z-10 w-40 lg:w-48 xl:w-56 transform -rotate-[6deg] -ml-18 -mt-12"
+                >
+                  <div className="relative p-2">
+                    <div className="aspect-[9/19] w-[650px] h-[650px] overflow-hidden">
+                      <Image
+                        width={900}
+                        height={900}
+                        src="/iPhone-13-Pro-Front (2).svg"
+                        alt="App Screen 3"
+                        className="w-full h-full mt-20 -ml-15"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Download Buttons - Positioned below text */}
+            <div className="relative flex flex-row justify-between items-start gap-4 -mt-[180px] px-0">
+              {/* Left Button */}
+              <div className="flex-1 min-w-[200px] max-w-[280px]">
                 <Image
-                  src="/Download The App Now.svg"
-                  alt="Download The App Now"
-                  width={210}
-                  height={210}
-                  className="w-full max-w-full h-auto"
+                  src="/Store download button.svg"
+                  alt="Google Play"
+                  width={24}
+                  height={24}
+                  className="w-full h-full flex-shrink-0"
+                />
+              </div>
+
+              {/* Right Button */}
+              <div className="flex-1 min-w-[200px] max-w-[280px] ml-auto">
+                <Image
+                  src="/Store download button (1).svg"
+                  alt="App Store"
+                  width={24}
+                  height={24}
+                  className="w-full h-full flex-shrink-0"
                 />
               </div>
             </div>
-
-            {/* Phones - Diagonal arrangement from top-left to bottom-right, overlapping text */}
-            <div className="absolute left-[40%] top-1/2 md:mt-20 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
-              {/* Left Phone - Appears on first scroll */}
-              <div
-                ref={phone1Ref}
-                className="relative z-10 w-40 lg:w-48 xl:w-56 transform -rotate-[6deg] -ml-18 -mt-12"
-              >
-                <div className="relative p-2">
-                  <div className="aspect-[9/19] w-[650px] h-[650px] overflow-hidden">
-                    <Image
-                      width={900}
-                      height={900}
-                      src="/iPhone-13-Pro-Front.svg"
-                      alt="App Screen 1"
-                      className="w-full h-full -mt-12"
-                    />
-                  </div>
-                </div>
-              </div>
-              {/* Middle Phone - Appears on second scroll */}
-              <div
-                ref={phone2Ref}
-                className="relative z-10 w-40 lg:w-48 xl:w-56 transform -rotate-[6deg] -ml-18 -mt-12"
-              >
-                <div className="relative p-2">
-                  <div className="aspect-[9/19] w-[650px] h-[650px] overflow-hidden">
-                    <Image
-                      width={900}
-                      height={900}
-                      src="/iPhone-13-Pro-Front (1).svg"
-                      alt="App Screen 2"
-                      className="w-full h-full -ml-5"
-                    />
-                  </div>
-                </div>
-              </div>
-              {/* Right Phone - Appears on third scroll */}
-              <div
-                ref={phone3Ref}
-                className="relative z-10 w-40 lg:w-48 xl:w-56 transform -rotate-[6deg] -ml-18 -mt-12"
-              >
-                <div className="relative p-2">
-                  <div className="aspect-[9/19] w-[650px] h-[650px] overflow-hidden">
-                    <Image
-                      width={900}
-                      height={900}
-                      src="/iPhone-13-Pro-Front (2).svg"
-                      alt="App Screen 3"
-                      className="w-full h-full mt-20 -ml-15"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Download Buttons - Positioned below text */}
-          <div className="relative flex flex-row justify-between items-start gap-4 -mt-[180px] px-0">
-            {/* Left Button */}
-            <div className="flex-1 min-w-[200px] max-w-[280px]">
-              <Image
-                src="/Store download button.svg"
-                alt="Google Play"
-                width={24}
-                height={24}
-                className="w-full h-full flex-shrink-0"
-              />
-            </div>
-
-            {/* Right Button */}
-            <div className="flex-1 min-w-[200px] max-w-[280px] ml-auto">
-              <Image
-                src="/Store download button (1).svg"
-                alt="App Store"
-                width={24}
-                height={24}
-                className="w-full h-full flex-shrink-0"
-              />
-            </div>
-          </div>
           </div>
         </div>
       </section>

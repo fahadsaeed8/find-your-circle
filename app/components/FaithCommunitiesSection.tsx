@@ -24,7 +24,6 @@ export default function FaithCommunitiesSection() {
     )
       return;
 
-    // Set initial states
     if (imageRef.current) {
       gsap.set(imageRef.current, {
         opacity: 0,
@@ -48,7 +47,6 @@ export default function FaithCommunitiesSection() {
       y: 20,
     });
 
-    // Create timeline for animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -59,8 +57,6 @@ export default function FaithCommunitiesSection() {
       },
     });
 
-    // Animate elements sequentially
-    // 1. Image first
     tl.to(imageRef.current, {
       opacity: 1,
       scale: 1,
@@ -68,7 +64,6 @@ export default function FaithCommunitiesSection() {
       duration: 0.4,
       ease: "back.out(1.7)",
     })
-      // 2. Then heading
       .to(
         headingRef.current,
         {
@@ -79,7 +74,6 @@ export default function FaithCommunitiesSection() {
         },
         "+=0.1",
       )
-      // 3. Then description
       .to(
         descriptionRef.current,
         {
@@ -90,7 +84,6 @@ export default function FaithCommunitiesSection() {
         },
         "+=0.1",
       )
-      // 4. Then buttons
       .to(
         buttonsRef.current,
         {

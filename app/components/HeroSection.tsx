@@ -23,7 +23,6 @@ export default function HeroSection() {
   const phoneMiddleRef = useRef<HTMLDivElement>(null);
   const phoneRightRef = useRef<HTMLDivElement>(null);
 
-  // Handle "Enter the Circle" CTA click - Character zooms in and next page appears
   const handleEnterCircle = () => {
     if (hasEntered) return;
 
@@ -39,25 +38,20 @@ export default function HeroSection() {
 
     if (!hero || !character || !characterCircle || !ctaButton) return;
 
-    // Disable button during animation
     ctaButton.disabled = true;
 
-    // Get button's position and center point
     const buttonRect = ctaButton.getBoundingClientRect();
     const buttonCenterX = buttonRect.left + buttonRect.width / 2;
     const buttonCenterY = buttonRect.top + buttonRect.height / 2;
 
-    // Get viewport center for calculations
     const viewportCenterX = window.innerWidth / 2;
     const viewportCenterY = window.innerHeight / 2;
 
-    // Calculate offset to move everything towards button center
     const offsetX = buttonCenterX - viewportCenterX;
     const offsetY = buttonCenterY - viewportCenterY;
 
     const tl = gsap.timeline();
 
-    // Step 1: Button press effect - button scales down like being pressed
     tl.to(
       ctaButton,
       {
@@ -68,25 +62,22 @@ export default function HeroSection() {
       "start",
     );
 
-    // Step 2: Everything moves towards button center and zooms in
-    // Character moves towards button and scales up (going into button)
     tl.to(
       characterCircle,
       {
-        x: offsetX * 0.3, // Move towards button
+        x: offsetX * 0.3,
         y: offsetY * 0.3,
-        scale: 1.5, // Zoom in as if going into button
+        scale: 1.5,
         duration: 0.8,
         ease: "power2.in",
       },
       "start+=0.1",
     );
 
-    // Character circle continues zooming in more dramatically
     tl.to(
       characterCircle,
       {
-        scale: 2.5, // Even bigger zoom - going deep into button
+        scale: 2.5,
         opacity: 0.7,
         duration: 0.6,
         ease: "power2.in",
@@ -94,7 +85,6 @@ export default function HeroSection() {
       "start+=0.5",
     );
 
-    // Instruction text also moves towards button
     if (instructionText) {
       tl.to(
         instructionText,
@@ -110,7 +100,6 @@ export default function HeroSection() {
       );
     }
 
-    // Step 3: Button expands/glows as content goes into it
     tl.to(
       ctaButton,
       {
@@ -123,7 +112,6 @@ export default function HeroSection() {
       "start+=0.3",
     );
 
-    // Step 4: Hide button and instruction text after animation
     if (ctaButton) {
       tl.to(
         ctaButton,
@@ -147,8 +135,6 @@ export default function HeroSection() {
       );
     }
 
-    // Step 5: Morning Flower Bloom Animation - Multi-layered, soft glow, gradual expansion
-    // Layer 1: Innermost - Soft, calm, focused glow (starts first)
     if (portalLayer1) {
       gsap.set(portalLayer1, {
         width: "60px",
@@ -157,7 +143,6 @@ export default function HeroSection() {
         transformOrigin: "center center",
       });
 
-      // Soft glow starts - calm and focused
       tl.to(
         portalLayer1,
         {
@@ -168,7 +153,6 @@ export default function HeroSection() {
         "start+=0.7",
       );
 
-      // First layer expands gently
       tl.to(
         portalLayer1,
         {
@@ -180,7 +164,6 @@ export default function HeroSection() {
         "start+=0.9",
       );
 
-      // Glow intensifies as it expands
       tl.to(
         portalLayer1,
         {
@@ -193,7 +176,6 @@ export default function HeroSection() {
       );
     }
 
-    // Layer 2: Middle layer - Opens after first layer
     if (portalLayer2) {
       gsap.set(portalLayer2, {
         width: "80px",
@@ -202,7 +184,6 @@ export default function HeroSection() {
         transformOrigin: "center center",
       });
 
-      // Second layer starts expanding
       tl.to(
         portalLayer2,
         {
@@ -215,7 +196,6 @@ export default function HeroSection() {
         "start+=1.1",
       );
 
-      // Glow builds up
       tl.to(
         portalLayer2,
         {
@@ -228,7 +208,6 @@ export default function HeroSection() {
       );
     }
 
-    // Layer 3: Outer layer - Full balanced form
     if (portalLayer3) {
       gsap.set(portalLayer3, {
         width: "100px",
@@ -237,7 +216,6 @@ export default function HeroSection() {
         transformOrigin: "center center",
       });
 
-      // Third layer opens - full balanced form
       tl.to(
         portalLayer3,
         {
@@ -250,7 +228,6 @@ export default function HeroSection() {
         "start+=1.3",
       );
 
-      // Full glow effect - balanced and complete
       tl.to(
         portalLayer3,
         {
@@ -263,11 +240,10 @@ export default function HeroSection() {
       );
     }
 
-    // Character continues zooming into button - final push
     tl.to(
       characterCircle,
       {
-        scale: 3.5, // Maximum zoom - fully going into button
+        scale: 3.5,
         opacity: 0,
         x: offsetX * 0.5,
         y: offsetY * 0.5,
@@ -277,7 +253,6 @@ export default function HeroSection() {
       "start+=0.9",
     );
 
-    // All layers fade out together - balanced completion
     if (portalLayer1 && portalLayer2 && portalLayer3) {
       tl.to(
         [portalLayer1, portalLayer2, portalLayer3],
@@ -290,7 +265,6 @@ export default function HeroSection() {
       );
     }
 
-    // Step 6: Hero overlay fades out after animations complete
     tl.to(
       hero,
       {
@@ -300,22 +274,19 @@ export default function HeroSection() {
         ease: "power2.in",
         onComplete: () => {
           setHasEntered(true);
-          // Save to localStorage so it doesn't show again on refresh
           if (typeof window !== "undefined") {
             localStorage.setItem("hasEnteredCircle", "true");
           }
           document.body.style.overflow = "auto";
         },
       },
-      "start+=2.0", // After character zoom out completes
+      "start+=2.0",
     );
   };
 
   useEffect(() => {
     if (!heartBackgroundRef.current) return;
 
-    // Continuous automatic animation - pulse/breathing effect
-    // Using opacity only to avoid overflow/scroll issues
     const tl = gsap.timeline({ repeat: -1, ease: "power1.inOut" });
 
     tl.to(heartBackgroundRef.current, {
@@ -331,7 +302,6 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Check localStorage on mount to see if user has already entered
   useEffect(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("hasEnteredCircle");
@@ -339,7 +309,6 @@ export default function HeroSection() {
         setHasEntered(true);
         document.body.style.overflow = "auto";
       } else {
-        // First time visit - show hero section
         setHasEntered(false);
         window.scrollTo({ top: 0, behavior: "instant" });
         document.body.style.overflow = "hidden";
@@ -348,7 +317,6 @@ export default function HeroSection() {
     }
   }, []);
 
-  // Hero Section Entrance Animation
   useEffect(() => {
     if (hasEntered) return;
 
@@ -410,18 +378,15 @@ export default function HeroSection() {
     }
   }, [hasEntered]);
 
-  // Animate hero title zoom in when overlay disappears
   useEffect(() => {
     if (!hasEntered || !heroTitleRef.current) return;
 
-    // Set initial state - text starts small and invisible
     gsap.set(heroTitleRef.current, {
       opacity: 0,
       scale: 0.5,
       transformOrigin: "center center",
     });
 
-    // Animate title zoom in with slow speed
     gsap.to(heroTitleRef.current, {
       opacity: 1,
       scale: 1,
@@ -431,18 +396,15 @@ export default function HeroSection() {
     });
   }, [hasEntered]);
 
-  // Animate footnote zoom in when overlay disappears
   useEffect(() => {
     if (!hasEntered || !footnoteRef.current) return;
 
-    // Set initial state - text starts small and invisible
     gsap.set(footnoteRef.current, {
       opacity: 0,
       scale: 0.5,
       transformOrigin: "center center",
     });
 
-    // Animate footnote zoom in with slow speed
     gsap.to(footnoteRef.current, {
       opacity: 0.7,
       scale: 1,
@@ -452,7 +414,6 @@ export default function HeroSection() {
     });
   }, [hasEntered]);
 
-  // Animate iPhone images entrance when overlay disappears
   useEffect(() => {
     if (!hasEntered) return;
 
@@ -464,7 +425,6 @@ export default function HeroSection() {
 
     if (phones.length === 0) return;
 
-    // Set initial state - phones start invisible, scaled down, and slightly offset
     phones.forEach((phone, index) => {
       if (phone) {
         gsap.set(phone, {
@@ -476,7 +436,6 @@ export default function HeroSection() {
       }
     });
 
-    // Staggered entrance animation - phones appear one by one
     const tl = gsap.timeline();
 
     phones.forEach((phone, index) => {
@@ -490,7 +449,7 @@ export default function HeroSection() {
             duration: 1.2,
             ease: "power2.out",
           },
-          index * 0.15, // Stagger delay of 0.15s between each phone
+          index * 0.15,
         );
       }
     });
@@ -508,117 +467,117 @@ export default function HeroSection() {
           className="fixed inset-0 z-50 flex items-center justify-center"
           style={{ display: isMounted ? "flex" : "none" }}
         >
-        {/* Main Background - For entire hero section */}
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
+          {/* Main Background - For entire hero section */}
+          <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
 
-        {/* Background Image - ONLY for character section (not entire hero) */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200vw] h-[200vh] bg-cover bg-center bg-no-repeat opacity-20"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&q=80')`,
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+          {/* Background Image - ONLY for character section (not entire hero) */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200vw] h-[200vh] bg-cover bg-center bg-no-repeat opacity-20"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&q=80')`,
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+            </div>
           </div>
-        </div>
 
-        {/* Subtle ambient light */}
-        <div className="absolute inset-0 bg-gradient-radial from-white/5 via-transparent to-transparent opacity-30" />
+          {/* Subtle ambient light */}
+          <div className="absolute inset-0 bg-gradient-radial from-white/5 via-transparent to-transparent opacity-30" />
 
-        {/* Character Container - Centered */}
-        <div
-          ref={characterRef}
-          className="relative z-20  flex flex-col items-center justify-center"
-        >
-          {/* Single Character - Premium Design */}
-          <div className="relative">
-            {/* Character Circle - Minimal & Elegant */}
-            <div className="character-circle w-52 h-52 md:w-56 md:h-56 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-white/10 via-white/5 to-transparent border-2 border-white/15 flex items-center justify-center backdrop-blur-[4px] shadow-2xl overflow-hidden">
-              {/* Inner glow */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent z-10" />
+          {/* Character Container - Centered */}
+          <div
+            ref={characterRef}
+            className="relative z-20  flex flex-col items-center justify-center"
+          >
+            {/* Single Character - Premium Design */}
+            <div className="relative">
+              {/* Character Circle - Minimal & Elegant */}
+              <div className="character-circle w-52 h-52 md:w-56 md:h-56 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-white/10 via-white/5 to-transparent border-2 border-white/15 flex items-center justify-center backdrop-blur-[4px] shadow-2xl overflow-hidden">
+                {/* Inner glow */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent z-10" />
 
-              {/* Character Image */}
-              <div className="relative z-0 w-full h-full">
-                <Image
-                  src="/hero.png"
-                  alt="Character"
-                  fill
-                  className="object-cover rounded-full"
-                  priority
-                />
+                {/* Character Image */}
+                <div className="relative z-0 w-full h-full">
+                  <Image
+                    src="/hero.png"
+                    alt="Character"
+                    fill
+                    className="object-cover rounded-full"
+                    priority
+                  />
+                </div>
               </div>
+
+              {/* Morning Flower Bloom - Multi-layered Portal Rings */}
+              {/* Layer 1: Innermost - Soft, calm, focused glow */}
+              <div
+                ref={portalLayer1Ref}
+                className="absolute rounded-full border border-white/40 pointer-events-none z-30"
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  transformOrigin: "center center",
+                  background:
+                    "radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 80%)",
+                }}
+              />
+
+              {/* Layer 2: Middle layer - Gradual expansion */}
+              <div
+                ref={portalLayer2Ref}
+                className="absolute rounded-full border border-white/50 pointer-events-none z-30"
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  transformOrigin: "center center",
+                  background:
+                    "radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 85%)",
+                }}
+              />
+
+              {/* Layer 3: Outer layer - Full balanced form */}
+              <div
+                ref={portalLayer3Ref}
+                className="absolute rounded-full border border-white/60 pointer-events-none z-30"
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  transformOrigin: "center center",
+                  background:
+                    "radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 90%)",
+                }}
+              />
             </div>
 
-            {/* Morning Flower Bloom - Multi-layered Portal Rings */}
-            {/* Layer 1: Innermost - Soft, calm, focused glow */}
-            <div
-              ref={portalLayer1Ref}
-              className="absolute rounded-full border border-white/40 pointer-events-none z-30"
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                transformOrigin: "center center",
-                background:
-                  "radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 80%)",
-              }}
-            />
+            {/* CTA Button - Clear & Premium */}
+            <button
+              ref={ctaButtonRef}
+              onClick={handleEnterCircle}
+              data-enter-circle
+              className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
+            >
+              <span className="relative z-10">Enter the Circle</span>
 
-            {/* Layer 2: Middle layer - Gradual expansion */}
-            <div
-              ref={portalLayer2Ref}
-              className="absolute rounded-full border border-white/50 pointer-events-none z-30"
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                transformOrigin: "center center",
-                background:
-                  "radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 85%)",
-              }}
-            />
+              {/* Button glow effect */}
+              <div className="absolute inset-0 rounded-full bg-white/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </button>
 
-            {/* Layer 3: Outer layer - Full balanced form */}
-            <div
-              ref={portalLayer3Ref}
-              className="absolute rounded-full border border-white/60 pointer-events-none z-30"
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                transformOrigin: "center center",
-                background:
-                  "radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 90%)",
-              }}
-            />
+            {/* Instruction text */}
+            <p
+              ref={instructionTextRef}
+              className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-sm tracking-wide z-20 px-4 text-center"
+            >
+              Click to begin your journey
+            </p>
           </div>
-
-          {/* CTA Button - Clear & Premium */}
-          <button
-            ref={ctaButtonRef}
-            onClick={handleEnterCircle}
-            data-enter-circle
-            className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
-          >
-            <span className="relative z-10">Enter the Circle</span>
-
-            {/* Button glow effect */}
-            <div className="absolute inset-0 rounded-full bg-white/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </button>
-
-          {/* Instruction text */}
-          <p
-            ref={instructionTextRef}
-            className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-sm tracking-wide z-20 px-4 text-center"
-          >
-            Click to begin your journey
-          </p>
         </div>
-      </div>
       )}
 
       {/* Light Background */}

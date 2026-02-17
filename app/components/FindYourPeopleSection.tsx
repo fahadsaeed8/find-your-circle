@@ -26,7 +26,6 @@ export default function FindYourPeopleSection() {
     )
       return;
 
-    // Set initial states
     gsap.set(headingRef.current, {
       opacity: 0,
       y: -30,
@@ -71,7 +70,6 @@ export default function FindYourPeopleSection() {
       y: 20,
     });
 
-    // Create timeline for animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -82,7 +80,6 @@ export default function FindYourPeopleSection() {
       },
     });
 
-    // Animate elements
     tl.to(headingRef.current, {
       opacity: 1,
       y: 0,
@@ -99,7 +96,6 @@ export default function FindYourPeopleSection() {
         },
         "-=0.15",
       )
-      // Animate images one by one with faster timing
       .to(
         image1Ref.current,
         {
@@ -164,7 +160,6 @@ export default function FindYourPeopleSection() {
     };
   }, []);
 
-  // Mobile refs
   const mobileImage1Ref = useRef<HTMLDivElement>(null);
   const mobileImage2Ref = useRef<HTMLDivElement>(null);
   const mobileImage3Ref = useRef<HTMLDivElement>(null);
@@ -173,7 +168,6 @@ export default function FindYourPeopleSection() {
   const mobileDescriptionRef = useRef<HTMLDivElement>(null);
   const mobileButtonsRef = useRef<HTMLDivElement>(null);
 
-  // Mobile animations
   useEffect(() => {
     if (!sectionRef.current) return;
 
@@ -189,7 +183,6 @@ export default function FindYourPeopleSection() {
 
     if (mobileRefs.some((ref) => !ref)) return;
 
-    // Set initial states for mobile
     gsap.set(mobileHeadingRef.current, {
       opacity: 0,
       y: -30,
@@ -218,7 +211,6 @@ export default function FindYourPeopleSection() {
       y: 20,
     });
 
-    // Mobile timeline
     const mobileTl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
