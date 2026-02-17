@@ -11,12 +11,10 @@ export default function StatisticsSection() {
   const statsRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // Format number with commas
   const formatNumber = (num: number): string => {
     return num.toLocaleString("en-US");
   };
 
-  // Animate counter function
   const animateCounter = (
     element: HTMLElement,
     target: number,
@@ -40,7 +38,6 @@ export default function StatisticsSection() {
     const number2Ref = statsRef.current.querySelector(".number-2");
     const number3Ref = statsRef.current.querySelector(".number-3");
 
-    // Create scroll trigger only for number animations
     const scrollTrigger = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top 80%",
@@ -48,7 +45,6 @@ export default function StatisticsSection() {
       onEnter: () => {
         if (!hasAnimated) {
           setHasAnimated(true);
-          // Start counter animations
           if (number1Ref) animateCounter(number1Ref as HTMLElement, 10000, 2);
           if (number2Ref) animateCounter(number2Ref as HTMLElement, 100, 2);
           if (number3Ref)

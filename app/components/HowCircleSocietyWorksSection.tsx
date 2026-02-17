@@ -180,7 +180,7 @@ export default function HowCircleSocietyWorksSection() {
           <div className="text-center bg-white p-4 sm:p-5 mb-20 md:mb-0 rounded-2xl step-item">
             <div className="relative mb-4 sm:mb-5 flex items-start justify-center h-[220px] md:h-[280px] overflow-visible">
               {/* Golden Number */}
-              <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-20 md:-top-22 z-10">
+              <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-25 md:-top-22 z-10">
                 <Image
                   src="/1.svg"
                   alt="1"
@@ -195,7 +195,7 @@ export default function HowCircleSocietyWorksSection() {
                 ref={image1Ref}
                 className="relative mt-8 sm:mt-10 md:-mt-30 ml-8 sm:ml-12 md:ml-16 lg:ml-0 transform rotate-[0deg] sm:rotate-[0deg]"
               >
-                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 -ml-24 md:-ml-0 md:w-[500px] md:h-[500px]">
+                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 ml-0 md:ml-10 md:w-[500px] md:h-[500px]">
                   <Image
                     src="/iPhone-13-Pro-Front.svg"
                     alt="Discover Activities"
@@ -207,10 +207,10 @@ export default function HowCircleSocietyWorksSection() {
               </div>
             </div>
 
-            <h3 className="mb-2 sm:mb-3 font-clash text-xl md:text-3xl font-medium text-[#1B1B1B]">
+            <h3 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B]">
               Discover Activities
             </h3>
-            <p className="text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
+            <p className="text-md leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
               Take our fun quiz, no boring questions. Just tell us what lights
               you up: Travel? Dogs? Memes?
             </p>
@@ -235,7 +235,7 @@ export default function HowCircleSocietyWorksSection() {
                 ref={image2Ref}
                 className="relative mt-8 sm:mt-10 md:-mt-30 ml-8 sm:ml-12 md:ml-16 lg:ml-20 transform rotate-[0deg] sm:rotate-[0deg]"
               >
-                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 -ml-24 md:-ml-0 md:w-[500px] md:h-[500px]">
+                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[500px] md:h-[500px]">
                   <Image
                     src="/iPhone-13-Pro-Front-new.svg"
                     alt="Join a Community or Event"
@@ -247,10 +247,10 @@ export default function HowCircleSocietyWorksSection() {
               </div>
             </div>
 
-            <h3 className="mb-2 sm:mb-3 font-clash text-xl md:text-[27px] font-medium text-[#1B1B1B]">
+            <h3 className="mb-2 sm:mb-3 font-clash text-2xl md:text-[27px] font-medium text-[#1B1B1B]">
               Join a Community or Event
             </h3>
-            <p className="text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
+            <p className="text-md leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
               Our matching engine compares your vibe with everyone else's to
               find the strongest spark.
             </p>
@@ -275,7 +275,7 @@ export default function HowCircleSocietyWorksSection() {
                 ref={image3Ref}
                 className="relative mt-8 sm:mt-10 md:-mt-30 ml-8 sm:ml-12 md:ml-16 lg:ml-20 transform rotate-[0deg] sm:rotate-[30deg]"
               >
-                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 -ml-24 md:-ml-0 md:w-[500px] md:h-[500px]">
+                <div className="overflow-hidden w-[350px] h-[350px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[500px] md:h-[500px]">
                   <Image
                     src="/iPhone-13-Pro-new (2).svg"
                     alt="Build Real Connections"
@@ -287,10 +287,10 @@ export default function HowCircleSocietyWorksSection() {
               </div>
             </div>
 
-            <h3 className="mb-2 sm:mb-3 font-clash text-xl md:text-3xl font-medium text-[#1B1B1B]">
+            <h3 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B]">
               Build Real Connections
             </h3>
-            <p className="text-sm leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
+            <p className="text-md leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
               No swiping. No awkward intros. Just show up and see who you
               matched with instantly.
             </p>
