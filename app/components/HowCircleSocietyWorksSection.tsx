@@ -201,7 +201,7 @@ export default function HowCircleSocietyWorksSection() {
                     alt="Discover Activities"
                     width={973.6595458984375}
                     height={975.7525634765625}
-                    className="w-full h-full drop-shadow-2xl"
+                    className="w-full h-full md:drop-shadow-2xl"
                   />
                 </div>
               </div>
@@ -241,7 +241,7 @@ export default function HowCircleSocietyWorksSection() {
                     alt="Join a Community or Event"
                     width={973.6595458984375}
                     height={975.7525634765625}
-                    className="w-full h-full drop-shadow-2xl"
+                    className="w-full h-full md:drop-shadow-2xl"
                   />
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function HowCircleSocietyWorksSection() {
                     alt="Build Real Connections"
                     width={973.6595458984375}
                     height={975.7525634765625}
-                    className="w-full h-full  drop-shadow-2xl"
+                    className="w-full h-full  md:drop-shadow-2xl"
                   />
                 </div>
               </div>

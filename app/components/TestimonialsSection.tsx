@@ -49,14 +49,14 @@ export default function TestimonialsSection() {
       role: "Joined a Fitness & Community Group",
       quote:
         "I didn't want another social app. I wanted people who actually show up. Circle Society helped me find a local community that meets weekly. It feels real, not fanced.",
-      image: "/Rectangle 40853 (1).svg", // Update with correct testimonial image path
+      image: "/Rectangle 40869.png",
     },
     {
       name: "Noura",
       location: "Abu Dhabi",
       role: "Community Member",
       quote: "It feels safe because you meet through shared interests.",
-      image: "/Rectangle 40853 (2).svg", // Update with correct testimonial image path
+      image: "/Rectangle 40871.png",
     },
     {
       name: "Sara",
@@ -64,7 +64,7 @@ export default function TestimonialsSection() {
       role: "Event Host",
       quote:
         "The events are what make this different. From art meetups to group dinners, everything is built around real activities. You meet people naturally.",
-      image: "/Rectangle 40853 (3).svg", // Update with correct testimonial image path
+      image: "/Rectangle 40870.png",
     },
   ];
 
@@ -97,7 +97,7 @@ export default function TestimonialsSection() {
             className="flex flex-col items-center text-center"
           >
             {/* Image */}
-            <div className="overflow-hidden rounded-2xl mb-4 w-full max-w-[280px] [&>span]:block [&>span]:w-full [&>span]:h-full [&>span>img]:block">
+            <div className="overflow-hidden rounded-2xl mb-4 w-full max-w-[380px] [&>span]:block [&>span]:w-full [&>span]:h-full [&>span>img]:block">
               <Image
                 src={testimonial.image}
                 alt={testimonial.name}
