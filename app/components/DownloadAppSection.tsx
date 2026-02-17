@@ -8,24 +8,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DownloadAppSection() {
-  const downloadSectionRef = useRef<HTMLElement>(null);
+  // Desktop refs - only for desktop animations
+  const desktopSectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const phone1Ref = useRef<HTMLDivElement>(null);
   const phone2Ref = useRef<HTMLDivElement>(null);
   const phone3Ref = useRef<HTMLDivElement>(null);
 
-  // Mobile refs
-  const mobileHeadingRef = useRef<HTMLDivElement>(null);
-  const mobilePhone1Ref = useRef<HTMLDivElement>(null);
-  const mobilePhone2Ref = useRef<HTMLDivElement>(null);
-  const mobilePhone3Ref = useRef<HTMLDivElement>(null);
-
-  // Animate heading fade-in when section reaches center (Desktop)
+  // Desktop animations - ONLY run on desktop (hidden md:block section)
+  // Animate heading fade-in when section reaches center
   useEffect(() => {
-    if (!downloadSectionRef.current || !headingRef.current) return;
-
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) return; // Skip desktop animation on mobile
+    if (!desktopSectionRef.current || !headingRef.current) return;
 
     gsap.set(headingRef.current, {
       opacity: 0,
@@ -33,7 +26,7 @@ export default function DownloadAppSection() {
     });
 
     ScrollTrigger.create({
-      trigger: downloadSectionRef.current,
+      trigger: desktopSectionRef.current,
       start: "center center",
       toggleActions: "play none none none",
       onEnter: () => {
@@ -48,7 +41,7 @@ export default function DownloadAppSection() {
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === downloadSectionRef.current) {
+        if (trigger.vars.trigger === desktopSectionRef.current) {
           trigger.kill();
         }
       });
@@ -56,16 +49,11 @@ export default function DownloadAppSection() {
     };
   }, []);
 
-  // Mobile - No animations, phones visible by default
-
-  // Pin section and animate phones sequentially (Desktop)
+  // Pin section and animate phones sequentially (Desktop only)
   useEffect(() => {
-    if (!downloadSectionRef.current) return;
+    if (!desktopSectionRef.current) return;
 
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) return; // Skip desktop animation on mobile
-
-    const section = downloadSectionRef.current;
+    const section = desktopSectionRef.current;
     const phone1 = phone1Ref.current;
     const phone2 = phone2Ref.current;
     const phone3 = phone3Ref.current;
@@ -135,44 +123,43 @@ export default function DownloadAppSection() {
     };
   }, []);
 
-  // Mobile - No animations, phones visible by default (removed animation useEffect)
-
   return (
-    <section
-      ref={downloadSectionRef}
-      className="bg-[#f5f5f0] py-12 sm:py-16 px-4 sm:px-6 md:pt-38 md:px-0 relative overflow-hidden"
-    >
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Circular Lines - Thin abstract circles */}
-        <Image
-          src="/Group 35887.svg"
-          alt="Community Groups"
-          width={210}
-          height={210}
-          className="absolute top-130 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] md:w-[900px] md:h-[900px] opacity-30"
-        />
-        <Image
-          src="/Ellipse 2.svg"
-          alt="Community Groups"
-          width={210}
-          height={210}
-          className="absolute top-[20%] md:top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] md:w-[800px] md:h-[800px] opacity-100"
-        />
-        <Image
-          src="/Ellipse 2.svg"
-          alt="Community Groups"
-          width={210}
-          height={210}
-          className="absolute top-[50%] md:top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] md:w-[800px] md:h-[800px] opacity-100"
-        />
-      </div>
+    <>
+      {/* Desktop Section - WITH animations, hidden on mobile */}
+      <section
+        ref={desktopSectionRef}
+        className="hidden md:block bg-[#f5f5f0] py-12 sm:py-16 px-4 sm:px-6 md:pt-38 md:px-0 relative overflow-hidden"
+      >
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Circular Lines - Thin abstract circles */}
+          <Image
+            src="/Group 35887.svg"
+            alt="Community Groups"
+            width={210}
+            height={210}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-30"
+          />
+          <Image
+            src="/Ellipse 2.svg"
+            alt="Community Groups"
+            width={210}
+            height={210}
+            className="absolute top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-100"
+          />
+          <Image
+            src="/Ellipse 2.svg"
+            alt="Community Groups"
+            width={210}
+            height={210}
+            className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-100"
+          />
+        </div>
 
-      <div className="mx-auto max-w-7xl relative z-10">
-        {/* Desktop View - Hidden on mobile */}
-        <div className="hidden md:block relative mb-12 sm:mb-16 md:mb-20">
-          {/* Text and Phones Container */}
-          <div className="relative min-h-[450px] lg:min-h-[550px] px-8">
+        <div className="mx-auto max-w-7xl relative z-10">
+          <div className="relative mb-12 sm:mb-16 md:mb-20">
+            {/* Text and Phones Container */}
+            <div className="relative min-h-[450px] lg:min-h-[550px] px-8">
             {/* Text: "Download the App Now" - Centered, phones will overlap */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full px-4">
               <div
@@ -269,16 +256,42 @@ export default function DownloadAppSection() {
               />
             </div>
           </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile Section - NO animations, static images only, hidden on desktop */}
+      <section className="block md:hidden bg-[#f5f5f0] py-12 sm:py-16 px-4 sm:px-6 relative overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Circular Lines - Thin abstract circles */}
+          <Image
+            src="/Group 35887.svg"
+            alt="Community Groups"
+            width={210}
+            height={210}
+            className="absolute top-130 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-30"
+          />
+          <Image
+            src="/Ellipse 2.svg"
+            alt="Community Groups"
+            width={210}
+            height={210}
+            className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
+          />
+          <Image
+            src="/Ellipse 2.svg"
+            alt="Community Groups"
+            width={210}
+            height={210}
+            className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
+          />
         </div>
 
-        {/* Mobile View - Hidden on desktop */}
-        <div className="block md:hidden relative ">
+        <div className="mx-auto max-w-7xl relative z-10">
           {/* Text: "Download the App Now" - Centered */}
           <div className="relative z-10 w-full px-4 mb-8">
-            <div
-              ref={mobileHeadingRef}
-              className="flex items-center justify-center"
-            >
+            <div className="flex items-center justify-center">
               <Image
                 src="/Download The App Now.svg"
                 alt="Download The App Now"
@@ -290,7 +303,7 @@ export default function DownloadAppSection() {
           </div>
 
           {/* Download Buttons - Stacked vertically on mobile */}
-          <div className="relative flex  justify-center items-center gap-4 px-4">
+          <div className="relative flex justify-center items-center gap-4 px-4">
             {/* Google Play Button */}
             <div className="w-full max-w-[280px]">
               <Image
@@ -313,15 +326,13 @@ export default function DownloadAppSection() {
               />
             </div>
           </div>
-          {/* Phones - Diagonal arrangement for mobile */}
+
+          {/* Phones - Diagonal arrangement for mobile - STATIC, NO ANIMATIONS */}
           <div className="relative -ml-70 mt-40 flex items-center justify-center mb-8 min-h-[400px]">
             {/* Left Phone */}
-            <div
-              ref={mobilePhone1Ref}
-              className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8"
-            >
+            <div className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8">
               <div className="relative p-1.5">
-                <div className="aspect-[9/19] w-[450px] h-[450px] md:w-[650px] md:h-[650px] overflow-hidden">
+                <div className="aspect-[9/19] w-[450px] h-[450px] overflow-hidden">
                   <Image
                     width={900}
                     height={900}
@@ -333,12 +344,9 @@ export default function DownloadAppSection() {
               </div>
             </div>
             {/* Middle Phone */}
-            <div
-              ref={mobilePhone2Ref}
-              className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8"
-            >
+            <div className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8">
               <div className="relative p-1.5">
-                <div className="aspect-[9/19] w-[450px] h-[450px] md:w-[650px] md:h-[650px] overflow-hidden">
+                <div className="aspect-[9/19] w-[450px] h-[450px] overflow-hidden">
                   <Image
                     width={900}
                     height={900}
@@ -350,12 +358,9 @@ export default function DownloadAppSection() {
               </div>
             </div>
             {/* Right Phone */}
-            <div
-              ref={mobilePhone3Ref}
-              className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8"
-            >
+            <div className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8">
               <div className="relative p-1.5">
-                <div className="aspect-[9/19] w-[450px] h-[450px] md:w-[650px] md:h-[650px] overflow-hidden">
+                <div className="aspect-[9/19] w-[450px] h-[450px] overflow-hidden">
                   <Image
                     width={900}
                     height={900}
@@ -368,7 +373,7 @@ export default function DownloadAppSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
