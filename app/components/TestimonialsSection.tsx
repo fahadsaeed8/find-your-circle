@@ -56,15 +56,15 @@ export default function TestimonialsSection() {
       location: "Abu Dhabi",
       role: "Community Member",
       quote: "It feels safe because you meet through shared interests.",
-      image: "/Rectangle 40871.png",
+      image: "/Rectangle 40870.png",
     },
     {
-      name: "Sara",
+      name: "Mark,",
       location: "London",
       role: "Event Host",
       quote:
         "The events are what make this different. From art meetups to group dinners, everything is built around real activities. You meet people naturally.",
-      image: "/Rectangle 40870.png",
+      image: "/Rectangle 40871.png",
     },
   ];
 
@@ -182,8 +182,7 @@ export default function TestimonialsSection() {
           /> */}
           <div className="max-w-md text-left ml-10 mt-40">
             <p className="text-gray-600 text-lg leading-relaxed font-normal">
-              The events are what make this different.
-              <br />
+              The events are what make this different. <br />
               <br />
               From art meetups to group dinners,
               <br />
@@ -194,7 +193,7 @@ export default function TestimonialsSection() {
 
             <div className="mt-6">
               <p className="font-semibold text-gray-800 text-lg">
-                Sara, London
+                Mark, London{" "}
               </p>
               <p className="text-gray-500 text-sm">Event Host</p>
             </div>
