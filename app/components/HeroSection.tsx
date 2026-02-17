@@ -640,7 +640,7 @@ export default function HeroSection() {
             {/* Left Section - Text and CTA */}
             <div
               ref={heroTitleRef}
-              className="text-center md:text-left md:-mt-20 lg:-mt-20 order-1 lg:order-1"
+              className="text-center md:text-left mt-10 md:-mt-20 lg:-mt-20 order-1 lg:order-1"
             >
               <h1 className="mb-4 sm:mb-6 font-clash text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
                 <span className="block text-[#2d2d2d] md:text-[#1a1a1a]">
