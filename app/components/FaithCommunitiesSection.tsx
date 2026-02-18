@@ -24,6 +24,19 @@ export default function FaithCommunitiesSection() {
     )
       return;
 
+    const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+
+    if (isMobile) {
+      // Mobile: ScrollTrigger mat use karo – content turant dikhao, hang nahi
+      gsap.set([imageRef.current, headingRef.current, descriptionRef.current, buttonsRef.current], {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        scale: 1,
+      });
+      return;
+    }
+
     if (imageRef.current) {
       gsap.set(imageRef.current, {
         opacity: 0,
@@ -32,20 +45,9 @@ export default function FaithCommunitiesSection() {
       });
     }
 
-    gsap.set(headingRef.current, {
-      opacity: 0,
-      y: -30,
-    });
-
-    gsap.set(descriptionRef.current, {
-      opacity: 0,
-      y: 20,
-    });
-
-    gsap.set(buttonsRef.current, {
-      opacity: 0,
-      y: 20,
-    });
+    gsap.set(headingRef.current, { opacity: 0, y: -30 });
+    gsap.set(descriptionRef.current, { opacity: 0, y: 20 });
+    gsap.set(buttonsRef.current, { opacity: 0, y: 20 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -64,36 +66,9 @@ export default function FaithCommunitiesSection() {
       duration: 0.4,
       ease: "back.out(1.7)",
     })
-      .to(
-        headingRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "+=0.1",
-      )
-      .to(
-        descriptionRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "+=0.1",
-      )
-      .to(
-        buttonsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "+=0.1",
-      );
+      .to(headingRef.current, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.1")
+      .to(descriptionRef.current, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.1")
+      .to(buttonsRef.current, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.1");
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
