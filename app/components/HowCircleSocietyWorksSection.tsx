@@ -269,7 +269,7 @@ export default function HowCircleSocietyWorksSection() {
                 ref={image3Ref}
                 className="relative mt-8 sm:mt-10 md:-mt-30 ml-8 sm:ml-12 md:ml-16 lg:ml-20 transform rotate-[0deg] sm:rotate-[30deg]"
               >
-                <div className="overflow-hidden w-[300px] h-[350px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[400px] md:h-[500px]">
+                <div className="overflow-hidden w-[260px] h-[340px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[400px] md:h-[500px]">
                   <Image
                     src="/iPhone-13-Pro-Front-latest.png"
                     alt="Build Real Connections"
