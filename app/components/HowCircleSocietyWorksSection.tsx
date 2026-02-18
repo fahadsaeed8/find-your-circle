@@ -19,7 +19,6 @@ export default function HowCircleSocietyWorksSection() {
   useEffect(() => {
     if (!backgroundRef.current) return;
 
-    // Continuous automatic animation - pulse/breathing effect
     const tl = gsap.timeline({ repeat: -1, ease: "power1.inOut" });
 
     tl.to(backgroundRef.current, {
@@ -38,7 +37,6 @@ export default function HowCircleSocietyWorksSection() {
   useEffect(() => {
     if (!sectionRef.current || !headingRef.current || !stepsRef.current) return;
 
-    // Set initial states - text starts from above and invisible
     gsap.set(headingRef.current, {
       opacity: 0,
       y: -30,
@@ -50,7 +48,6 @@ export default function HowCircleSocietyWorksSection() {
       y: 30,
     });
 
-    // Set initial states for images - scale down and slightly rotated
     if (image1Ref.current) {
       gsap.set(image1Ref.current, {
         opacity: 0,
@@ -73,7 +70,6 @@ export default function HowCircleSocietyWorksSection() {
       });
     }
 
-    // Create timeline for fade-in animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -83,7 +79,6 @@ export default function HowCircleSocietyWorksSection() {
       },
     });
 
-    // Animate heading
     tl.to(headingRef.current, {
       opacity: 1,
       y: 0,
@@ -101,7 +96,6 @@ export default function HowCircleSocietyWorksSection() {
         },
         "-=0.4",
       )
-      // Animate images with scale and rotation
       .to(
         image1Ref.current,
         {
@@ -177,7 +171,7 @@ export default function HowCircleSocietyWorksSection() {
           className="grid gap-8 sm:gap-10 md:grid-cols-3 md:gap-6 lg:gap-8"
         >
           {/* Step 1: Discover Activities */}
-          <div className="text-center bg-white p-4 sm:p-5 mb-20 md:mb-0 rounded-2xl step-item">
+          <div className="text-center bg-white w-[340px] min-[400px]:w-full p-4 sm:p-5 mb-20 md:mb-0 rounded-2xl step-item">
             <div className="relative mb-4 sm:mb-5 flex items-start justify-center h-[220px] md:h-[280px] overflow-visible">
               {/* Golden Number */}
               <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-25 md:-top-22 z-10">
@@ -217,7 +211,7 @@ export default function HowCircleSocietyWorksSection() {
           </div>
 
           {/* Step 2: Join a Community or Event */}
-          <div className="text-center bg-white p-4 sm:p-5 mb-20 md:mb-0 rounded-2xl step-item">
+          <div className="text-center bg-white w-[340px] min-[400px]:w-full p-4 sm:p-5 mb-20 md:mb-0 rounded-2xl step-item">
             <div className="relative mb-4 sm:mb-5 flex items-start justify-center h-[220px] md:h-[280px] md:h-[280px] overflow-visible">
               {/* Golden Number */}
               <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-20 md:-top-22 z-10">
@@ -257,7 +251,7 @@ export default function HowCircleSocietyWorksSection() {
           </div>
 
           {/* Step 3: Build Real Connections */}
-          <div className="text-center bg-white p-4 sm:p-5 rounded-2xl step-item">
+          <div className="text-center bg-white w-[340px] min-[400px]:w-full p-4 sm:p-5 rounded-2xl step-item">
             <div className="relative mb-4 sm:mb-5 flex items-start justify-center h-[220px] md:h-[280px] md:h-[280px] overflow-visible">
               {/* Golden Number */}
               <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-20 md:-top-22 z-10">

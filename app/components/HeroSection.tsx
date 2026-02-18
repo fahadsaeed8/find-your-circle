@@ -587,7 +587,7 @@ export default function HeroSection() {
               ref={ctaButtonRef}
               onClick={handleEnterCircle}
               data-enter-circle
-              className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
+              className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-xs min-[400px]:text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
             >
               <span className="relative z-10">Enter the Circle</span>
 
@@ -598,7 +598,7 @@ export default function HeroSection() {
             {/* Instruction text */}
             <p
               ref={instructionTextRef}
-              className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-sm tracking-wide z-20 px-4 text-center"
+              className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-xs min-[400px]:text-sm tracking-wide z-20 px-4 text-center"
             >
               Click to begin your journey
             </p>
@@ -668,7 +668,7 @@ export default function HeroSection() {
               ref={heroTitleRef}
               className="text-center md:text-left mt-10 md:-mt-20 lg:-mt-20 order-1 lg:order-1"
             >
-              <h1 className="mb-4 sm:mb-6 font-clash text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
+              <h1 className="mb-4 sm:mb-6 font-clash text-3xl min-[400px]:text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
                 <span className="block text-[#2d2d2d] md:text-[#1a1a1a]">
                   YOUR SOCIAL LIFE
                 </span>
@@ -686,7 +686,7 @@ export default function HeroSection() {
               {/* Buttons */}
               <div className="flex flex-row gap-3 sm:gap-4">
                 <button
-                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
+                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
@@ -695,7 +695,7 @@ export default function HeroSection() {
                 </button>
 
                 <button
-                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
+                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
@@ -706,7 +706,7 @@ export default function HeroSection() {
             </div>
 
             {/* Right Section - Three Phones - Desktop Only */}
-            <div className="relative flex items-center justify-center  h-[500px] md:h-[600px] order-2 lg:order-2">
+            <div className="relative flex items-center justify-center h-[500px] min-[400px]:h-[600px] md:h-[600px] order-2 lg:order-2">
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Circular Lines - Thin abstract circles */}
@@ -733,14 +733,14 @@ export default function HeroSection() {
                 />
               </div>
 
-              <div className="absolute left-10 mt-10 md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+              <div className="absolute left-10 -mt-8 min-[400px]:mt-10 left-[15%] min-[400px]:left-[10%] md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
                 {/* Left Phone */}
                 <div
                   ref={phoneLeftRef}
                   className="relative z-10 w-24 md:w-40 lg:w-48 xl:w-56 transform -rotate-[5deg] md:-rotate-[6deg] -ml-4 md:-ml-18 -mt-8 md:mt-10"
                 >
                   <div className="relative p-1.5 md:p-2">
-                    <div className="aspect-[9/19] w-[480px] md:w-[570px] h-[480px] md:h-[570px] overflow-hidden">
+                    <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
                         width={900}
                         height={900}
@@ -757,7 +757,7 @@ export default function HeroSection() {
                   className="relative z-10 w-24 md:w-40 lg:w-48 xl:w-56 transform -rotate-[5deg] md:-rotate-[6deg] -ml-4 md:-ml-18 -mt-8 md:-mt-12"
                 >
                   <div className="relative p-1.5 md:p-2">
-                    <div className="aspect-[9/19] w-[480px] md:w-[570px] h-[480px] md:h-[570px] overflow-hidden">
+                    <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
                         width={900}
                         height={900}
@@ -774,7 +774,7 @@ export default function HeroSection() {
                   className="relative z-10 w-24 md:w-40 lg:w-48 xl:w-56 transform -rotate-[5deg] md:-rotate-[6deg] -ml-4 md:-ml-18 -mt-8 md:-mt-12"
                 >
                   <div className="relative p-1.5 md:p-2">
-                    <div className="aspect-[9/19] w-[480px] md:w-[570px] h-[480px] md:h-[570px] overflow-hidden">
+                    <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
                         width={900}
                         height={900}

@@ -138,7 +138,7 @@ export default function FaithCommunitiesSection() {
                     alt="Bottom Left"
                     width={350}
                     height={200}
-                    className="w-[200px] md:w-[350px] h-[140px] md:h-[220px] object-cover"
+                    className="w-[200px] h-[115px] min-[400px]:w-[200px] md:w-[350px] min-[400px]:h-[140px] md:h-[220px] object-cover"
                     style={{
                       border: "none",
                       outline: "none",
@@ -187,7 +187,7 @@ export default function FaithCommunitiesSection() {
               {/* Buttons */}
               <div className="flex flex-row flex-wrap justify-center md:justify-start gap-3 sm:gap-4">
                 <button
-                  className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-sm md:text-[16px] font-semibold text-white transition hover:opacity-90"
+                  className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-[10px] min-[380px]:text-xs min-[400px]:text-sm  md:text-[16px] font-semibold text-white transition hover:opacity-90"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
@@ -195,7 +195,7 @@ export default function FaithCommunitiesSection() {
                   Download for Android
                 </button>
                 <button
-                  className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-sm md:text-[16px] font-semibold text-white transition hover:opacity-90"
+                  className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-[10px] min-[380px]:text-xs min-[400px]:text-sm md:text-[16px] font-semibold text-white transition hover:opacity-90"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}

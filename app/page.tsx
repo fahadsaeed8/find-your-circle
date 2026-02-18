@@ -17,12 +17,11 @@ import TestimonialsSection from "./components/TestimonialsSection";
 import Image from "next/image";
 
 export default function Home() {
-  // Ensure page scrolls to top on refresh to show "Enter the Circle" section
+
   useEffect(() => {
-    // Scroll to top immediately on page load/refresh
+
     window.scrollTo({ top: 0, behavior: "instant" });
 
-    // Prevent scroll restoration
     if (
       typeof window !== "undefined" &&
       "scrollRestoration" in window.history
@@ -31,17 +30,14 @@ export default function Home() {
     }
   }, []);
 
-  // Refresh ScrollTrigger after all components mount to fix scroll behavior
-  // This is especially important when there are multiple pinned sections
   useEffect(() => {
-    // Wait for all components to mount and then refresh ScrollTrigger
+
     const timer = setTimeout(() => {
       if (typeof window !== "undefined") {
         ScrollTrigger.refresh();
       }
     }, 100);
 
-    // Also refresh on window resize
     const handleResize = () => {
       ScrollTrigger.refresh();
     };

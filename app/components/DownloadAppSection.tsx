@@ -268,14 +268,14 @@ export default function DownloadAppSection() {
             alt="Community Groups"
             width={210}
             height={210}
-            className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
+            className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
           />
           <Image
             src="/Ellipse 2.svg"
             alt="Community Groups"
             width={210}
             height={210}
-            className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
+            className="absolute top-[75%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
           />
         </div>
 
@@ -319,11 +319,11 @@ export default function DownloadAppSection() {
           </div>
 
           {/* Phones - Diagonal arrangement for mobile - STATIC, NO ANIMATIONS */}
-          <div className="relative -ml-70 mt-40 flex items-center justify-center mb-8 min-h-[400px]">
+          <div className="relative -ml-60 min-[400px]:-ml-70 mt-40 flex items-center justify-center mb-8 h-[200px] min-[400px]:h-[300px]">
             {/* Left Phone */}
             <div className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8">
               <div className="relative p-1.5">
-                <div className="aspect-[9/19] w-[450px] h-[450px] overflow-hidden">
+                <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[450px] min-[400px]:h-[450px] overflow-hidden">
                   <Image
                     width={900}
                     height={900}
@@ -337,7 +337,7 @@ export default function DownloadAppSection() {
             {/* Middle Phone */}
             <div className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8">
               <div className="relative p-1.5">
-                <div className="aspect-[9/19] w-[450px] h-[450px] overflow-hidden">
+                <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[450px] min-[400px]:h-[450px] overflow-hidden">
                   <Image
                     width={900}
                     height={900}
@@ -351,7 +351,7 @@ export default function DownloadAppSection() {
             {/* Right Phone */}
             <div className="relative z-10 w-24 transform -rotate-[5deg] -ml-4 -mt-8">
               <div className="relative p-1.5">
-                <div className="aspect-[9/19] w-[450px] h-[450px] overflow-hidden">
+                <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[450px] min-[400px]:h-[450px] overflow-hidden">
                   <Image
                     width={900}
                     height={900}
