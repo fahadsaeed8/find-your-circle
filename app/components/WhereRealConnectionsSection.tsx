@@ -50,7 +50,7 @@ export default function WhereRealConnectionsSection() {
         life
       </h2>
 
-      <div className="relative w-full mt-0 md:mt-40 max-w-6xl md:h-[500px] flex items-center justify-center">
+      <div className="relative w-full mt-30 min-[400px]:mt-0 md:mt-40 max-w-6xl md:h-[500px] flex items-center justify-center">
         {images.map((src, index) => {
           const position = getPosition(index);
 
@@ -78,8 +78,8 @@ export default function WhereRealConnectionsSection() {
                   relative transition-all duration-700
                   ${
                     position === "center"
-                      ? "w-[350px] h-[450px] md:w-[350px] md:h-[500px]"
-                      : "w-[320px] h-[400px] md:w-[320px] md:h-[380px]"
+                      ? "min-[400px]:w-[350px] w-[300px] h-[350px] min-[400px]:h-[450px] md:w-[350px] md:h-[500px]"
+                      : "min-[400px]:w-[320px] w-[300px] h-[350px] min-[400px]:h-[400px] md:w-[320px] md:h-[380px]"
                   }
                 `}
               >

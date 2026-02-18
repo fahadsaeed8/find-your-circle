@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSection from "./components/HeroSection";
+
+gsap.registerPlugin(ScrollTrigger);
+// Reduces scroll jank on mobile: callbacks only when trigger state toggles, not every scroll tick.
+ScrollTrigger.config({ limitCallbacks: true });
 import WhoWeAreSection from "./components/WhoWeAreSection";
 import EasyAndSafeFeaturesSection from "./components/EasyAndSafeFeaturesSection";
 import WhereRealConnectionsSection from "./components/WhereRealConnectionsSection";
@@ -17,12 +22,11 @@ import TestimonialsSection from "./components/TestimonialsSection";
 import Image from "next/image";
 
 export default function Home() {
-  // Ensure page scrolls to top on refresh to show "Enter the Circle" section
+
   useEffect(() => {
-    // Scroll to top immediately on page load/refresh
+
     window.scrollTo({ top: 0, behavior: "instant" });
 
-    // Prevent scroll restoration
     if (
       typeof window !== "undefined" &&
       "scrollRestoration" in window.history
@@ -31,19 +35,22 @@ export default function Home() {
     }
   }, []);
 
-  // Refresh ScrollTrigger after all components mount to fix scroll behavior
-  // This is especially important when there are multiple pinned sections
   useEffect(() => {
-    // Wait for all components to mount and then refresh ScrollTrigger
+
     const timer = setTimeout(() => {
       if (typeof window !== "undefined") {
         ScrollTrigger.refresh();
       }
     }, 100);
 
-    // Also refresh on window resize
+    let refreshTicking = false;
     const handleResize = () => {
-      ScrollTrigger.refresh();
+      if (refreshTicking) return;
+      refreshTicking = true;
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        refreshTicking = false;
+      });
     };
 
     window.addEventListener("resize", handleResize);

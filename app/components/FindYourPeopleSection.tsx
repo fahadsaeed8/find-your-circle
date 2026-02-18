@@ -318,10 +318,10 @@ export default function FindYourPeopleSection() {
               Find Your People. Do What You Love.
             </h2>
             <div ref={mobileDescriptionRef}>
-              <p className="text-base sm:text-lg text-white leading-relaxed mb-3">
+              <p className="text-sm min-[400px]:text-base sm:text-lg text-white leading-relaxed mb-3">
                 Circle Society is built around activities, not algorithms.
               </p>
-              <p className="text-base sm:text-lg text-white leading-relaxed">
+              <p className="text-sm min-[400px]:text-base sm:text-lg text-white leading-relaxed">
                 Join communities, attend local events, and connect naturally
                 through what you enjoy doing in real life.
               </p>
@@ -332,7 +332,7 @@ export default function FindYourPeopleSection() {
           <div ref={mobileButtonsRef} className="w-full flex justify-center">
             <div className="flex flex-row justify-center items-center gap-3">
               <button
-                className="rounded-full px-6 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+                className="rounded-full px-6 py-2 text-xs text-[10px] min-[400px]:text-sm font-semibold text-white transition hover:opacity-90"
                 style={{
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
@@ -340,7 +340,7 @@ export default function FindYourPeopleSection() {
                 Download for iOS
               </button>
               <button
-                className="rounded-full px-6 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+                className="rounded-full px-6 py-2 text-xs text-[10px] min-[400px]:text-sm font-semibold text-white transition hover:opacity-90"
                 style={{
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
@@ -365,9 +365,9 @@ export default function FindYourPeopleSection() {
               <Image
                 src={activities[0].image}
                 alt={activities[0].label}
-                width={250}
-                height={250}
-                className="w-[140px] sm:w-[200px] h-auto rounded-xl"
+                width={950}
+                height={950}
+                className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
                 unoptimized
                 style={{ imageRendering: "crisp-edges" }}
               />
@@ -386,9 +386,9 @@ export default function FindYourPeopleSection() {
               <Image
                 src={activities[2].image}
                 alt={activities[2].label}
-                width={250}
-                height={250}
-                className="w-[140px] sm:w-[200px] h-auto rounded-xl"
+                width={950}
+                height={950}
+                className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
                 unoptimized
                 style={{ imageRendering: "crisp-edges" }}
               />
@@ -407,9 +407,9 @@ export default function FindYourPeopleSection() {
               <Image
                 src={activities[3].image}
                 alt={activities[3].label}
-                width={250}
-                height={250}
-                className="w-[140px] sm:w-[200px] h-auto rounded-xl"
+                width={950}
+                height={950}
+                className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
                 unoptimized
                 style={{ imageRendering: "crisp-edges" }}
               />
@@ -427,9 +427,9 @@ export default function FindYourPeopleSection() {
               <Image
                 src={activities[1].image}
                 alt={activities[1].label}
-                width={250}
-                height={250}
-                className="w-[140px] sm:w-[200px] h-auto rounded-xl"
+                width={950}
+                height={950}
+                className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
                 unoptimized
                 style={{ imageRendering: "crisp-edges" }}
               />
@@ -509,7 +509,7 @@ export default function FindYourPeopleSection() {
             <div ref={buttonsRef} className="w-full flex justify-center">
               <div className="flex flex-row justify-center items-center gap-3 sm:gap-4">
                 <button
-                  className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-xs sm:text-sm md:text-[16px] font-semibold text-white transition hover:opacity-90"
+                  className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-[10px] min-[380px]:text-xs sm:text-sm md:text-[16px] font-semibold text-white transition hover:opacity-90"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}

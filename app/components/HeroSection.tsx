@@ -7,13 +7,12 @@ import gsap from "gsap";
 
 export default function HeroSection() {
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
-  const [hasEntered, setHasEntered] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("hasEnteredCircle") === "true";
-    }
-    return false;
-  });
+  // Don't show character or hero until we know from localStorage → no flash on refresh either way.
+  const [ready, setReady] = useState(false);
+  const [curtainColor, setCurtainColor] = useState("#F5F2ED");
+  const [hasEntered, setHasEntered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const portalLayer1Ref = useRef<HTMLDivElement>(null);
@@ -282,7 +281,12 @@ export default function HeroSection() {
           if (typeof window !== "undefined") {
             localStorage.setItem("hasEnteredCircle", "true");
           }
+          document.documentElement.style.overflow = "";
           document.body.style.overflow = "auto";
+          document.body.style.position = "";
+          document.body.style.width = "";
+          document.body.style.left = "";
+          document.body.style.top = "";
         },
       },
       "start+=2.0",
@@ -308,18 +312,30 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("hasEnteredCircle");
-      if (saved === "true") {
-        setHasEntered(true);
-        document.body.style.overflow = "auto";
-      } else {
-        setHasEntered(false);
-        window.scrollTo({ top: 0, behavior: "instant" });
-        document.body.style.overflow = "hidden";
-      }
-      setIsMounted(true);
+    if (typeof window === "undefined") return;
+    const saved = localStorage.getItem("hasEnteredCircle");
+    const entered = saved === "true";
+    setHasEntered(entered);
+    setCurtainColor(entered ? "#F5F2ED" : "#000");
+    if (entered) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "auto";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.left = "";
+      document.body.style.top = "";
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.left = "0";
+      document.body.style.top = "0";
     }
+    setIsMounted(true);
+    // One frame with matching curtain color, then reveal → no flash on character or hero refresh.
+    requestAnimationFrame(() => setReady(true));
   }, []);
 
   useEffect(() => {
@@ -485,12 +501,21 @@ export default function HeroSection() {
       className="relative min-h-screen h-screen w-full overflow-hidden"
       style={{ overflow: "hidden" }}
     >
+      {/* Curtain: same color as target screen so no flash on refresh (character or hero). */}
+      {!ready && (
+        <div
+          className="fixed inset-0 z-[10001]"
+          style={{ backgroundColor: curtainColor }}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Character Hero Overlay - Fixed on top */}
-      {!hasEntered && (
+      {ready && !hasEntered && (
         <div
           ref={heroRef}
-          className="fixed inset-0 z-[9999] flex items-center justify-center"
-          style={{ display: "flex", opacity: 1 }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden touch-none"
+          style={{ display: "flex", opacity: 1, touchAction: "none" }}
         >
           {/* Main Background - For entire hero section */}
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
@@ -587,7 +612,7 @@ export default function HeroSection() {
               ref={ctaButtonRef}
               onClick={handleEnterCircle}
               data-enter-circle
-              className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
+              className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-xs min-[400px]:text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
             >
               <span className="relative z-10">Enter the Circle</span>
 
@@ -598,7 +623,7 @@ export default function HeroSection() {
             {/* Instruction text */}
             <p
               ref={instructionTextRef}
-              className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-sm tracking-wide z-20 px-4 text-center"
+              className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-xs min-[400px]:text-sm tracking-wide z-20 px-4 text-center"
             >
               Click to begin your journey
             </p>
@@ -610,7 +635,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[#F5F2ED]" />
 
       {/* Content */}
-      <div className={`relative z-10 flex h-full flex-col ${!hasEntered ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 visible'}`}>
+      <div className={`relative z-10 flex h-full flex-col ${!ready || !hasEntered ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 visible'}`}>
         {/* NAVBAR */}
         <header className="flex items-center bg-white justify-between px-4 sm:px-6 py-4 md:py-5 md:px-24">
           {/* Logo - White circle with line through it */}
@@ -634,10 +659,28 @@ export default function HeroSection() {
           </Link>
 
           {/* Hamburger Menu - Mobile Only */}
-          <button className="md:hidden flex flex-col gap-1.5 w-6 h-6 justify-center items-center">
-            <span className="w-full h-0.5 bg-black"></span>
-            <span className="w-full h-0.5 bg-black"></span>
-            <span className="w-full h-0.5 bg-black"></span>
+          <button
+            type="button"
+            className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50 relative"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            <span
+              className={`w-full h-0.5 bg-black block transition-all duration-200 origin-center ${
+                mobileMenuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-black block transition-all duration-200 ${
+                mobileMenuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-black block transition-all duration-200 origin-center ${
+                mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
           </button>
 
           {/* Nav Links - Desktop Only */}
@@ -660,6 +703,64 @@ export default function HeroSection() {
           </nav>
         </header>
 
+        {/* Mobile Menu Overlay & Panel */}
+        <div
+          className={`md:hidden fixed inset-0 z-40 transition-opacity duration-200 ${
+            mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+          }`}
+          aria-hidden={!mobileMenuOpen}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          />
+          <div
+            className={`absolute top-0 right-0 h-full w-full max-w-[280px] bg-white shadow-xl flex flex-col pt-20 px-6 transition-transform duration-200 ease-out ${
+              mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]">
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                ABOUT
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Stories
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                STORE
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact Us
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Download
+              </a>
+            </nav>
+          </div>
+        </div>
+
         {/* HERO CENTER */}
         <div className="flex flex-1 items-center  justify-start md:justify-center px-4 sm:px-6 md:px-8 lg:px-24 py-0 md:py-0">
           <div className="max-w-8xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -668,7 +769,7 @@ export default function HeroSection() {
               ref={heroTitleRef}
               className="text-center md:text-left mt-10 md:-mt-20 lg:-mt-20 order-1 lg:order-1"
             >
-              <h1 className="mb-4 sm:mb-6 font-clash text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
+              <h1 className="mb-4 sm:mb-6 font-clash text-3xl min-[400px]:text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
                 <span className="block text-[#2d2d2d] md:text-[#1a1a1a]">
                   YOUR SOCIAL LIFE
                 </span>
@@ -686,7 +787,7 @@ export default function HeroSection() {
               {/* Buttons */}
               <div className="flex flex-row gap-3 sm:gap-4">
                 <button
-                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
+                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
@@ -695,7 +796,7 @@ export default function HeroSection() {
                 </button>
 
                 <button
-                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
+                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
@@ -706,7 +807,7 @@ export default function HeroSection() {
             </div>
 
             {/* Right Section - Three Phones - Desktop Only */}
-            <div className="relative flex items-center justify-center  h-[500px] md:h-[600px] order-2 lg:order-2">
+            <div className="relative flex items-center justify-center h-[500px] min-[400px]:h-[600px] md:h-[600px] order-2 lg:order-2">
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Circular Lines - Thin abstract circles */}
@@ -733,17 +834,17 @@ export default function HeroSection() {
                 />
               </div>
 
-              <div className="absolute left-10 mt-10 md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+              <div className="absolute left-10 -mt-8 min-[390px]:mt-10 left-[15%] min-[400px]:left-[10%] md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
                 {/* Left Phone */}
                 <div
                   ref={phoneLeftRef}
                   className="relative z-10 w-24 md:w-40 lg:w-48 xl:w-56 transform -rotate-[5deg] md:-rotate-[6deg] -ml-4 md:-ml-18 -mt-8 md:mt-10"
                 >
                   <div className="relative p-1.5 md:p-2">
-                    <div className="aspect-[9/19] w-[480px] md:w-[570px] h-[480px] md:h-[570px] overflow-hidden">
+                    <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
-                        width={900}
-                        height={900}
+                        width={1900}
+                        height={1900}
                         src="/iPhone-13-Pro-Front.svg"
                         alt="App Screen 1"
                         className="w-full  h-full md:-mt-12"
@@ -757,10 +858,10 @@ export default function HeroSection() {
                   className="relative z-10 w-24 md:w-40 lg:w-48 xl:w-56 transform -rotate-[5deg] md:-rotate-[6deg] -ml-4 md:-ml-18 -mt-8 md:-mt-12"
                 >
                   <div className="relative p-1.5 md:p-2">
-                    <div className="aspect-[9/19] w-[480px] md:w-[570px] h-[480px] md:h-[570px] overflow-hidden">
+                    <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
-                        width={900}
-                        height={900}
+                        width={1900}
+                        height={1900}
                         src="/iPhone-13-Pro-Front (1).svg"
                         alt="App Screen 2"
                         className="w-full h-full md:-ml-5"
@@ -774,10 +875,10 @@ export default function HeroSection() {
                   className="relative z-10 w-24 md:w-40 lg:w-48 xl:w-56 transform -rotate-[5deg] md:-rotate-[6deg] -ml-4 md:-ml-18 -mt-8 md:-mt-12"
                 >
                   <div className="relative p-1.5 md:p-2">
-                    <div className="aspect-[9/19] w-[480px] md:w-[570px] h-[480px] md:h-[570px] overflow-hidden">
+                    <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
-                        width={900}
-                        height={900}
+                        width={1900}
+                        height={1900}
                         src="/iPhone-13-Pro-Front (2).svg"
                         alt="App Screen 3"
                         className="w-full h-full md:mt-10 md:-ml-15"

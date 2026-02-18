@@ -118,13 +118,13 @@ export default function EasyAndSafeFeaturesSection() {
       <div className="mx-auto max-w-6xl relative z-10">
         <h2
           ref={h2Ref1}
-          className="mb-2 sm:mb-4 text-center font-clash text-4xl font-medium text-[#1B1B1B] md:text-5xl"
+          className="mb-2 sm:mb-4 text-center font-clash text-3xl min-[400px]:text-4xl font-medium text-[#1B1B1B] md:text-5xl"
         >
           What You Can Do on
         </h2>
         <h2
           ref={h2Ref2}
-          className="mb-6 sm:mb-4 text-center font-clash text-4xl font-medium text-[#1B1B1B] md:text-5xl md:mb-4"
+          className="mb-6 sm:mb-4 text-center font-clash text-3xl min-[400px]:text-4xl font-medium text-[#1B1B1B] md:text-5xl md:mb-4"
         >
           The Circle Society{" "}
         </h2>
