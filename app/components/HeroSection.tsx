@@ -281,7 +281,12 @@ export default function HeroSection() {
           if (typeof window !== "undefined") {
             localStorage.setItem("hasEnteredCircle", "true");
           }
+          document.documentElement.style.overflow = "";
           document.body.style.overflow = "auto";
+          document.body.style.position = "";
+          document.body.style.width = "";
+          document.body.style.left = "";
+          document.body.style.top = "";
         },
       },
       "start+=2.0",
@@ -313,10 +318,20 @@ export default function HeroSection() {
     setHasEntered(entered);
     setCurtainColor(entered ? "#F5F2ED" : "#000");
     if (entered) {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "auto";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.left = "";
+      document.body.style.top = "";
     } else {
       window.scrollTo({ top: 0, behavior: "instant" });
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.left = "0";
+      document.body.style.top = "0";
     }
     setIsMounted(true);
     // One frame with matching curtain color, then reveal → no flash on character or hero refresh.
@@ -499,8 +514,8 @@ export default function HeroSection() {
       {ready && !hasEntered && (
         <div
           ref={heroRef}
-          className="fixed inset-0 z-[9999] flex items-center justify-center"
-          style={{ display: "flex", opacity: 1 }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden touch-none"
+          style={{ display: "flex", opacity: 1, touchAction: "none" }}
         >
           {/* Main Background - For entire hero section */}
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
