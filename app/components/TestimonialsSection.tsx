@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,36 +12,35 @@ export default function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
     if (!sectionRef.current || !headingRef.current) return;
 
+    const cards = cardsRef.current.filter(Boolean);
+
+    if (!shouldAnimate) {
+      gsap.set(headingRef.current, { opacity: 1, y: 0 });
+      gsap.set(cards, { opacity: 1, y: 0 });
+      return;
+    }
+
     gsap.set(headingRef.current, { opacity: 0, y: -30 });
-    gsap.set(cardsRef.current, { opacity: 0, y: 40 });
+    gsap.set(cards, { opacity: 0, y: 40 });
 
     gsap
       .timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", toggleActions: "play none none none" },
       })
-      .to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-      })
-      .to(
-        cardsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.2,
-        },
-        "-=0.4",
-      );
-  }, []);
+      .to(headingRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" })
+      .to(cards, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" }, "-=0.3");
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.trigger === sectionRef.current) t.kill();
+      });
+    };
+  }, [shouldAnimate]);
 
   const testimonials = [
     {

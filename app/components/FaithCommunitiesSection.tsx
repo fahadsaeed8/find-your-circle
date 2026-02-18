@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,7 @@ export default function FaithCommunitiesSection() {
   const imageRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
     if (
@@ -24,27 +26,18 @@ export default function FaithCommunitiesSection() {
     )
       return;
 
-    const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
-
-    if (isMobile) {
-      // Mobile: ScrollTrigger mat use karo – content turant dikhao, hang nahi
+    const setFinal = () => {
       gsap.set([imageRef.current, headingRef.current, descriptionRef.current, buttonsRef.current], {
-        opacity: 1,
-        y: 0,
-        x: 0,
-        scale: 1,
+        opacity: 1, y: 0, x: 0, scale: 1,
       });
+    };
+
+    if (!shouldAnimate) {
+      setFinal();
       return;
     }
 
-    if (imageRef.current) {
-      gsap.set(imageRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        x: -50,
-      });
-    }
-
+    gsap.set(imageRef.current, { opacity: 0, scale: 0.8, x: -50 });
     gsap.set(headingRef.current, { opacity: 0, y: -30 });
     gsap.set(descriptionRef.current, { opacity: 0, y: 20 });
     gsap.set(buttonsRef.current, { opacity: 0, y: 20 });
@@ -55,29 +48,20 @@ export default function FaithCommunitiesSection() {
         start: "top 85%",
         end: "top 20%",
         toggleActions: "play none none none",
-        scrub: false,
       },
     });
 
-    tl.to(imageRef.current, {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      duration: 0.4,
-      ease: "back.out(1.7)",
-    })
-      .to(headingRef.current, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.1")
-      .to(descriptionRef.current, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.1")
-      .to(buttonsRef.current, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.1");
+    tl.to(imageRef.current, { opacity: 1, scale: 1, x: 0, duration: 0.5, ease: "power2.out" })
+      .to(headingRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3")
+      .to(descriptionRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3")
+      .to(buttonsRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3");
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === sectionRef.current) {
-          trigger.kill();
-        }
+        if (trigger.vars.trigger === sectionRef.current) trigger.kill();
       });
     };
-  }, []);
+  }, [shouldAnimate]);
 
   return (
     <section

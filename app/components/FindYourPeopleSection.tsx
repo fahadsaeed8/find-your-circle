@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,7 @@ export default function FindYourPeopleSection() {
   const image3Ref = useRef<HTMLDivElement>(null);
   const image4Ref = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
     if (
@@ -26,49 +28,23 @@ export default function FindYourPeopleSection() {
     )
       return;
 
-    gsap.set(headingRef.current, {
-      opacity: 0,
-      y: -30,
-    });
+    const images = [image1Ref.current, image2Ref.current, image3Ref.current, image4Ref.current];
 
-    gsap.set(descriptionRef.current, {
-      opacity: 0,
-      y: 20,
-    });
-
-    if (image1Ref.current) {
-      gsap.set(image1Ref.current, {
-        opacity: 0,
-        scale: 0.8,
-        rotation: -10,
-      });
-    }
-    if (image2Ref.current) {
-      gsap.set(image2Ref.current, {
-        opacity: 0,
-        scale: 0.8,
-        rotation: 10,
-      });
-    }
-    if (image3Ref.current) {
-      gsap.set(image3Ref.current, {
-        opacity: 0,
-        scale: 0.8,
-        rotation: 10,
-      });
-    }
-    if (image4Ref.current) {
-      gsap.set(image4Ref.current, {
-        opacity: 0,
-        scale: 0.8,
-        rotation: -10,
-      });
+    if (!shouldAnimate) {
+      gsap.set(headingRef.current, { opacity: 1, y: 0 });
+      gsap.set(descriptionRef.current, { opacity: 1, y: 0 });
+      gsap.set(buttonsRef.current, { opacity: 1, y: 0 });
+      gsap.set(images.filter(Boolean), { opacity: 1, scale: 1, rotation: 0 });
+      return;
     }
 
-    gsap.set(buttonsRef.current, {
-      opacity: 0,
-      y: 20,
-    });
+    gsap.set(headingRef.current, { opacity: 0, y: -30 });
+    gsap.set(descriptionRef.current, { opacity: 0, y: 20 });
+    gsap.set(buttonsRef.current, { opacity: 0, y: 20 });
+    if (image1Ref.current) gsap.set(image1Ref.current, { opacity: 0, scale: 0.8, rotation: -10 });
+    if (image2Ref.current) gsap.set(image2Ref.current, { opacity: 0, scale: 0.8, rotation: 10 });
+    if (image3Ref.current) gsap.set(image3Ref.current, { opacity: 0, scale: 0.8, rotation: 10 });
+    if (image4Ref.current) gsap.set(image4Ref.current, { opacity: 0, scale: 0.8, rotation: -10 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -76,89 +52,23 @@ export default function FindYourPeopleSection() {
         start: "top 85%",
         end: "top 20%",
         toggleActions: "play none none none",
-        scrub: false,
       },
     });
 
-    tl.to(headingRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.3,
-      ease: "power2.out",
-    })
-      .to(
-        descriptionRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        },
-        "-=0.15",
-      )
-      .to(
-        image1Ref.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 0.35,
-          ease: "back.out(1.7)",
-        },
-        "-=0.05",
-      )
-      .to(
-        image2Ref.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 0.35,
-          ease: "back.out(1.7)",
-        },
-        "+=0.05",
-      )
-      .to(
-        image3Ref.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 0.35,
-          ease: "back.out(1.7)",
-        },
-        "+=0.05",
-      )
-      .to(
-        image4Ref.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 0.35,
-          ease: "back.out(1.7)",
-        },
-        "+=0.05",
-      )
-      .to(
-        buttonsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        },
-        "-=0.15",
-      );
+    tl.to(headingRef.current, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" })
+      .to(descriptionRef.current, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.25")
+      .to(image1Ref.current, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "power2.out" }, "-=0.08")
+      .to(image2Ref.current, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "power2.out" }, "+=0.05")
+      .to(image3Ref.current, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "power2.out" }, "+=0.05")
+      .to(image4Ref.current, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "power2.out" }, "+=0.05")
+      .to(buttonsRef.current, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.25");
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === sectionRef.current) {
-          trigger.kill();
-        }
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.trigger === sectionRef.current) t.kill();
       });
     };
-  }, []);
+  }, [shouldAnimate]);
 
   const mobileImage1Ref = useRef<HTMLDivElement>(null);
   const mobileImage2Ref = useRef<HTMLDivElement>(null);
@@ -180,36 +90,26 @@ export default function FindYourPeopleSection() {
       mobileImage4Ref.current,
       mobileButtonsRef.current,
     ];
-
     if (mobileRefs.some((ref) => !ref)) return;
 
-    gsap.set(mobileHeadingRef.current, {
-      opacity: 0,
-      y: -30,
-    });
+    if (!shouldAnimate) {
+      gsap.set(mobileHeadingRef.current, { opacity: 1, y: 0 });
+      gsap.set(mobileDescriptionRef.current, { opacity: 1, y: 0 });
+      gsap.set(mobileButtonsRef.current, { opacity: 1, y: 0 });
+      gsap.set(
+        [mobileImage1Ref.current, mobileImage2Ref.current, mobileImage3Ref.current, mobileImage4Ref.current],
+        { opacity: 1, scale: 1 },
+      );
+      return;
+    }
 
-    gsap.set(mobileDescriptionRef.current, {
-      opacity: 0,
-      y: 20,
-    });
-
+    gsap.set(mobileHeadingRef.current, { opacity: 0, y: -30 });
+    gsap.set(mobileDescriptionRef.current, { opacity: 0, y: 20 });
     gsap.set(
-      [
-        mobileImage1Ref.current,
-        mobileImage2Ref.current,
-        mobileImage3Ref.current,
-        mobileImage4Ref.current,
-      ],
-      {
-        opacity: 0,
-        scale: 0.8,
-      },
+      [mobileImage1Ref.current, mobileImage2Ref.current, mobileImage3Ref.current, mobileImage4Ref.current],
+      { opacity: 0, scale: 0.8 },
     );
-
-    gsap.set(mobileButtonsRef.current, {
-      opacity: 0,
-      y: 20,
-    });
+    gsap.set(mobileButtonsRef.current, { opacity: 0, y: 20 });
 
     const mobileTl = gsap.timeline({
       scrollTrigger: {
@@ -217,58 +117,26 @@ export default function FindYourPeopleSection() {
         start: "top 85%",
         end: "top 20%",
         toggleActions: "play none none none",
-        scrub: false,
       },
     });
 
     mobileTl
-      .to(mobileHeadingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.3,
-        ease: "power2.out",
-      })
+      .to(mobileHeadingRef.current, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" })
+      .to(mobileDescriptionRef.current, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.25")
+      .to(mobileButtonsRef.current, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.2")
       .to(
-        mobileDescriptionRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        },
-        "-=0.15",
-      )
-      .to(
-        mobileButtonsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        },
-        "-=0.1",
-      )
-      .to(
-        [
-          mobileImage1Ref.current,
-          mobileImage2Ref.current,
-          mobileImage3Ref.current,
-          mobileImage4Ref.current,
-        ],
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.35,
-          ease: "back.out(1.7)",
-          stagger: 0.05,
-        },
-        "-=0.1",
+        [mobileImage1Ref.current, mobileImage2Ref.current, mobileImage3Ref.current, mobileImage4Ref.current],
+        { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: "power2.out" },
+        "-=0.2",
       );
 
     return () => {
       mobileTl.kill();
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.trigger === sectionRef.current) t.kill();
+      });
     };
-  }, []);
+  }, [shouldAnimate]);
 
   const activities = [
     {

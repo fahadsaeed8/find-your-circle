@@ -2,6 +2,7 @@
 @import url('https://fonts.cdnfonts.com/css/clash-display');
 
 @import "tailwindcss";
+@source "./**/*.{tsx,ts,jsx,js}";
 
 @theme {
   --color-background: #000000;
@@ -79,11 +80,6 @@
   ::selection {
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
-  }
-
-  /* Smooth transitions */
-  * {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Hide default cursor on interactive elements - Desktop only */

@@ -3,60 +3,59 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const formatNumber = (num: number) => num.toLocaleString("en-US") + "+";
 
 export default function StatisticsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
-
-  const formatNumber = (num: number): string => {
-    return num.toLocaleString("en-US");
-  };
-
-  const animateCounter = (
-    element: HTMLElement,
-    target: number,
-    duration: number = 2,
-  ) => {
-    const obj = { value: 0 };
-    gsap.to(obj, {
-      value: target,
-      duration: duration,
-      ease: "power2.out",
-      onUpdate: () => {
-        element.textContent = formatNumber(Math.floor(obj.value)) + "+";
-      },
-    });
-  };
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
     if (!sectionRef.current || !statsRef.current || hasAnimated) return;
 
-    const number1Ref = statsRef.current.querySelector(".number-1");
-    const number2Ref = statsRef.current.querySelector(".number-2");
-    const number3Ref = statsRef.current.querySelector(".number-3");
+    const n1 = statsRef.current.querySelector(".number-1") as HTMLElement | null;
+    const n2 = statsRef.current.querySelector(".number-2") as HTMLElement | null;
+    const n3 = statsRef.current.querySelector(".number-3") as HTMLElement | null;
 
-    const scrollTrigger = ScrollTrigger.create({
+    if (!shouldAnimate) {
+      if (n1) n1.textContent = formatNumber(10000);
+      if (n2) n2.textContent = formatNumber(100);
+      if (n3) n3.textContent = formatNumber(100000);
+      setHasAnimated(true);
+      return;
+    }
+
+    const animateCounter = (el: HTMLElement, target: number, duration = 1.5) => {
+      const obj = { value: 0 };
+      gsap.to(obj, {
+        value: target,
+        duration,
+        ease: "power2.out",
+        onUpdate: () => { el.textContent = formatNumber(Math.floor(obj.value)); },
+      });
+    };
+
+    const st = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top 80%",
       toggleActions: "play none none none",
       onEnter: () => {
         if (!hasAnimated) {
           setHasAnimated(true);
-          if (number1Ref) animateCounter(number1Ref as HTMLElement, 10000, 2);
-          if (number2Ref) animateCounter(number2Ref as HTMLElement, 100, 2);
-          if (number3Ref)
-            animateCounter(number3Ref as HTMLElement, 100000, 2.5);
+          if (n1) animateCounter(n1, 10000);
+          if (n2) animateCounter(n2, 100);
+          if (n3) animateCounter(n3, 100000);
         }
       },
     });
 
-    return () => {
-      scrollTrigger.kill();
-    };
-  }, [hasAnimated]);
+    return () => { st.kill(); };
+  }, [hasAnimated, shouldAnimate]);
 
   return (
     <section

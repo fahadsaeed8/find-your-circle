@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,38 +14,34 @@ export default function DownloadAppSection() {
   const phone1Ref = useRef<HTMLDivElement>(null);
   const phone2Ref = useRef<HTMLDivElement>(null);
   const phone3Ref = useRef<HTMLDivElement>(null);
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
     if (!desktopSectionRef.current || !headingRef.current) return;
 
-    gsap.set(headingRef.current, {
-      opacity: 0,
-      y: -30,
-    });
+    if (!shouldAnimate) {
+      gsap.set(headingRef.current, { opacity: 1, y: 0 });
+      return;
+    }
 
-    ScrollTrigger.create({
+    gsap.set(headingRef.current, { opacity: 0, y: -30 });
+
+    const st = ScrollTrigger.create({
       trigger: desktopSectionRef.current,
       start: "center center",
       toggleActions: "play none none none",
       onEnter: () => {
-        gsap.to(headingRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        });
+        gsap.to(headingRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
       },
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === desktopSectionRef.current) {
-          trigger.kill();
-        }
+      st.kill();
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.trigger === desktopSectionRef.current) t.kill();
       });
-      ScrollTrigger.refresh();
     };
-  }, []);
+  }, [shouldAnimate]);
 
   useEffect(() => {
     if (!desktopSectionRef.current) return;
@@ -53,28 +50,26 @@ export default function DownloadAppSection() {
     const phone1 = phone1Ref.current;
     const phone2 = phone2Ref.current;
     const phone3 = phone3Ref.current;
-
     if (!phone1 || !phone2 || !phone3) return;
 
-    gsap.set([phone1, phone2, phone3], {
-      opacity: 0,
-      scale: 0.8,
-    });
+    if (!shouldAnimate) {
+      gsap.set([phone1, phone2, phone3], { opacity: 1, scale: 1 });
+      return;
+    }
 
-    const scrollDistance = 550;
+    gsap.set([phone1, phone2, phone3], { opacity: 0, scale: 0.8 });
 
     const phoneTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "center center",
-        end: `+=${scrollDistance}`,
+        end: "+=550",
         pin: true,
         pinSpacing: true,
         scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onLeave: () => {
-          // Pin release ke baad smoothly neeche wale section pe scroll
           requestAnimationFrame(() => {
             const next = section.nextElementSibling as HTMLElement | null;
             if (next) {
@@ -87,43 +82,17 @@ export default function DownloadAppSection() {
     });
 
     phoneTimeline
-      .to(phone1, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        ease: "power2.out",
-      })
-      .to(
-        phone2,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.2",
-      )
-      .to(
-        phone3,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.2",
-      );
+      .to(phone1, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" })
+      .to(phone2, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }, "-=0.2")
+      .to(phone3, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }, "-=0.2");
 
     return () => {
       phoneTimeline.kill();
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === section) {
-          trigger.kill();
-        }
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.trigger === section) t.kill();
       });
-      ScrollTrigger.refresh();
     };
-  }, []);
+  }, [shouldAnimate]);
 
   return (
     <>

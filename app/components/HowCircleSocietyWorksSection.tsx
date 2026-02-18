@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,60 +16,35 @@ export default function HowCircleSocietyWorksSection() {
   const image1Ref = useRef<HTMLDivElement>(null);
   const image2Ref = useRef<HTMLDivElement>(null);
   const image3Ref = useRef<HTMLDivElement>(null);
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
-    if (!backgroundRef.current) return;
+    if (!backgroundRef.current || !shouldAnimate) return;
 
     const tl = gsap.timeline({ repeat: -1, ease: "power1.inOut" });
-
-    tl.to(backgroundRef.current, {
-      opacity: 0.6,
-      duration: 3,
-    }).to(backgroundRef.current, {
-      opacity: 1,
-      duration: 3,
-    });
-
-    return () => {
-      tl.kill();
-    };
-  }, []);
+    tl.to(backgroundRef.current, { opacity: 0.6, duration: 3 })
+      .to(backgroundRef.current, { opacity: 1, duration: 3 });
+    return () => { tl.kill(); };
+  }, [shouldAnimate]);
 
   useEffect(() => {
     if (!sectionRef.current || !headingRef.current || !stepsRef.current) return;
 
-    gsap.set(headingRef.current, {
-      opacity: 0,
-      y: -30,
-    });
-
     const stepItems = stepsRef.current.querySelectorAll(".step-item");
-    gsap.set(stepItems, {
-      opacity: 0,
-      y: 30,
-    });
+    const images = [image1Ref.current, image2Ref.current, image3Ref.current].filter(Boolean);
 
-    if (image1Ref.current) {
-      gsap.set(image1Ref.current, {
-        opacity: 0,
-        scale: 0.7,
-        rotation: -15,
-      });
+    if (!shouldAnimate) {
+      gsap.set(headingRef.current, { opacity: 1, y: 0 });
+      gsap.set(stepItems, { opacity: 1, y: 0 });
+      gsap.set(images, { opacity: 1, scale: 1, rotation: 0 });
+      return;
     }
-    if (image2Ref.current) {
-      gsap.set(image2Ref.current, {
-        opacity: 0,
-        scale: 0.7,
-        rotation: 0,
-      });
-    }
-    if (image3Ref.current) {
-      gsap.set(image3Ref.current, {
-        opacity: 0,
-        scale: 0.7,
-        rotation: 15,
-      });
-    }
+
+    gsap.set(headingRef.current, { opacity: 0, y: -30 });
+    gsap.set(stepItems, { opacity: 0, y: 30 });
+    if (image1Ref.current) gsap.set(image1Ref.current, { opacity: 0, scale: 0.7, rotation: -15 });
+    if (image2Ref.current) gsap.set(image2Ref.current, { opacity: 0, scale: 0.7, rotation: 0 });
+    if (image3Ref.current) gsap.set(image3Ref.current, { opacity: 0, scale: 0.7, rotation: 15 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -79,65 +55,18 @@ export default function HowCircleSocietyWorksSection() {
       },
     });
 
-    tl.to(headingRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out",
-    })
-      .to(
-        stepItems,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: 0.2,
-        },
-        "-=0.4",
-      )
-      .to(
-        image1Ref.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: -5,
-          duration: 1,
-          ease: "back.out(1.7)",
-        },
-        "-=0.6",
-      )
-      .to(
-        image2Ref.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 1,
-          ease: "back.out(1.7)",
-        },
-        "-=0.8",
-      )
-      .to(
-        image3Ref.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 5,
-          duration: 1,
-          ease: "back.out(1.7)",
-        },
-        "-=0.8",
-      );
+    tl.to(headingRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" })
+      .to(stepItems, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.1 }, "-=0.3")
+      .to(image1Ref.current, { opacity: 1, scale: 1, rotation: -5, duration: 0.55, ease: "power2.out" }, "-=0.35")
+      .to(image2Ref.current, { opacity: 1, scale: 1, rotation: 0, duration: 0.55, ease: "power2.out" }, "-=0.4")
+      .to(image3Ref.current, { opacity: 1, scale: 1, rotation: 5, duration: 0.55, ease: "power2.out" }, "-=0.4");
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === sectionRef.current) {
-          trigger.kill();
-        }
+        if (trigger.vars.trigger === sectionRef.current) trigger.kill();
       });
     };
-  }, []);
+  }, [shouldAnimate]);
 
   return (
     <section
@@ -269,7 +198,7 @@ export default function HowCircleSocietyWorksSection() {
                 ref={image3Ref}
                 className="relative mt-8 sm:mt-10 md:-mt-30 ml-8 sm:ml-12 md:ml-16 lg:ml-20 transform rotate-[0deg] sm:rotate-[30deg]"
               >
-                <div className="overflow-hidden w-[300px] h-[350px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[400px] md:h-[500px]">
+                <div className="overflow-hidden w-[260px] h-[340px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[400px] md:h-[500px]">
                   <Image
                     src="/iPhone-13-Pro-Front-latest.png"
                     alt="Build Real Connections"

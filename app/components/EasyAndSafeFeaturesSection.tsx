@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,24 +14,16 @@ export default function EasyAndSafeFeaturesSection() {
   const h2Ref1 = useRef<HTMLHeadingElement>(null);
   const h2Ref2 = useRef<HTMLHeadingElement>(null);
   const featureCardsRef = useRef<HTMLDivElement>(null);
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
-    if (!backgroundRef.current) return;
+    if (!backgroundRef.current || !shouldAnimate) return;
 
     const tl = gsap.timeline({ repeat: -1, ease: "power1.inOut" });
-
-    tl.to(backgroundRef.current, {
-      opacity: 0.6,
-      duration: 3,
-    }).to(backgroundRef.current, {
-      opacity: 1,
-      duration: 3,
-    });
-
-    return () => {
-      tl.kill();
-    };
-  }, []);
+    tl.to(backgroundRef.current, { opacity: 0.6, duration: 3 })
+      .to(backgroundRef.current, { opacity: 1, duration: 3 });
+    return () => { tl.kill(); };
+  }, [shouldAnimate]);
 
   useEffect(() => {
     if (
@@ -41,17 +34,16 @@ export default function EasyAndSafeFeaturesSection() {
     )
       return;
 
-    gsap.set([h2Ref1.current, h2Ref2.current], {
-      opacity: 0,
-      y: -30,
-    });
+    const featureItems = featureCardsRef.current.querySelectorAll(".feature-item");
 
-    const featureItems =
-      featureCardsRef.current.querySelectorAll(".feature-item");
-    gsap.set(featureItems, {
-      opacity: 0,
-      y: -30,
-    });
+    if (!shouldAnimate) {
+      gsap.set([h2Ref1.current, h2Ref2.current], { opacity: 1, y: 0 });
+      gsap.set(featureItems, { opacity: 1, y: 0 });
+      return;
+    }
+
+    gsap.set([h2Ref1.current, h2Ref2.current], { opacity: 0, y: -30 });
+    gsap.set(featureItems, { opacity: 0, y: -30 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -62,42 +54,16 @@ export default function EasyAndSafeFeaturesSection() {
       },
     });
 
-    tl.to(h2Ref1.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out",
-    })
-      .to(
-        h2Ref2.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "-=0.4",
-      )
-      .to(
-        featureItems,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: 0.2,
-        },
-        "-=0.4",
-      );
+    tl.to(h2Ref1.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" })
+      .to(h2Ref2.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3")
+      .to(featureItems, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.1 }, "-=0.3");
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === sectionRef.current) {
-          trigger.kill();
-        }
+        if (trigger.vars.trigger === sectionRef.current) trigger.kill();
       });
     };
-  }, []);
+  }, [shouldAnimate]);
 
   return (
     <section

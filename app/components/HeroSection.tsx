@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 export default function HeroSection() {
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
@@ -12,6 +13,7 @@ export default function HeroSection() {
   const [hasEntered, setHasEntered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const shouldAnimate = useShouldAnimate();
   const heroRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const portalLayer1Ref = useRef<HTMLDivElement>(null);
@@ -293,22 +295,13 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
-    if (!heartBackgroundRef.current) return;
+    if (!heartBackgroundRef.current || !shouldAnimate) return;
 
     const tl = gsap.timeline({ repeat: -1, ease: "power1.inOut" });
-
-    tl.to(heartBackgroundRef.current, {
-      opacity: 0.6,
-      duration: 3,
-    }).to(heartBackgroundRef.current, {
-      opacity: 1,
-      duration: 3,
-    });
-
-    return () => {
-      tl.kill();
-    };
-  }, []);
+    tl.to(heartBackgroundRef.current, { opacity: 0.6, duration: 3 })
+      .to(heartBackgroundRef.current, { opacity: 1, duration: 3 });
+    return () => { tl.kill(); };
+  }, [shouldAnimate]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -341,118 +334,49 @@ export default function HeroSection() {
     if (hasEntered) return;
 
     const character = characterRef.current;
-    const hero = heroRef.current;
     const ctaButton = ctaButtonRef.current;
     const instructionText = instructionTextRef.current;
+    if (!character) return;
 
-    if (!character || !hero) return;
+    if (!shouldAnimate) {
+      gsap.set(character, { opacity: 1, y: 0 });
+      if (ctaButton) gsap.set(ctaButton, { opacity: 1, y: 0 });
+      if (instructionText) gsap.set(instructionText, { opacity: 1, y: 0 });
+      return;
+    }
 
-    // Character is already visible, just add subtle entrance animation
-    gsap.fromTo(character, 
-      { opacity: 0, y: 10 },
-      { 
-        opacity: 1, 
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        delay: 0,
-      }
-    );
-    
+    gsap.fromTo(character, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
     if (ctaButton) {
-      gsap.set(ctaButton, {
-        opacity: 0,
-        y: 15,
-        x: 0,
-        scale: 1,
-        transformOrigin: "center center",
-        force3D: true,
-      });
-      
-      gsap.to(ctaButton, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "none",
-        delay: 0.3,
-      });
+      gsap.set(ctaButton, { opacity: 0, y: 15 });
+      gsap.to(ctaButton, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out", delay: 0.25 });
     }
-    
     if (instructionText) {
-      gsap.set(instructionText, {
-        opacity: 0,
-        y: 15,
-        x: 0,
-        scale: 1,
-        transformOrigin: "center center",
-        force3D: true,
-      });
-      
-      gsap.to(instructionText, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "none",
-        delay: 0.5,
-      });
+      gsap.set(instructionText, { opacity: 0, y: 15 });
+      gsap.to(instructionText, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out", delay: 0.4 });
     }
-
-    if (ctaButton) {
-      gsap.to(ctaButton, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "none",
-        delay: 0.5,
-      });
-    }
-
-    if (instructionText) {
-      gsap.to(instructionText, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "none",
-        delay: 0.7,
-      });
-    }
-  }, [hasEntered]);
+  }, [hasEntered, shouldAnimate]);
 
   useEffect(() => {
     if (!hasEntered || !heroTitleRef.current) return;
 
-    gsap.set(heroTitleRef.current, {
-      opacity: 0,
-      scale: 0.5,
-      transformOrigin: "center center",
-    });
-
-    gsap.to(heroTitleRef.current, {
-      opacity: 1,
-      scale: 1,
-      duration: 2.0,
-      ease: "power2.out",
-      delay: 0.3,
-    });
-  }, [hasEntered]);
+    if (!shouldAnimate) {
+      gsap.set(heroTitleRef.current, { opacity: 1, scale: 1 });
+      return;
+    }
+    gsap.set(heroTitleRef.current, { opacity: 0, scale: 0.5, transformOrigin: "center center" });
+    gsap.to(heroTitleRef.current, { opacity: 1, scale: 1, duration: 1, ease: "power2.out", delay: 0.25 });
+  }, [hasEntered, shouldAnimate]);
 
   useEffect(() => {
     if (!hasEntered || !footnoteRef.current) return;
 
-    gsap.set(footnoteRef.current, {
-      opacity: 0,
-      scale: 0.5,
-      transformOrigin: "center center",
-    });
-
-    gsap.to(footnoteRef.current, {
-      opacity: 0.7,
-      scale: 1,
-      duration: 2.0,
-      ease: "power2.out",
-      delay: 0.3,
-    });
-  }, [hasEntered]);
+    if (!shouldAnimate) {
+      gsap.set(footnoteRef.current, { opacity: 0.7, scale: 1 });
+      return;
+    }
+    gsap.set(footnoteRef.current, { opacity: 0, scale: 0.5, transformOrigin: "center center" });
+    gsap.to(footnoteRef.current, { opacity: 0.7, scale: 1, duration: 1, ease: "power2.out", delay: 0.25 });
+  }, [hasEntered, shouldAnimate]);
 
   useEffect(() => {
     if (!hasEntered) return;
@@ -461,39 +385,24 @@ export default function HeroSection() {
       phoneLeftRef.current,
       phoneMiddleRef.current,
       phoneRightRef.current,
-    ].filter(Boolean);
+    ].filter(Boolean) as HTMLDivElement[];
 
     if (phones.length === 0) return;
 
-    phones.forEach((phone, index) => {
-      if (phone) {
-        gsap.set(phone, {
-          opacity: 0,
-          scale: 0.6,
-          y: 50,
-          transformOrigin: "center center",
-        });
-      }
+    if (!shouldAnimate) {
+      phones.forEach((p) => gsap.set(p, { opacity: 1, scale: 1, y: 0 }));
+      return;
+    }
+
+    phones.forEach((phone) => {
+      gsap.set(phone, { opacity: 0, scale: 0.6, y: 50, transformOrigin: "center center" });
     });
 
     const tl = gsap.timeline();
-
     phones.forEach((phone, index) => {
-      if (phone) {
-        tl.to(
-          phone,
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 1.2,
-            ease: "power2.out",
-          },
-          index * 0.15,
-        );
-      }
+      tl.to(phone, { opacity: 1, scale: 1, y: 0, duration: 0.85, ease: "power2.out" }, index * 0.15);
     });
-  }, [hasEntered]);
+  }, [hasEntered, shouldAnimate]);
 
   return (
     <section
@@ -806,7 +715,7 @@ export default function HeroSection() {
             </div>
 
             {/* Right Section - Three Phones - Desktop Only */}
-            <div className="relative flex items-center justify-center h-[500px] min-[400px]:h-[400px] min-[420px]:h-[600px] md:h-[600px] order-2 lg:order-2">
+            <div className="relative flex items-center justify-center h-[500px] min-[400px]:h-[400px] min-[420px]:h-[600px] md:h-screen order-2 lg:order-2">
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Circular Lines - Thin abstract circles */}
@@ -861,7 +770,7 @@ export default function HeroSection() {
                       <Image
                         width={1900}
                         height={1900}
-                        src="/iPhone-13-Pro-Front (1).svg"
+                        src="/iPhone-13-Pro-Front-newly.svg"
                         alt="App Screen 2"
                         className="w-full h-full md:-ml-5"
                       />

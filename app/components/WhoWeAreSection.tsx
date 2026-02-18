@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useShouldAnimate } from "../hooks/useShouldAnimate";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +12,7 @@ export default function WhoWeAreSection() {
   const h2Ref = useRef<HTMLHeadingElement>(null);
   const h3Ref = useRef<HTMLHeadingElement>(null);
   const pRef = useRef<HTMLParagraphElement>(null);
+  const shouldAnimate = useShouldAnimate();
 
   useEffect(() => {
     if (
@@ -21,13 +23,15 @@ export default function WhoWeAreSection() {
     )
       return;
 
-    // Set initial states - text starts from above and invisible
-    gsap.set([h2Ref.current, h3Ref.current, pRef.current], {
-      opacity: 0,
-      y: -30,
-    });
+    const elts = [h2Ref.current, h3Ref.current, pRef.current];
 
-    // Create timeline for fade-in animations
+    if (!shouldAnimate) {
+      gsap.set(elts, { opacity: 1, y: 0 });
+      return;
+    }
+
+    gsap.set(elts, { opacity: 0, y: -30 });
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -37,33 +41,14 @@ export default function WhoWeAreSection() {
       },
     });
 
-    // Animate headings and text with stagger - coming from top
     tl.to(h2Ref.current, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
+      duration: 0.55,
       ease: "power2.out",
     })
-      .to(
-        h3Ref.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "-=0.4",
-      )
-      .to(
-        pRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "-=0.4",
-      );
+      .to(h3Ref.current, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.35")
+      .to(pRef.current, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.35");
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
@@ -72,7 +57,7 @@ export default function WhoWeAreSection() {
         }
       });
     };
-  }, []);
+  }, [shouldAnimate]);
 
   return (
     <section
