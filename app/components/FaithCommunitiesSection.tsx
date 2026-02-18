@@ -113,7 +113,7 @@ export default function FaithCommunitiesSection() {
                     alt="Bottom Left"
                     width={350}
                     height={200}
-                    className="w-[200px] h-[115px] min-[400px]:w-[200px] md:w-[350px] min-[400px]:h-[140px] md:h-[220px] object-cover"
+                    className="w-[200px] h-[115px] min-[400px]:w-[200px] md:w-[350px] min-[400px]:h-[130px] min-[420px]:h-[140px] md:h-[220px] object-cover"
                     style={{
                       border: "none",
                       outline: "none",
