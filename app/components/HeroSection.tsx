@@ -7,12 +7,10 @@ import gsap from "gsap";
 
 export default function HeroSection() {
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
-  const [hasEntered, setHasEntered] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("hasEnteredCircle") === "true";
-    }
-    return false;
-  });
+  // Don't show character or hero until we know from localStorage → no flash on refresh either way.
+  const [ready, setReady] = useState(false);
+  const [curtainColor, setCurtainColor] = useState("#F5F2ED");
+  const [hasEntered, setHasEntered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -309,18 +307,20 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("hasEnteredCircle");
-      if (saved === "true") {
-        setHasEntered(true);
-        document.body.style.overflow = "auto";
-      } else {
-        setHasEntered(false);
-        window.scrollTo({ top: 0, behavior: "instant" });
-        document.body.style.overflow = "hidden";
-      }
-      setIsMounted(true);
+    if (typeof window === "undefined") return;
+    const saved = localStorage.getItem("hasEnteredCircle");
+    const entered = saved === "true";
+    setHasEntered(entered);
+    setCurtainColor(entered ? "#F5F2ED" : "#000");
+    if (entered) {
+      document.body.style.overflow = "auto";
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      document.body.style.overflow = "hidden";
     }
+    setIsMounted(true);
+    // One frame with matching curtain color, then reveal → no flash on character or hero refresh.
+    requestAnimationFrame(() => setReady(true));
   }, []);
 
   useEffect(() => {
@@ -486,8 +486,17 @@ export default function HeroSection() {
       className="relative min-h-screen h-screen w-full overflow-hidden"
       style={{ overflow: "hidden" }}
     >
+      {/* Curtain: same color as target screen so no flash on refresh (character or hero). */}
+      {!ready && (
+        <div
+          className="fixed inset-0 z-[10001]"
+          style={{ backgroundColor: curtainColor }}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Character Hero Overlay - Fixed on top */}
-      {!hasEntered && (
+      {ready && !hasEntered && (
         <div
           ref={heroRef}
           className="fixed inset-0 z-[9999] flex items-center justify-center"
@@ -611,7 +620,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[#F5F2ED]" />
 
       {/* Content */}
-      <div className={`relative z-10 flex h-full flex-col ${!hasEntered ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 visible'}`}>
+      <div className={`relative z-10 flex h-full flex-col ${!ready || !hasEntered ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 visible'}`}>
         {/* NAVBAR */}
         <header className="flex items-center bg-white justify-between px-4 sm:px-6 py-4 md:py-5 md:px-24">
           {/* Logo - White circle with line through it */}

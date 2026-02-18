@@ -268,14 +268,14 @@ export default function DownloadAppSection() {
             alt="Community Groups"
             width={210}
             height={210}
-            className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
+            className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
           />
           <Image
             src="/Ellipse 2.svg"
             alt="Community Groups"
             width={210}
             height={210}
-            className="absolute top-[75%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
+            className="absolute top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1900px] h-[1900px] opacity-100"
           />
         </div>
 

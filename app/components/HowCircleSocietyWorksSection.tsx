@@ -271,7 +271,7 @@ export default function HowCircleSocietyWorksSection() {
               >
                 <div className="overflow-hidden w-[300px] h-[350px] -mt-28 md:-mt-0 ml-0 md:-ml-0 md:w-[400px] md:h-[500px]">
                   <Image
-                    src="/iPhone-13-Pro-Front.png"
+                    src="/iPhone-13-Pro-Front-latest.png"
                     alt="Build Real Connections"
                     width={973.6595458984375}
                     height={975.7525634765625}
