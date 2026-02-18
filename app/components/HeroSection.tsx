@@ -819,7 +819,7 @@ export default function HeroSection() {
                 />
               </div>
 
-              <div className="absolute left-10 -mt-8 min-[400px]:mt-10 left-[15%] min-[400px]:left-[10%] md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+              <div className="absolute left-10 -mt-8 min-[390px]:mt-10 left-[15%] min-[400px]:left-[10%] md:left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
                 {/* Left Phone */}
                 <div
                   ref={phoneLeftRef}
@@ -828,8 +828,8 @@ export default function HeroSection() {
                   <div className="relative p-1.5 md:p-2">
                     <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
-                        width={900}
-                        height={900}
+                        width={1900}
+                        height={1900}
                         src="/iPhone-13-Pro-Front.svg"
                         alt="App Screen 1"
                         className="w-full  h-full md:-mt-12"
@@ -845,8 +845,8 @@ export default function HeroSection() {
                   <div className="relative p-1.5 md:p-2">
                     <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
-                        width={900}
-                        height={900}
+                        width={1900}
+                        height={1900}
                         src="/iPhone-13-Pro-Front (1).svg"
                         alt="App Screen 2"
                         className="w-full h-full md:-ml-5"
@@ -862,8 +862,8 @@ export default function HeroSection() {
                   <div className="relative p-1.5 md:p-2">
                     <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[480px] md:w-[570px] min-[400px]:h-[480px] md:h-[570px] overflow-hidden">
                       <Image
-                        width={900}
-                        height={900}
+                        width={1900}
+                        height={1900}
                         src="/iPhone-13-Pro-Front (2).svg"
                         alt="App Screen 3"
                         className="w-full h-full md:mt-10 md:-ml-15"

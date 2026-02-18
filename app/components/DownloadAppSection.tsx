@@ -325,8 +325,8 @@ export default function DownloadAppSection() {
               <div className="relative p-1.5">
                 <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[450px] min-[400px]:h-[450px] overflow-hidden">
                   <Image
-                    width={900}
-                    height={900}
+                    width={1900}
+                    height={1900}
                     src="/iPhone-13-Pro-Front.svg"
                     alt="App Screen 1"
                     className="w-full h-full"
@@ -339,8 +339,8 @@ export default function DownloadAppSection() {
               <div className="relative p-1.5">
                 <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[450px] min-[400px]:h-[450px] overflow-hidden">
                   <Image
-                    width={900}
-                    height={900}
+                    width={1900}
+                    height={1900}
                     src="/iPhone-13-Pro-Front (1).svg"
                     alt="App Screen 2"
                     className="w-full h-full"
@@ -353,8 +353,8 @@ export default function DownloadAppSection() {
               <div className="relative p-1.5">
                 <div className="aspect-[9/19] w-[400px] h-[400px] min-[400px]:w-[450px] min-[400px]:h-[450px] overflow-hidden">
                   <Image
-                    width={900}
-                    height={900}
+                    width={1900}
+                    height={1900}
                     src="/iPhone-13-Pro-Front (2).svg"
                     alt="App Screen 3"
                     className="w-full h-full"
