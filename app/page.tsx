@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSection from "./components/HeroSection";
+
+gsap.registerPlugin(ScrollTrigger);
+// Reduces scroll jank on mobile: callbacks only when trigger state toggles, not every scroll tick.
+ScrollTrigger.config({ limitCallbacks: true });
 import WhoWeAreSection from "./components/WhoWeAreSection";
 import EasyAndSafeFeaturesSection from "./components/EasyAndSafeFeaturesSection";
 import WhereRealConnectionsSection from "./components/WhereRealConnectionsSection";
@@ -38,8 +43,14 @@ export default function Home() {
       }
     }, 100);
 
+    let refreshTicking = false;
     const handleResize = () => {
-      ScrollTrigger.refresh();
+      if (refreshTicking) return;
+      refreshTicking = true;
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        refreshTicking = false;
+      });
     };
 
     window.addEventListener("resize", handleResize);

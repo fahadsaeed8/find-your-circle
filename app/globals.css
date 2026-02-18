@@ -25,6 +25,13 @@
     overflow-x: hidden;
   }
 
+  /* Touch devices: native scroll so GSAP scroll animations don’t cause hang */
+  @media (hover: none) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     background: var(--color-background);
     color: var(--color-foreground);

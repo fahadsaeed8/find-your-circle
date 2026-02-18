@@ -61,7 +61,7 @@ export default function DownloadAppSection() {
       scale: 0.8,
     });
 
-    const scrollDistance = 1200;
+    const scrollDistance = 550;
 
     const phoneTimeline = gsap.timeline({
       scrollTrigger: {
@@ -73,6 +73,16 @@ export default function DownloadAppSection() {
         scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        onLeave: () => {
+          // Pin release ke baad smoothly neeche wale section pe scroll
+          requestAnimationFrame(() => {
+            const next = section.nextElementSibling as HTMLElement | null;
+            if (next) {
+              const top = next.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({ top: Math.max(0, top - 1), behavior: "smooth" });
+            }
+          });
+        },
       },
     });
 
