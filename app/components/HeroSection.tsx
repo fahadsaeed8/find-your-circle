@@ -861,7 +861,7 @@ export default function HeroSection() {
                       <Image
                         width={1900}
                         height={1900}
-                        src="/iPhone-13-Pro-Front (1).svg"
+                        src="/iPhone-13-Pro-Front-newly.png"
                         alt="App Screen 2"
                         className="w-full h-full md:-ml-5"
                       />

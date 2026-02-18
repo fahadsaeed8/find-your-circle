@@ -50,7 +50,7 @@ export default function WhereRealConnectionsSection() {
         life
       </h2>
 
-      <div className="relative w-full mt-30 min-[400px]:mt-0 md:mt-40 max-w-6xl md:h-[500px] flex items-center justify-center">
+      <div className="relative w-full mt-30 min-[400px]:mt-20 min-[420px]:mt-0 md:mt-40 max-w-6xl md:h-[500px] flex items-center justify-center">
         {images.map((src, index) => {
           const position = getPosition(index);
 
