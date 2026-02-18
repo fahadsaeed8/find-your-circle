@@ -14,6 +14,7 @@ export default function HeroSection() {
     return false;
   });
   const [isMounted, setIsMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const portalLayer1Ref = useRef<HTMLDivElement>(null);
@@ -634,10 +635,28 @@ export default function HeroSection() {
           </Link>
 
           {/* Hamburger Menu - Mobile Only */}
-          <button className="md:hidden flex flex-col gap-1.5 w-6 h-6 justify-center items-center">
-            <span className="w-full h-0.5 bg-black"></span>
-            <span className="w-full h-0.5 bg-black"></span>
-            <span className="w-full h-0.5 bg-black"></span>
+          <button
+            type="button"
+            className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50 relative"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            <span
+              className={`w-full h-0.5 bg-black block transition-all duration-200 origin-center ${
+                mobileMenuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-black block transition-all duration-200 ${
+                mobileMenuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-black block transition-all duration-200 origin-center ${
+                mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
           </button>
 
           {/* Nav Links - Desktop Only */}
@@ -659,6 +678,64 @@ export default function HeroSection() {
             </a>
           </nav>
         </header>
+
+        {/* Mobile Menu Overlay & Panel */}
+        <div
+          className={`md:hidden fixed inset-0 z-40 transition-opacity duration-200 ${
+            mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+          }`}
+          aria-hidden={!mobileMenuOpen}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          />
+          <div
+            className={`absolute top-0 right-0 h-full w-full max-w-[280px] bg-white shadow-xl flex flex-col pt-20 px-6 transition-transform duration-200 ease-out ${
+              mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]">
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                ABOUT
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Stories
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                STORE
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact Us
+              </a>
+              <a
+                className="hover:opacity-80 transition-opacity py-2"
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Download
+              </a>
+            </nav>
+          </div>
+        </div>
 
         {/* HERO CENTER */}
         <div className="flex flex-1 items-center  justify-start md:justify-center px-4 sm:px-6 md:px-8 lg:px-24 py-0 md:py-0">
