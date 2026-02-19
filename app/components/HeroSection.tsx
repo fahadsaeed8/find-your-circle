@@ -806,7 +806,7 @@ export default function HeroSection() {
             </div>
 
             {/* Right Section - Three Phones - Desktop Only */}
-            <div className="relative flex items-center justify-center h-[500px] min-[400px]:h-[400px] min-[420px]:h-[600px] md:h-[600px] order-2 lg:order-2">
+            <div className="relative flex items-center justify-center h-[500px] min-[400px]:h-[400px] min-[420px]:h-[600px] md:h-screen order-2 lg:order-2">
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Circular Lines - Thin abstract circles */}
