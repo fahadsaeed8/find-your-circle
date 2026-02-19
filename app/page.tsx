@@ -6,8 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSection from "./components/HeroSection";
 
 gsap.registerPlugin(ScrollTrigger);
-// Reduces scroll jank on mobile: callbacks only when trigger state toggles, not every scroll tick.
+// Reduces scroll jank: callbacks only when trigger state toggles, not every scroll tick.
 ScrollTrigger.config({ limitCallbacks: true });
+// GPU-accelerated transforms for smoother animations
+gsap.config({ force3D: true });
 import WhoWeAreSection from "./components/WhoWeAreSection";
 import EasyAndSafeFeaturesSection from "./components/EasyAndSafeFeaturesSection";
 import WhereRealConnectionsSection from "./components/WhereRealConnectionsSection";
