@@ -22,10 +22,10 @@ export default function HeaderSection() {
             >
               <Image
                 src={"/LOGO CS-01.png"}
-                width={50}
-                height={50}
+                width={400}
+                height={400}
                 alt="logo"
-                className="md:w-[70px] md:h-[70px]"
+                className="w-[60px] md:w-[70px] h-[70px] md:h-[70px]"
               />
             </div>
           </Link>
