@@ -44,12 +44,12 @@ export default function WhereRealConnectionsSection() {
   };
 
   return (
-    <section className="relative  py-0 md:py-20 min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
+    <section className="relative  py-0 md:py-20 h-[70vh] min-[370px]:h-[80vh] min-[380px]:h-[60vh] min-[410px]:min-h-[70vh] md:h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
       <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-white text-2xl md:text-5xl font-clash text-center w-[80%] md:w-full">
         Where real <span className="text-[#BF822E]">connections</span> come to life
       </h2>
 
-      <div className="relative w-full mt-0 min-[400px]:mt-0 min-[420px]:mt-0 md:mt-10 max-w-6xl md:h-[500px] flex items-center justify-center">
+      <div className="relative w-full mt-30 min-[400px]:mt-20 min-[420px]:mt-20 md:mt-10 max-w-6xl md:h-[500px] flex items-center justify-center">
         {images.map((src, index) => {
           const position = getPosition(index);
 
