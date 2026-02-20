@@ -44,13 +44,12 @@ export default function WhereRealConnectionsSection() {
   };
 
   return (
-    <section className="relative  py-0 md:py-20 min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
-      <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-white text-3xl md:text-5xl font-clash text-center">
-        Where real <span className="text-[#BF822E]">connections</span> come to
-        life
+    <section className="relative py-0 md:py-20 min-h-[70vh] min-[370px]:min-h-[80vh] min-[380px]:min-h-[60vh] min-[410px]:min-h-[70vh] min-[480px]:min-h-[82vh] sm:min-h-[85vh] md:min-h-screen lg:min-h-screen xl:min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
+      <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-white text-2xl md:text-5xl font-clash text-center w-[80%] md:w-full">
+        Where real <span className="text-[#BF822E]">connections</span> come to life
       </h2>
 
-      <div className="relative w-full mt-30 min-[400px]:mt-20 min-[420px]:mt-0 md:mt-40 max-w-6xl md:h-[500px] flex items-center justify-center">
+      <div className="relative w-full mt-30 min-[400px]:mt-20 min-[420px]:mt-20 md:mt-10 max-w-6xl md:h-[500px] flex items-center justify-center">
         {images.map((src, index) => {
           const position = getPosition(index);
 
@@ -76,10 +75,9 @@ export default function WhereRealConnectionsSection() {
               <div
                 className={`
                   relative transition-all duration-700
-                  ${
-                    position === "center"
-                      ? "min-[400px]:w-[350px] w-[300px] h-[350px] min-[400px]:h-[450px] md:w-[350px] md:h-[500px]"
-                      : "min-[400px]:w-[320px] w-[300px] h-[350px] min-[400px]:h-[400px] md:w-[320px] md:h-[380px]"
+                  ${position === "center"
+                    ? "min-[400px]:w-[350px] w-[300px] h-[350px] min-[400px]:h-[450px] md:w-[350px] md:h-[500px]"
+                    : "min-[400px]:w-[320px] w-[300px] h-[350px] min-[400px]:h-[400px] md:w-[320px] md:h-[380px]"
                   }
                 `}
               >
