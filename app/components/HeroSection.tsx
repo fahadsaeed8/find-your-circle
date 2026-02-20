@@ -558,10 +558,10 @@ export default function HeroSection() {
             >
               <Image
                 src={"/LOGO CS-01.png"}
-                width={400}
-                height={400}
+                width={70}
+                height={70}
                 alt="logo"
-                className="w-[60px] md:w-[70px] h-[70px] md:h-[70px]"
+                className=" md:w-[70px] md:h-[70px]"
               />
             </div>
           </Link>
