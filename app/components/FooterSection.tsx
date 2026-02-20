@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function FooterSection() {
   return (
-    <footer className="bg-[#F5F2ED] -mt-5 md:mt-0 px-6 md:py-16 md:px-12">
+    <footer className="bg-[#F5F2ED] -mt-5 md:mt-0 px-6 pt-6 md:pt-16 md:pb-6 md:px-12">
       <div className="mx-auto max-w-6xl flex flex-col items-center justify-center">
         {/* Logo - Centered at top */}
         <div className="mb-8 md:mb-12 flex items-center justify-center">
@@ -91,6 +91,31 @@ export default function FooterSection() {
               className="w-4 h-4 md:w-8 md:h-8"
             />
           </a> */}
+        </div>
+
+        {/* Policy links - bottom right */}
+        <div className="mt-10 mb-5 md:mb-0 md:mt-12 w-full flex flex-wrap items-center justify-center md:justify-end gap-x-4 gap-y-2">
+          <a
+            href="/terms-and-conditions"
+            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium md:font-semibold text-sm"
+          >
+            <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
+            Terms &amp; Conditions
+          </a>
+          <a
+            href="/privacy-policy"
+            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium md:font-semibold text-sm"
+          >
+            <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
+            Privacy Policy
+          </a>
+          <a
+            href="/refund-cancellation-policy"
+            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium md:font-semibold text-sm"
+          >
+            <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
+            Refund &amp; Cancellation Policy
+          </a>
         </div>
       </div>
     </footer>
