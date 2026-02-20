@@ -44,7 +44,7 @@ export default function WhereRealConnectionsSection() {
   };
 
   return (
-    <section className="relative  py-0 md:py-20 h-[70vh] min-[370px]:h-[80vh] min-[380px]:h-[60vh] min-[410px]:min-h-[70vh] md:h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
+    <section className="relative py-0 md:py-20 min-h-[70vh] min-[370px]:min-h-[80vh] min-[380px]:min-h-[60vh] min-[410px]:min-h-[70vh] min-[480px]:min-h-[82vh] sm:min-h-[85vh] md:min-h-screen lg:min-h-screen xl:min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
       <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-white text-2xl md:text-5xl font-clash text-center w-[80%] md:w-full">
         Where real <span className="text-[#BF822E]">connections</span> come to life
       </h2>
