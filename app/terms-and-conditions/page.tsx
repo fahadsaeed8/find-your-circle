@@ -19,10 +19,10 @@ export default function TermsAndConditionsPage() {
           ← Back to Home
         </Link> */}
 
-        <h1 className="font-clash text-3xl md:text-4xl lg:text-5xl font-medium text-[#BF822E] mb-2">
+        <h1 className="font-clash text-center md:text-start text-3xl md:text-4xl lg:text-5xl font-medium text-[#BF822E] mb-2">
           Terms & Conditions
         </h1>
-        <p className=" text-sm mb-10 text-black font-bold">Last Updated:<span className="font-medium text-[#5A5A5A]">  February 2025</span> </p>
+        <p className=" text-sm text-center md:text-start mb-10 text-black font-bold">Last Updated:<span className="font-medium text-[#5A5A5A]">  February 2025</span> </p>
 
         <div className="prose-policy space-y-8 text-[#1B1B1B]">
           <p className="leading-relaxed text-[#5A5A5A]">
