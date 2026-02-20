@@ -107,6 +107,13 @@ export default function TermsAndConditionsPage() {
               These Terms are governed by the laws of the United Arab Emirates.
             </p>
           </section>
+
+          <section className="pt-4 mt-8 text-sm text-center md:text-start text-[#5A5A5A]">
+            <p className="font-medium mb-1">Company Information</p>
+            <p className="font-medium">Circle Society</p>
+            <p>339, Building B, Jarn Yafour, Al Mafraq Industrial, Abu Dhabi</p>
+            <p>Email: support@circlesociety.ae</p>
+          </section>
         </div>
       </div>
       <FooterSection />
