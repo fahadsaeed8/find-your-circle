@@ -557,7 +557,7 @@ export default function HeroSection() {
               }}
             >
               <Image
-                src={"/Layer_1.svg"}
+                src={"/LOGO CS-01.png"}
                 width={50}
                 height={50}
                 alt="logo"

@@ -15,7 +15,7 @@ export default function FooterSection() {
             }}
           >
             <Image
-              src="/Layer_1.svg"
+              src="/LOGO CS-01.png"
               width={80}
               height={80}
               alt="Society & The Circle Logo"
