@@ -11,7 +11,7 @@ export default function TermsAndConditionsPage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
       <HeaderSection />
-      <div className="mx-auto max-w-3xl px-6 py-10 md:py-16 md:px-8">
+      <div className="mx-auto max-w-6xl px-6 py-10 md:py-16 md:px-8">
         {/* <Link
           href="/"
           className="inline-flex items-center gap-2 text-[#BF822E] hover:text-black transition-colors text-sm font-medium mb-8"
@@ -22,7 +22,7 @@ export default function TermsAndConditionsPage() {
         <h1 className="font-clash text-center md:text-start text-3xl md:text-4xl lg:text-5xl font-medium text-[#BF822E] mb-2">
           Terms & Conditions
         </h1>
-        <p className=" text-sm text-center md:text-start mb-10 text-black font-bold">Last Updated:<span className="font-medium text-[#5A5A5A]">  February 2025</span> </p>
+        <p className=" text-sm text-center md:text-start mb-10 text-black font-bold">Last Updated:<span className="font-medium text-[#5A5A5A]">  February 2026</span> </p>
 
         <div className="prose-policy space-y-8 text-[#1B1B1B]">
           <p className="leading-relaxed text-[#5A5A5A]">
