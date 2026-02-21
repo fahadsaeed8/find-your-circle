@@ -97,21 +97,21 @@ export default function FooterSection() {
         <div className="mt-10 mb-5 md:mb-0 md:mt-12 w-full flex flex-wrap items-center justify-center md:justify-end gap-x-4 gap-y-2">
           <a
             href="/terms-and-conditions"
-            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium md:font-semibold text-sm"
+            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium  text-sm"
           >
             <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
             Terms &amp; Conditions
           </a>
           <a
             href="/privacy-policy"
-            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium md:font-semibold text-sm"
+            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium  text-sm"
           >
             <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
             Privacy Policy
           </a>
           <a
             href="/refund-cancellation-policy"
-            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium md:font-semibold text-sm"
+            className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium  text-sm"
           >
             <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
             Refund &amp; Cancellation Policy

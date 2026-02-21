@@ -11,7 +11,7 @@ export default function TermsAndConditionsPage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
       <HeaderSection />
-      <div className="mx-auto max-w-3xl px-6 py-10 md:py-16 md:px-8">
+      <div className="mx-auto max-w-6xl px-6 py-10 md:py-16 md:px-8">
         {/* <Link
           href="/"
           className="inline-flex items-center gap-2 text-[#BF822E] hover:text-black transition-colors text-sm font-medium mb-8"
