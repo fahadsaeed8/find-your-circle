@@ -30,7 +30,7 @@ export default function HeaderSection() {
 
   return (
     <>
-      <header className="flex items-center justify-between gap-4 bg-white px-4 sm:px-6 py-4 md:py-5 md:px-24 border-b border-[#E8E5E0]">
+      <header className="flex items-center justify-between gap-4 bg-white px-4 sm:px-6 py-2 md:py-2 md:px-24 border-b border-[#E8E5E0]">
         {/* Logo - Left */}
         <Link href={"/"} className="flex items-center flex-shrink-0 md:ml-4">
           <div
@@ -43,10 +43,10 @@ export default function HeaderSection() {
           >
             <Image
               src={"/LOGO CS-01.png"}
-              width={70}
-              height={70}
+              width={90}
+              height={90}
               alt="logo"
-              className="md:w-[70px] md:h-[70px]"
+              className="md:w-[90px] md:h-[90px]"
             />
           </div>
         </Link>
