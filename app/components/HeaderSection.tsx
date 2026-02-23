@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 function GlobeIcon({ className }: { className?: string }) {
@@ -27,6 +28,17 @@ function GlobeIcon({ className }: { className?: string }) {
 export default function HeaderSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lang, setLang] = useState<"eng" | "arb">("eng");
+  const pathname = usePathname();
+
+  const activeStyle = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+  const isActive = (path: string) => pathname === path;
+  const navLinkClass = (path: string) =>
+    `px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md ${isActive(path) ? "text-white" : "text-black"}`;
+  const navLinkStyle = (path: string) =>
+    ({ background: isActive(path) ? activeStyle : "transparent" });
+  const onNavMouseLeave = (path: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isActive(path)) e.currentTarget.style.background = "transparent";
+  };
 
   return (
     <>
@@ -55,55 +67,45 @@ export default function HeaderSection() {
         <nav className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide">
           <a
             href="/about"
-            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
-            style={{
-              background: "transparent",
-            }}
+            className={navLinkClass("/about")}
+            style={navLinkStyle("/about")}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+              e.currentTarget.style.background = activeStyle;
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-            }}
+            onMouseLeave={onNavMouseLeave("/about")}
           >
             ABOUT
           </a>
           <a
             href="/stories"
-            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
-            style={{ background: "transparent" }}
+            className={navLinkClass("/stories")}
+            style={navLinkStyle("/stories")}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+              e.currentTarget.style.background = activeStyle;
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-            }}
+            onMouseLeave={onNavMouseLeave("/stories")}
           >
             Stories
           </a>
           <a
             href="/store"
-            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
-            style={{ background: "transparent" }}
+            className={navLinkClass("/store")}
+            style={navLinkStyle("/store")}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+              e.currentTarget.style.background = activeStyle;
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-            }}
+            onMouseLeave={onNavMouseLeave("/store")}
           >
             STORE
           </a>
           <a
             href="/contact-us"
-            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
-            style={{ background: "transparent" }}
+            className={navLinkClass("/contact-us")}
+            style={navLinkStyle("/contact-us")}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+              e.currentTarget.style.background = activeStyle;
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-            }}
+            onMouseLeave={onNavMouseLeave("/contact-us")}
           >
             Contact Us
           </a>
@@ -112,7 +114,7 @@ export default function HeaderSection() {
             className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
             style={{ background: "transparent" }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+              e.currentTarget.style.background = activeStyle;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "transparent";
