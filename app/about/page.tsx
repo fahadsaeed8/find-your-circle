@@ -2,11 +2,6 @@ import Image from "next/image";
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
 
-export const metadata = {
-  title: "About Us | Circle Society",
-  description: "Learn more about Circle Society — your social life, all in one app.",
-};
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">

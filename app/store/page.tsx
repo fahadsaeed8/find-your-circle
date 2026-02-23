@@ -1,11 +1,6 @@
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
 
-export const metadata = {
-  title: "Store | Circle Society",
-  description: "Circle Society store.",
-};
-
 export default function StorePage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">

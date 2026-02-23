@@ -2,11 +2,6 @@ import Image from "next/image";
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
 
-export const metadata = {
-  title: "Love Stories | Circle Society",
-  description: "Real love stories from couples who found each other on Circle Society — dates, relationships, and moments that matter.",
-};
-
 export default function StoriesPage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">

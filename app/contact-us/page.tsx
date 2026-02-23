@@ -1,11 +1,6 @@
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
 
-export const metadata = {
-  title: "Contact Us | Circle Society",
-  description: "Get in touch with Circle Society.",
-};
-
 function ContactIcon({ type }: { type: "location" | "phone" | "mail" }) {
   if (type === "location")
     return (

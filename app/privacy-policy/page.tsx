@@ -2,11 +2,6 @@ import Link from "next/link";
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
 
-export const metadata = {
-  title: "Privacy Policy | Circle Society",
-  description: "Privacy Policy for Circle Society platform.",
-};
-
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
