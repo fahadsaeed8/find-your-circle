@@ -100,10 +100,10 @@ export default function FooterSection() {
               <h3 className="text-black font-semibold uppercase tracking-wide text-sm mb-3">Quick Link</h3>
               <nav className="flex flex-col gap-2 text-sm">
                 <Link href="/" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Home</Link>
-                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">About</Link>
-                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Stories</Link>
-                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Store</Link>
-                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Contact Us</Link>
+                <Link href="/about" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">About</Link>
+                <Link href="/stories" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Stories</Link>
+                <Link href="/store" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Store</Link>
+                <Link href="/contact-us" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Contact Us</Link>
                 <a href="/#download" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Download</a>
               </nav>
             </div>

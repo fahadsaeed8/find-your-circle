@@ -54,7 +54,7 @@ export default function HeaderSection() {
         {/* Nav Links - Desktop Only, Centered */}
         <nav className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide">
           <a
-            href="#"
+            href="/about"
             className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
             style={{
               background: "transparent",
@@ -69,7 +69,7 @@ export default function HeaderSection() {
             ABOUT
           </a>
           <a
-            href="#"
+            href="/stories"
             className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
             style={{ background: "transparent" }}
             onMouseEnter={(e) => {
@@ -82,7 +82,7 @@ export default function HeaderSection() {
             Stories
           </a>
           <a
-            href="#"
+            href="/store"
             className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
             style={{ background: "transparent" }}
             onMouseEnter={(e) => {
@@ -95,7 +95,7 @@ export default function HeaderSection() {
             STORE
           </a>
           <a
-            href="#"
+            href="/contact-us"
             className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
             style={{ background: "transparent" }}
             onMouseEnter={(e) => {
@@ -237,34 +237,34 @@ export default function HeaderSection() {
             </div>
 
             <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]">
-              <a
+              <Link
+                href="/about"
                 className="hover:opacity-80 transition-opacity py-2"
-                href="#"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 ABOUT
-              </a>
-              <a
+              </Link>
+              <Link
+                href="/stories"
                 className="hover:opacity-80 transition-opacity py-2"
-                href="#"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Stories
-              </a>
-              <a
+              </Link>
+              <Link
+                href="/store"
                 className="hover:opacity-80 transition-opacity py-2"
-                href="#"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 STORE
-              </a>
-              <a
+              </Link>
+              <Link
+                href="/contact-us"
                 className="hover:opacity-80 transition-opacity py-2"
-                href="#"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact Us
-              </a>
+              </Link>
               <a
                 className="hover:opacity-80 transition-opacity py-2"
                 href="/#download"
