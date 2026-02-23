@@ -57,31 +57,31 @@ export default function FooterSection() {
                 >
                   <Image
                     src="/LOGO CS-01.png"
-                    width={72}
-                    height={72}
+                    width={120}
+                    height={120}
                     alt="Find Your Circle"
-                    className="w-20 h-20 md:w-20 md:h-20"
+                    className="w-20 h-20 md:w-24 md:h-24"
                   />
                 </div>
               </Link>
               <p className="text-black/80 text-sm leading-relaxed mb-4 max-w-sm">
                 Your social life, all in one app. Discover events, communities, and people around you.
               </p>
-              <Link
+              {/* <Link
                 href="#"
                 className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-95 active:scale-[0.98] mb-4"
                 style={{ background: "linear-gradient(to bottom, #D99F4F, #BF822E)" }}
               >
                 Contact Us
-              </Link>
+              </Link> */}
               <div className="flex flex-row gap-2">
-                <a href="#" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="TikTok">
+                <a href="https://www.tiktok.com/@thecirclesociety.ae" target="blank" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="TikTok">
                   <Image src="/Vector (17).svg" alt="" width={18} height={18} className="w-4 h-4 md:w-5 md:h-5" />
                 </a>
-                <a href="#" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="Instagram">
+                <a href="https://www.instagram.com/thecirclesociety.ae/" target="blank" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="Instagram">
                   <Image src="/Vector (18).svg" alt="" width={18} height={18} className="w-4 h-4 md:w-5 md:h-5" />
                 </a>
-                <a href="#" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="Facebook">
+                <a href="https://www.facebook.com/thecirclesociety.ae/" target="blank" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="Facebook">
                   <Image src="/Vector (19).svg" alt="" width={18} height={18} className="w-4 h-4 md:w-5 md:h-5" />
                 </a>
               </div>
@@ -144,9 +144,9 @@ export default function FooterSection() {
       </div>
 
       {/* Bottom strip */}
-      <div className="border-t border-[#E8E5E0] px-6 py-4 lg:pl-24">
+      <div className="border-t border-[#E8E5E0] px-6 py-4 lg:px-24">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 text-sm text-black/70">
-          <p>© All rights reserved {new Date().getFullYear()} Find Your Circle</p>
+          <p>© All rights reserved {new Date().getFullYear()} Circle Society</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link
               href="/terms-and-conditions"
