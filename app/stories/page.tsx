@@ -12,24 +12,23 @@ export default function StoriesPage() {
     <div className="min-h-screen bg-[#F5F2ED]">
       <HeaderSection />
 
-      <div className="mx-auto max-w-5xl px-6 pt-[90px] md:pt-[100px] pb-20 md:pb-28 md:px-8">
-        {/* Section 1 - Hero: text + image */}
-        <section className="mb-20 md:mb-24">
+      <div className="mx-auto max-w-6xl px-6 pt-[90px] md:pt-[100px] pb-20 md:pb-28 md:px-8">
+        {/* Section 1 - Hero: Love Stories - button wala brown */}
+        <section className="mb-20 md:mb-24 rounded-2xl overflow-hidden p-8 md:p-12" style={{ background: "linear-gradient(135deg, #D99F4F 0%, #BF822E 0%)" }}>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-3">
-              <h1 className="font-clash text-3xl md:text-4xl lg:text-5xl font-medium text-[#1B1B1B] mb-4">
+              <h1 className="font-clash text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
                 Love Stories
               </h1>
               <span
-                className="inline-block w-12 h-0.5 rounded-full mb-6"
-                style={{ background: "linear-gradient(to right, #D99F4F, #BF822E)" }}
+                className="inline-block w-12 h-0.5 rounded-full mb-6 bg-white/80"
                 aria-hidden
               />
-              <p className="text-[#5A5A5A] text-lg md:text-xl leading-relaxed">
+              <p className="text-white/90 text-lg md:text-xl leading-relaxed">
                 Real moments from couples who found their person — first dates, relationships, and connections that turned into something special.
               </p>
             </div>
-            <div className="lg:col-span-2 relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden bg-[#E8E5E0]/40">
+            <div className="lg:col-span-2 relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden bg-white/10">
               <Image
                 src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80"
                 alt="Couple together"
