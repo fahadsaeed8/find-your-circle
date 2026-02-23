@@ -52,20 +52,72 @@ export default function HeaderSection() {
         </Link>
 
         {/* Nav Links - Desktop Only, Centered */}
-        <nav className="hidden md:flex flex-1 justify-center gap-6 lg:gap-8 text-[16px] font-semibold uppercase tracking-wide text-black">
-          <a className="hover:opacity-80 transition-opacity" href="#">
+        <nav className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide">
+          <a
+            href="#"
+            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
+            style={{
+              background: "transparent",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
             ABOUT
           </a>
-          <a className="hover:opacity-80 transition-opacity" href="#">
+          <a
+            href="#"
+            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
+            style={{ background: "transparent" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
             Stories
           </a>
-          <a className="hover:opacity-80 transition-opacity" href="#">
+          <a
+            href="#"
+            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
+            style={{ background: "transparent" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
             STORE
           </a>
-          <a className="hover:opacity-80 transition-opacity" href="#">
+          <a
+            href="#"
+            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
+            style={{ background: "transparent" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
             Contact Us
           </a>
-          <a className="hover:opacity-80 transition-opacity" href="#">
+          <a
+            href="#"
+            className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
+            style={{ background: "transparent" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "linear-gradient(to bottom, #D99F4F, #BF822E)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
             Download
           </a>
         </nav>
