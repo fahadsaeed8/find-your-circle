@@ -146,6 +146,9 @@ export default function FooterSection() {
                 <a href="https://www.tiktok.com/@thecirclesociety.ae" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="TikTok">
                   <Image src="/Vector (17).svg" alt="" width={18} height={18} className="w-4 h-4 md:w-5 md:h-5" />
                 </a>
+                <a href="https://www.linkedin.com/company/thecirclesocietyae/about/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="TikTok">
+                  <Image src="/Vector (21).svg" alt="" width={18} height={18} className="w-4 h-4 md:w-5 md:h-5" />
+                </a>
               </div>
             </div>
           </div>
