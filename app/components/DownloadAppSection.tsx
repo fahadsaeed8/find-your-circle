@@ -95,13 +95,13 @@ export default function DownloadAppSection() {
   }, [shouldAnimate]);
 
   return (
-    <>
+    <div >
       <section
         ref={desktopSectionRef}
         className="hidden md:block bg-[#f5f5f0] py-12 sm:py-16 px-4 sm:px-6 md:pt-38 md:px-0 relative overflow-hidden"
       >
         {/* Decorative Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div  className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Circular Lines - Thin abstract circles */}
           <Image
             src="/Group 35887.svg"
@@ -126,7 +126,7 @@ export default function DownloadAppSection() {
           />
         </div>
 
-        <div className="mx-auto max-w-7xl relative z-10">
+        <div id="download" className="mx-auto max-w-7xl relative z-10">
           <div className="relative mb-12 sm:mb-16 md:mb-20">
             {/* Text and Phones Container */}
             <div className="relative min-h-[450px] lg:min-h-[550px] px-8">
@@ -344,6 +344,6 @@ export default function DownloadAppSection() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

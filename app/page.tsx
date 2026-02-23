@@ -24,15 +24,33 @@ import Image from "next/image";
 export default function Home() {
 
   useEffect(() => {
-
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash;
+    if (hash === "#download") {
+      const el = document.getElementById("download");
+      if (el) {
+        const t = setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+        return () => clearTimeout(t);
+      }
+    }
     window.scrollTo({ top: 0, behavior: "instant" });
-
-    if (
-      typeof window !== "undefined" &&
-      "scrollRestoration" in window.history
-    ) {
+    if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onHashChange = () => {
+      if (window.location.hash === "#download") {
+        const el = document.getElementById("download");
+        el?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
   useEffect(() => {

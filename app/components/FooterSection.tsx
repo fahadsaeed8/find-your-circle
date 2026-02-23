@@ -104,7 +104,7 @@ export default function FooterSection() {
                 <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Stories</Link>
                 <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Store</Link>
                 <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Contact Us</Link>
-                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Download</Link>
+                <a href="/#download" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Download</a>
               </nav>
             </div>
 
