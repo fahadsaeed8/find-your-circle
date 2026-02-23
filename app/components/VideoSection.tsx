@@ -14,8 +14,7 @@ export default function VideoSection() {
   useEffect(() => {
     if (!heartBackgroundRef.current) return;
 
-    // Continuous automatic animation - pulse/breathing effect
-    // Using opacity only to avoid overflow/scroll issues
+
     const tl = gsap.timeline({ repeat: -1, ease: "power1.inOut" });
 
     tl.to(heartBackgroundRef.current, {
@@ -31,43 +30,36 @@ export default function VideoSection() {
     };
   }, []);
 
-  // Animate hero title word by word on mount
   useEffect(() => {
     if (!heroTitleRef.current) return;
 
-    // Get all word spans
     const wordSpans = heroTitleRef.current.querySelectorAll(".word");
 
-    // Set initial state - words start small and invisible
     gsap.set(wordSpans, {
       opacity: 0,
       scale: 0.5,
       transformOrigin: "center center",
     });
 
-    // Animate words one by one with stagger effect
     gsap.to(wordSpans, {
       opacity: 1,
       scale: 1,
       duration: 0.8,
       ease: "power2.out",
-      stagger: 0.15, // Delay between each word
+      stagger: 0.15, 
       delay: 0.3,
     });
   }, []);
 
-  // Animate footnote zoom in on mount
   useEffect(() => {
     if (!footnoteRef.current) return;
 
-    // Set initial state - text starts small and invisible
     gsap.set(footnoteRef.current, {
       opacity: 0,
       scale: 0.5,
       transformOrigin: "center center",
     });
 
-    // Animate footnote zoom in with slow speed
     gsap.to(footnoteRef.current, {
       opacity: 0.7,
       scale: 1,
