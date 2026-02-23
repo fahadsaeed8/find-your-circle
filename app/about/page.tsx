@@ -7,12 +7,12 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#F5F2ED]">
       <HeaderSection />
 
-      <div className="mx-auto max-w-6xl px-6 pt-[90px] md:pt-[100px] pb-16 md:pb-24 md:px-8">
+      <div className="mx-auto max-w-6xl px-6 pt-[40px] md:pt-[60px] pb-16 md:pb-24 md:px-8">
         {/* Section 1 - Hero with image */}
         <section className="mb-20 md:mb-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <h1 className="font-clash text-3xl md:text-4xl lg:text-5xl font-medium text-[#1B1B1B] mb-4">
+              <h1 className="font-clash text-3xl md:text-4xl lg:text-7xl font-medium text-[#BF822E] mb-4">
                 About Us
               </h1>
               <span

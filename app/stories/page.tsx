@@ -7,19 +7,19 @@ export default function StoriesPage() {
     <div className="min-h-screen bg-[#F5F2ED]">
       <HeaderSection />
 
-      <div className="mx-auto max-w-6xl px-6 pt-[90px] md:pt-[100px] pb-20 md:pb-28 md:px-8">
+      <div className="mx-auto max-w-6xl px-6 pt-[40px] md:pt-[60px] pb-20 md:pb-28 md:px-8">
         {/* Section 1 - Hero: Love Stories - button wala brown */}
-        <section className="mb-20 md:mb-24 rounded-2xl overflow-hidden p-8 md:p-12" style={{ background: "linear-gradient(135deg, #D99F4F 0%, #BF822E 0%)" }}>
+        <section className="mb-20 md:mb-24 rounded-2xl overflow-hidden p-8 md:p-12" style={{ background: "linear-gradient(135deg, #D99F4F 70%, #BF822E 0%)" }}>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-3">
-              <h1 className="font-clash text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
+            <div className="lg:col-span-3 ">
+              <h1 className="font-clash  text-3xl md:text-4xl lg:text-7xl font-medium text-black/80 mb-4">
                 Love Stories
               </h1>
               <span
-                className="inline-block w-12 h-0.5 rounded-full mb-6 bg-white/80"
+                className="inline-block w-38 h-0.5 rounded-full mb-6 bg-black/60"
                 aria-hidden
               />
-              <p className="text-white/90 text-lg md:text-xl leading-relaxed">
+              <p className="text-black/70 text-lg md:text-xl leading-relaxed">
                 Real moments from couples who found their person — first dates, relationships, and connections that turned into something special.
               </p>
             </div>

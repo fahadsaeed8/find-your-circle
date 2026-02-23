@@ -76,7 +76,7 @@ export default function FooterSection() {
                 Your social life, all in one app. Discover events, communities, and people around you.
               </p>
               <Link
-                href="#"
+                href="/contact-us"
                 className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-95 active:scale-[0.98] mb-4"
                 style={{ background: "linear-gradient(to bottom, #D99F4F, #BF822E)" }}
               >
