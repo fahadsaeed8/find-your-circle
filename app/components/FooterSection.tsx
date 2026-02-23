@@ -68,7 +68,7 @@ export default function FooterSection() {
                     width={120}
                     height={120}
                     alt="Find Your Circle"
-                    className="w-20 h-20 md:w-24 md:h-24"
+                    className="w-24 h-24 md:w-24 md:h-24"
                   />
                 </div>
               </Link>
@@ -156,7 +156,7 @@ export default function FooterSection() {
       </div>
 
       {/* Bottom strip */}
-      <div className="border-t border-[#E8E5E0] px-6 py-4 lg:px-24">
+      <div className="border-t border-[#E8E5E0] px-6 py-4 lg:pl-24">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 text-sm text-black/70">
           <p>© All rights reserved {new Date().getFullYear()} Circle Society</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
