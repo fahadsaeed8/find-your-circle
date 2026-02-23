@@ -9,7 +9,7 @@ export default function ContactUsPage() {
       <div className="mx-auto max-w-5xl px-6 pt-[40px] md:pt-[60px] pb-16 md:pb-24 md:px-8">
         {/* Hero */}
         <section className="relative mb-12 md:mb-16 overflow-hidden text-center">
-          <h1 className="font-clash text-3xl md:text-4xl lg:text-7xl font-medium text-[#BF822E] mb-4 relative">
+          <h1 className="font-clash text-4xl md:text-4xl lg:text-7xl font-medium text-[#BF822E] mb-4 relative">
             Contact Us
           </h1>
           <p className="text-[#5A5A5A] text-lg leading-relaxed max-w-2xl mx-auto text-center">

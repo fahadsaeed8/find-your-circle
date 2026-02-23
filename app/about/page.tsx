@@ -12,11 +12,11 @@ export default function AboutPage() {
         <section className="mb-20 md:mb-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <h1 className="font-clash text-3xl md:text-4xl lg:text-7xl font-medium text-[#BF822E] mb-4">
+              <h1 className="font-clash text-4xl text-center md:text-start md:text-4xl lg:text-7xl font-medium text-[#BF822E] mb-4">
                 About Us
               </h1>
               <span
-                className="inline-block w-16 h-1 rounded-full mb-6"
+                className="block mx-auto md:inline-block md:mx-0 w-16 h-1 rounded-full mb-6"
                 style={{ background: "linear-gradient(to right, #D99F4F, #BF822E)" }}
                 aria-hidden
               />
