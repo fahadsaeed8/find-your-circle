@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import gsap from "gsap";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import HeaderSection from "./HeaderSection";
 
 export default function HeroSection() {
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
@@ -12,7 +12,6 @@ export default function HeroSection() {
   const [curtainColor, setCurtainColor] = useState("#F5F2ED");
   const [hasEntered, setHasEntered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const shouldAnimate = useShouldAnimate();
   const heroRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
@@ -544,9 +543,11 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className={`relative z-10 flex h-full flex-col ${!ready || !hasEntered ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 visible'}`}>
-        {/* NAVBAR */}
+        {/* NAVBAR - Using HeaderSection component; inline navbar code commented below */}
+        <HeaderSection />
+
+        {/* COMMENTED: Hero section inline navbar (replaced by HeaderSection above)
         <header className="flex items-center bg-white justify-between px-4 sm:px-6 py-4 md:py-5 md:px-24">
-          {/* Logo - White circle with line through it */}
           <Link href={"/"} className="flex items-center ml-0 md:ml-20">
             <div
               className="animate-rotate"
@@ -565,8 +566,6 @@ export default function HeroSection() {
               />
             </div>
           </Link>
-
-          {/* Hamburger Menu - Mobile Only */}
           <button
             type="button"
             className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50 relative"
@@ -590,8 +589,6 @@ export default function HeroSection() {
               }`}
             />
           </button>
-
-          {/* Nav Links - Desktop Only */}
           <nav className="hidden gap-6 md:text-[16px] font-semibold uppercase tracking-wide text-black md:flex lg:gap-8">
             <a className="hover:opacity-80 transition-opacity" href="#">
               ABOUT
@@ -610,8 +607,6 @@ export default function HeroSection() {
             </a>
           </nav>
         </header>
-
-        {/* Mobile Menu Overlay & Panel */}
         <div
           className={`md:hidden fixed inset-0 z-40 transition-opacity duration-200 ${
             mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
@@ -668,8 +663,7 @@ export default function HeroSection() {
             </nav>
           </div>
         </div>
-
-        {/* HERO CENTER */}
+        */}
         <div className="flex flex-1 items-center  justify-start md:justify-center px-4 sm:px-6 md:px-8 lg:px-24 py-0 md:py-0">
           <div className="max-w-8xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Section - Text and CTA */}

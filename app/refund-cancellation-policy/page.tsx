@@ -2,11 +2,6 @@ import Link from "next/link";
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
 
-export const metadata = {
-  title: "Refund & Cancellation Policy | Circle Society",
-  description: "Refund and Cancellation Policy for Circle Society platform.",
-};
-
 export default function RefundCancellationPolicyPage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">

@@ -2,11 +2,6 @@ import Link from "next/link";
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
 
-export const metadata = {
-  title: "Terms & Conditions | Circle Society",
-  description: "Terms and Conditions for Circle Society platform.",
-};
-
 export default function TermsAndConditionsPage() {
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
