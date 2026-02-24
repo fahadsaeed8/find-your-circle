@@ -124,19 +124,19 @@ export default function HeaderSection() {
           </a>
         </nav>
 
-        {/* Right: Language (desktop only) + Hamburger (mobile only) */}
+        {/* Right: Language + Menu icon (dono header mein; mobile par language bhi yahi) */}
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-          {/* Language selector - desktop only; on mobile it shows inside menu drawer */}
+          {/* Language selector - sab screens par header mein, menu icon ke saath */}
           <div
-            className="hidden md:flex items-center gap-2 rounded-full bg-[#F5F2ED] px-3 py-2 border border-[#E8E5E0]"
+            className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#F5F2ED] px-2 py-1.5 sm:px-3 sm:py-2 border border-[#E8E5E0]"
             role="group"
             aria-label="Language"
           >
-            <GlobeIcon className="w-4 h-4 text-[#5A5A5A] flex-shrink-0" />
+            <GlobeIcon className="w-3 h-3 sm:w-4 sm:h-4 md:block hidden text-[#5A5A5A] flex-shrink-0" />
             <button
               type="button"
               onClick={() => setLang("eng")}
-              className={`text-sm font-semibold uppercase tracking-wide px-2 py-0.5 rounded transition-colors ${
+              className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
                 lang === "eng"
                   ? "text-white bg-[#D4A14E]"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
@@ -144,11 +144,11 @@ export default function HeaderSection() {
             >
               Eng
             </button>
-            <span className="text-[#C4C0B8]">|</span>
+            <span className="text-[#C4C0B8] hidden sm:inline">|</span>
             <button
               type="button"
               onClick={() => setLang("arb")}
-              className={`text-sm font-semibold uppercase tracking-wide px-2 py-0.5 rounded transition-colors ${
+              className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
                 lang === "arb"
                   ? "text-white bg-[#D4A14E]"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
@@ -202,42 +202,6 @@ export default function HeaderSection() {
               mobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            {/* Language - mobile: top of menu, above ABOUT */}
-            <div className="mb-6 pb-6 border-b border-[#E8E5E0]">
-              <div
-                className="flex items-center gap-3 rounded-full bg-[#F5F1EC] border border-[#E8E5E0] w-full py-3 px-4 min-h-[52px]"
-                role="group"
-                aria-label="Language"
-              >
-                <GlobeIcon className="w-5 h-5 text-[#5A5A5A] flex-shrink-0" />
-                <span className="flex-1 flex items-center gap-0 rounded-full bg-white/50 p-0.5" aria-hidden>
-                  <button
-                    type="button"
-                    onClick={() => setLang("eng")}
-                    className={`flex-1 min-h-[40px] text-sm font-semibold uppercase tracking-wide rounded-full transition-all duration-200 active:scale-[0.98] ${
-                      lang === "eng"
-                        ? "text-white bg-[#D4A14E] shadow-sm"
-                        : "text-[#5A5A5A] hover:bg-black/5"
-                    }`}
-                  >
-                    Eng
-                  </button>
-                  <span className="w-px h-5 bg-[#E0DDD8] flex-shrink-0" aria-hidden />
-                  <button
-                    type="button"
-                    onClick={() => setLang("arb")}
-                    className={`flex-1 min-h-[40px] text-sm font-semibold uppercase tracking-wide rounded-full transition-all duration-200 active:scale-[0.98] ${
-                      lang === "arb"
-                        ? "text-white bg-[#D4A14E] shadow-sm"
-                        : "text-[#5A5A5A] hover:bg-black/5"
-                    }`}
-                  >
-                    Arabic
-                  </button>
-                </span>
-              </div>
-            </div>
-
             <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]">
               <Link
                 href="#"
