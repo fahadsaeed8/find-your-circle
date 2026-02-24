@@ -66,7 +66,7 @@ export default function HeaderSection() {
         {/* Nav Links - Desktop Only, Centered */}
         <nav className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide">
           <a
-            href="/about"
+            href="#"
             className={navLinkClass("/about")}
             style={navLinkStyle("/about")}
             onMouseEnter={(e) => {
@@ -77,7 +77,7 @@ export default function HeaderSection() {
             ABOUT
           </a>
           <a
-            href="/stories"
+            href="#"
             className={navLinkClass("/stories")}
             style={navLinkStyle("/stories")}
             onMouseEnter={(e) => {
@@ -240,14 +240,14 @@ export default function HeaderSection() {
 
             <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]">
               <Link
-                href="/about"
+                href="#"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 ABOUT
               </Link>
               <Link
-                href="/stories"
+                href="#"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
