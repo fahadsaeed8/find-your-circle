@@ -132,7 +132,7 @@ export default function HeaderSection() {
             role="group"
             aria-label="Language"
           >
-            <GlobeIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#5A5A5A] flex-shrink-0" />
+            <GlobeIcon className="w-3 h-3 sm:w-4 sm:h-4 md:block hidden text-[#5A5A5A] flex-shrink-0" />
             <button
               type="button"
               onClick={() => setLang("eng")}
