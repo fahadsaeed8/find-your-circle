@@ -19,6 +19,19 @@ export default function StatisticsSection() {
   const [hasAnimated, setHasAnimated] = useState(false);
   const shouldAnimate = useShouldAnimate();
 
+  // When locale changes, update counter display to new number format (Arabic vs Western) without needing refresh
+  useEffect(() => {
+    if (!hasAnimated || !statsRef.current) return;
+    const n1 = statsRef.current.querySelector(".number-1") as HTMLElement | null;
+    const n2 = statsRef.current.querySelector(".number-2") as HTMLElement | null;
+    const n3 = statsRef.current.querySelector(".number-3") as HTMLElement | null;
+    const fmt = (n: number) =>
+      isAr ? toArabicDigits(n.toLocaleString("en-US")) + "+" : n.toLocaleString("en-US") + "+";
+    if (n1) n1.textContent = fmt(10000);
+    if (n2) n2.textContent = fmt(100);
+    if (n3) n3.textContent = fmt(100000);
+  }, [locale, hasAnimated, isAr]);
+
   useEffect(() => {
     if (!sectionRef.current || !statsRef.current || hasAnimated) return;
 

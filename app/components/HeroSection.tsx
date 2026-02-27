@@ -3,14 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { useRouter } from "next/navigation";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
 import { useTranslations } from "../hooks/useTranslations";
 import HeaderSection from "./HeaderSection";
 
+const LOCALE_COOKIE = "NEXT_LOCALE";
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+function setLocaleCookie(locale: "en" | "ar") {
+  if (typeof document === "undefined") return;
+  document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+}
+
 export default function HeroSection() {
   const { t, locale } = useTranslations();
+  const router = useRouter();
   const isAr = locale === "ar";
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
+
+  const switchLocale = (newLocale: "en" | "ar") => {
+    if (newLocale === locale) return;
+    setLocaleCookie(newLocale);
+    router.refresh();
+  };
   const [ready, setReady] = useState(false);
   const [curtainColor, setCurtainColor] = useState("#F5F2ED");
   const [hasEntered, setHasEntered] = useState(false);
@@ -427,6 +443,39 @@ export default function HeroSection() {
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden touch-none"
           style={{ display: "flex", opacity: 1, touchAction: "none" }}
         >
+          {/* Language toggle on character screen - no header here, so user can switch before entering */}
+          <div
+            className="absolute top-4 right-4 z-[10002] flex items-center gap-1.5 rounded-full bg-white/10 px-2 py-1.5 backdrop-blur-sm border border-white/20"
+            role="group"
+            aria-label={locale === "ar" ? "اللغة" : "Language"}
+          >
+            <button
+              type="button"
+              onClick={() => switchLocale("en")}
+              className={`text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded transition-colors ${
+                locale === "en"
+                  ? "text-white"
+                  : "text-white/80 hover:text-white"
+              }`}
+              style={locale === "en" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
+            >
+              Eng
+            </button>
+            <span className="text-white/40 text-xs">|</span>
+            <button
+              type="button"
+              onClick={() => switchLocale("ar")}
+              className={`text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded transition-colors ${
+                locale === "ar"
+                  ? "text-white"
+                  : "text-white/80 hover:text-white"
+              }`}
+              style={locale === "ar" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
+            >
+              عربي
+            </button>
+          </div>
+
           {/* Main Background - For entire hero section */}
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
 

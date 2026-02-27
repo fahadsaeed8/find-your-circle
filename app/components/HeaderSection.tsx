@@ -157,9 +157,10 @@ export default function HeaderSection() {
               onClick={() => switchLocale("en")}
               className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
                 locale === "en"
-                  ? "text-white bg-[#D4A14E]"
+                  ? "text-white"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
               }`}
+              style={locale === "en" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
             >
               Eng
             </button>
@@ -169,9 +170,10 @@ export default function HeaderSection() {
               onClick={() => switchLocale("ar")}
               className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
                 locale === "ar"
-                  ? "text-white bg-[#D4A14E]"
+                  ? "text-white"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
               }`}
+              style={locale === "ar" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
             >
               عربي
             </button>
