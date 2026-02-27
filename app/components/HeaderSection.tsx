@@ -166,7 +166,7 @@ export default function HeaderSection() {
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
               }`}
             >
-              {t("nav.eng")}
+              Eng
             </button>
             <span className="text-[#C4C0B8] hidden sm:inline">|</span>
             <button
