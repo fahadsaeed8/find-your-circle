@@ -83,10 +83,7 @@ export default function WhoWeAreSection() {
           ref={pRef}
           className="text-md leading-relaxed text-[#5A5A5A] md:text-xl px-2 sm:px-0"
         >
-          Circle Society helps people discover communities, attend local events,
-          and build meaningful social connections. Whether you’re new to a city,
-          exploring interests, or looking for real-world activities — this is
-          where social life begins.
+          {t("whoWeAre.desc")}
         </p>
       </div>
     </section>
