@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -35,22 +35,14 @@ function GlobeIcon({ className }: { className?: string }) {
 }
 
 export default function HeaderSection() {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState<"en" | "ar">("en");
   const pathname = usePathname();
   const router = useRouter();
 
-  // Sync state with server-rendered locale (html lang + cookie) so toggle shows correct value
-  useEffect(() => {
-    const docLang = document.documentElement.getAttribute("lang");
-    setLang(docLang === "ar" ? "ar" : "en");
-  }, []);
-
   const switchLocale = (newLocale: "en" | "ar") => {
-    if (newLocale === lang) return;
+    if (newLocale === locale) return;
     setLocaleCookie(newLocale);
-    setLang(newLocale);
     router.refresh();
   };
 
@@ -90,7 +82,7 @@ export default function HeaderSection() {
         {/* Nav Links - Desktop Only, Centered. Arabic: start from right (RTL). */}
         <nav
           className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide"
-          dir={lang === "ar" ? "rtl" : "ltr"}
+          dir={locale === "ar" ? "rtl" : "ltr"}
         >
           <a
             href="#"
@@ -164,7 +156,7 @@ export default function HeaderSection() {
               type="button"
               onClick={() => switchLocale("en")}
               className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
-                lang === "en"
+                locale === "en"
                   ? "text-white bg-[#D4A14E]"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
               }`}
@@ -176,7 +168,7 @@ export default function HeaderSection() {
               type="button"
               onClick={() => switchLocale("ar")}
               className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
-                lang === "ar"
+                locale === "ar"
                   ? "text-white bg-[#D4A14E]"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
               }`}
@@ -229,7 +221,7 @@ export default function HeaderSection() {
               mobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]" dir={lang === "ar" ? "rtl" : "ltr"}>
+            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]" dir={locale === "ar" ? "rtl" : "ltr"}>
               <Link
                 href="#"
                 className="hover:opacity-80 transition-opacity py-2"

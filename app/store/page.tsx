@@ -21,7 +21,10 @@ export default async function StorePage() {
           </p>
         </section>
 
-        <section className="rounded-2xl bg-white/60 border border-[#E8E5E0] p-8 md:p-10">
+        <section
+          className={`rounded-2xl bg-white/60 border border-[#E8E5E0] p-8 md:p-10 ${locale === "ar" ? "text-right" : ""}`}
+          dir={locale === "ar" ? "rtl" : undefined}
+        >
           <h2 className="font-clash text-xl md:text-2xl font-medium text-[#1B1B1B] mb-4 border-b border-[#BF822E]/30 pb-2">
             {t("store.shop")}
           </h2>

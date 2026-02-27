@@ -6,7 +6,8 @@ import { useTranslations } from "../hooks/useTranslations";
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export default function ContactForm() {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
+  const isAr = locale === "ar";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -49,7 +50,7 @@ export default function ContactForm() {
   const labelClass = "mb-1.5 block text-sm font-medium text-[#1B1B1B]";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className={`space-y-5 ${isAr ? "text-right" : ""}`} dir={isAr ? "rtl" : undefined}>
       <div>
         <label htmlFor="contact-name" className={labelClass}>
           {t("form.name")} <span className="text-[#BF822E]">*</span>
@@ -61,7 +62,8 @@ export default function ContactForm() {
           onChange={(e) => setName(e.target.value)}
           onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
           placeholder={t("form.placeholderName")}
-          className={inputClass}
+          className={`${inputClass} ${isAr ? "text-right" : ""}`}
+          dir={isAr ? "rtl" : undefined}
           aria-required
           aria-invalid={touched.name && !!errors.name}
         />
@@ -83,7 +85,8 @@ export default function ContactForm() {
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
           placeholder={t("form.placeholderEmail")}
-          className={inputClass}
+          className={`${inputClass} ${isAr ? "text-right" : ""}`}
+          dir={isAr ? "rtl" : undefined}
           aria-required
           aria-invalid={touched.email && !!errors.email}
         />
@@ -105,7 +108,8 @@ export default function ContactForm() {
           onChange={(e) => setPhone(e.target.value)}
           onBlur={() => setTouched((prev) => ({ ...prev, phone: true }))}
           placeholder={t("form.placeholderPhone")}
-          className={inputClass}
+          className={`${inputClass} ${isAr ? "text-right" : ""}`}
+          dir={isAr ? "rtl" : undefined}
           aria-invalid={touched.phone && !!errors.phone}
         />
         {touched.phone && errors.phone && (
@@ -126,7 +130,8 @@ export default function ContactForm() {
           onBlur={() => setTouched((prev) => ({ ...prev, message: true }))}
           placeholder={t("form.placeholderMessage")}
           rows={5}
-          className={`${inputClass} resize-y min-h-[120px]`}
+          className={`${inputClass} resize-y min-h-[120px] ${isAr ? "text-right" : ""}`}
+          dir={isAr ? "rtl" : undefined}
           aria-required
           aria-invalid={touched.message && !!errors.message}
         />

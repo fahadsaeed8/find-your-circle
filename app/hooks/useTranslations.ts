@@ -2,15 +2,15 @@
 
 import { useSyncExternalStore } from "react";
 import { getTranslation, type Locale } from "../../lib/translations";
+import { useLocaleFromContext } from "../components/LocaleProvider";
 
-function getLocale(): Locale {
+function getLocaleFromDocument(): Locale {
   if (typeof document === "undefined") return "en";
   const lang = document.documentElement.getAttribute("lang");
   return lang === "ar" ? "ar" : "en";
 }
 
 function subscribe(callback: () => void) {
-  // Re-run when lang might have changed (e.g. after router.refresh)
   const observer = new MutationObserver(callback);
   observer.observe(document.documentElement, {
     attributes: true,
@@ -19,16 +19,16 @@ function subscribe(callback: () => void) {
   return () => observer.disconnect();
 }
 
-function getSnapshot() {
-  return getLocale();
-}
-
-function getServerSnapshot() {
-  return "en" as Locale;
-}
-
 export function useTranslations() {
-  const locale = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const serverLocale = useLocaleFromContext();
+
+  const clientLocale = useSyncExternalStore(
+    subscribe,
+    getLocaleFromDocument,
+    () => serverLocale ?? "en"
+  );
+
+  const locale = serverLocale ?? clientLocale;
 
   const t = (key: string) => getTranslation(locale, key);
 
