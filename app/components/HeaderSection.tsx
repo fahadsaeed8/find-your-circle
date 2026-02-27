@@ -87,8 +87,11 @@ export default function HeaderSection() {
           </div>
         </Link>
 
-        {/* Nav Links - Desktop Only, Centered */}
-        <nav className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide">
+        {/* Nav Links - Desktop Only, Centered. Arabic: start from right (RTL). */}
+        <nav
+          className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide"
+          dir={lang === "ar" ? "rtl" : "ltr"}
+        >
           <a
             href="#"
             className={navLinkClass("/about")}
@@ -226,7 +229,7 @@ export default function HeaderSection() {
               mobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]">
+            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]" dir={lang === "ar" ? "rtl" : "ltr"}>
               <Link
                 href="#"
                 className="hover:opacity-80 transition-opacity py-2"
