@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "../hooks/useTranslations";
 
 const images = [
   "/Rectangle 40860.png",
@@ -15,6 +16,7 @@ const images = [
 ];
 
 export default function WhereRealConnectionsSection() {
+  const { t } = useTranslations();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function WhereRealConnectionsSection() {
   return (
     <section className="relative py-0 md:py-20 min-h-[70vh] min-[370px]:min-h-[80vh] min-[380px]:min-h-[60vh] min-[410px]:min-h-[70vh] min-[480px]:min-h-[82vh] sm:min-h-[85vh] md:min-h-screen lg:min-h-screen xl:min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
       <h2 className="absolute top-10 left-1/2 -translate-x-1/2 text-white text-2xl md:text-5xl font-clash text-center w-[80%] md:w-full">
-        Where real <span className="text-[#BF822E]">connections</span> come to life
+        {t("connections.title")} <span className="text-[#BF822E]">{t("connections.highlight")}</span> {t("connections.suffix")}
       </h2>
 
       <div className="relative w-full mt-30 min-[400px]:mt-20 min-[420px]:mt-20 md:mt-10 max-w-6xl md:h-[500px] flex items-center justify-center">

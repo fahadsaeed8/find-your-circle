@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "../hooks/useTranslations";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export default function ContactForm() {
+  const { t } = useTranslations();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -14,10 +16,10 @@ export default function ContactForm() {
 
   const validate = () => {
     const err: Record<string, string> = {};
-    if (!name.trim()) err.name = "Name is required";
-    if (!email.trim()) err.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) err.email = "Enter a valid email";
-    if (!message.trim()) err.message = "Message is required";
+    if (!name.trim()) err.name = t("form.errorNameRequired");
+    if (!email.trim()) err.email = t("form.errorEmailRequired");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) err.email = t("form.errorEmailInvalid");
+    if (!message.trim()) err.message = t("form.errorMessageRequired");
     return err;
   };
 
@@ -50,15 +52,15 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <label htmlFor="contact-name" className={labelClass}>
-          Name <span className="text-[#BF822E]">*</span>
+          {t("form.name")} <span className="text-[#BF822E]">*</span>
         </label>
         <input
           id="contact-name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          onBlur={() => setTouched((t) => ({ ...t, name: true }))}
-          placeholder="Your name"
+          onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
+          placeholder={t("form.placeholderName")}
           className={inputClass}
           aria-required
           aria-invalid={touched.name && !!errors.name}
@@ -72,15 +74,15 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="contact-email" className={labelClass}>
-          Email <span className="text-[#BF822E]">*</span>
+          {t("form.email")} <span className="text-[#BF822E]">*</span>
         </label>
         <input
           id="contact-email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onBlur={() => setTouched((t) => ({ ...t, email: true }))}
-          placeholder="you@example.com"
+          onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
+          placeholder={t("form.placeholderEmail")}
           className={inputClass}
           aria-required
           aria-invalid={touched.email && !!errors.email}
@@ -94,15 +96,15 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="contact-phone" className={labelClass}>
-          Phone <span className="text-[#9A9590] text-xs font-normal">(optional)</span>
+          {t("form.phone")} <span className="text-[#9A9590] text-xs font-normal">{t("form.phoneOptional")}</span>
         </label>
         <input
           id="contact-phone"
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          onBlur={() => setTouched((t) => ({ ...t, phone: true }))}
-          placeholder="+971 50 123 4567"
+          onBlur={() => setTouched((prev) => ({ ...prev, phone: true }))}
+          placeholder={t("form.placeholderPhone")}
           className={inputClass}
           aria-invalid={touched.phone && !!errors.phone}
         />
@@ -115,14 +117,14 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="contact-message" className={labelClass}>
-          Message <span className="text-[#BF822E]">*</span>
+          {t("form.message")} <span className="text-[#BF822E]">*</span>
         </label>
         <textarea
           id="contact-message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          onBlur={() => setTouched((t) => ({ ...t, message: true }))}
-          placeholder="How can we help?"
+          onBlur={() => setTouched((prev) => ({ ...prev, message: true }))}
+          placeholder={t("form.placeholderMessage")}
           rows={5}
           className={`${inputClass} resize-y min-h-[120px]`}
           aria-required
@@ -137,12 +139,12 @@ export default function ContactForm() {
 
       {status === "success" && (
         <div className="rounded-xl bg-[#BF822E]/10 border border-[#BF822E]/30 px-4 py-3 text-[#5A4A2A]" role="status">
-          Thanks for reaching out. We&apos;ll get back to you within 24–48 hours.
+          {t("form.success")}
         </div>
       )}
       {status === "error" && (
         <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-red-700" role="alert">
-          Something went wrong. Please try again or email us directly.
+          {t("form.error")}
         </div>
       )}
 
@@ -152,7 +154,7 @@ export default function ContactForm() {
         className="w-full rounded-full py-3.5 px-6 font-semibold text-white shadow-md transition-all duration-200 hover:opacity-95 disabled:opacity-70 disabled:cursor-not-allowed"
         style={{ background: "linear-gradient(to bottom, #D99F4F, #BF822E)" }}
       >
-        {status === "submitting" ? "Sending…" : "Send message"}
+        {status === "submitting" ? t("form.sending") : t("form.sendMessage")}
       </button>
     </form>
   );

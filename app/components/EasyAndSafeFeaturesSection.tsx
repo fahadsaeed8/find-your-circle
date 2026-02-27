@@ -5,10 +5,12 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function EasyAndSafeFeaturesSection() {
+  const { t } = useTranslations();
   const backgroundRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const h2Ref1 = useRef<HTMLHeadingElement>(null);
@@ -86,13 +88,13 @@ export default function EasyAndSafeFeaturesSection() {
           ref={h2Ref1}
           className="mb-2 sm:mb-4 text-center font-clash text-3xl min-[400px]:text-4xl font-medium text-[#1B1B1B] md:text-5xl"
         >
-          What You Can Do on
+          {t("features.whatYouCanDo")}
         </h2>
         <h2
           ref={h2Ref2}
           className="mb-6 sm:mb-4 text-center font-clash text-3xl min-[400px]:text-4xl font-medium text-[#1B1B1B] md:text-5xl md:mb-4"
         >
-          The Circle Society{" "}
+          {t("features.theCircleSociety")}{" "}
         </h2>
 
         {/* Feature Cards */}
@@ -114,10 +116,10 @@ export default function EasyAndSafeFeaturesSection() {
               </div>
             </div>
             <h4 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl text-center md:text-start font-medium text-[#1B1B1B]">
-              Join Communities{" "}
+              {t("features.joinCommunities")}{" "}
             </h4>
             <p className="text-lg leading-relaxed w-[60%] sm:w-[80%] text-center md:text-start text-[#5A5A5A] md:text-[22px] mx-auto md:mx-0">
-              Discover groups around shared interests, passions, and lifestyles.
+              {t("features.joinCommunitiesDesc")}
             </p>
           </div>
 
@@ -135,11 +137,10 @@ export default function EasyAndSafeFeaturesSection() {
               </div>
             </div>
             <h4 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl text-center md:text-start font-medium text-[#1B1B1B]">
-              Attend Events{" "}
+              {t("features.attendEvents")}{" "}
             </h4>
             <p className="text-lg leading-relaxed w-[60%] sm:w-[80%] text-center md:text-start text-[#5A5A5A] md:text-[22px] mx-auto md:mx-0">
-              From small meetups to large gatherings — online discovery,
-              real-life fun.{" "}
+              {t("features.attendEventsDesc")}{" "}
             </p>
           </div>
 
@@ -157,11 +158,10 @@ export default function EasyAndSafeFeaturesSection() {
               </div>
             </div>
             <h4 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl text-center md:text-start font-medium text-[#1B1B1B]">
-              Meet Naturally{" "}
+              {t("features.meetNaturally")}{" "}
             </h4>
             <p className="text-lg leading-relaxed w-[60%] sm:w-[80%] text-center md:text-start text-[#5A5A5A] md:text-[22px] mx-auto md:mx-0">
-              Connections happen through shared moments, not forced
-              matching.{" "}
+              {t("features.meetNaturallyDesc")}{" "}
             </p>
           </div>
         </div>

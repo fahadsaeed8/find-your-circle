@@ -2,13 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useTranslations } from "../hooks/useTranslations";
 
 export default function VideoSection() {
+  const { t } = useTranslations();
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const footnoteRef = useRef<HTMLDivElement>(null);
 
-  const headingText = "Your social life, all in one place";
+  const headingText = t("video.title");
   const words = headingText.split(" ");
 
   useEffect(() => {
@@ -114,8 +116,7 @@ export default function VideoSection() {
               ))}
             </h1>
             <p className="px-4 sm:px-6 pb-4 sm:pb-6 text-center text-lg md:text-[16px] md:-mb-4 text-white opacity-70 md:px-12">
-              Discover events, communities, and people around you — all through
-              shared activities.
+              {t("video.subtitle")}
             </p>
 
             {/* Buttons */}
@@ -126,7 +127,7 @@ export default function VideoSection() {
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
               >
-                Download for iOS
+                {t("hero.downloadIos")}
               </button>
 
               <button
@@ -135,7 +136,7 @@ export default function VideoSection() {
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
               >
-                Download for Android
+                {t("hero.downloadAndroid")}
               </button>
             </div>
           </div>

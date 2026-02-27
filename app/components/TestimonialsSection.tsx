@@ -5,10 +5,12 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function TestimonialsSection() {
+  const { t } = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -43,29 +45,9 @@ export default function TestimonialsSection() {
   }, [shouldAnimate]);
 
   const testimonials = [
-    {
-      name: "Adeel",
-      location: "Dubai",
-      role: "Joined a Fitness & Community Group",
-      quote:
-        "I didn't want another social app. I wanted people who actually show up. Circle Society helped me find a local community that meets weekly. It feels real, not fanced.",
-      image: "/Rectangle 40869.png",
-    },
-    {
-      name: "Noura",
-      location: "Abu Dhabi",
-      role: "Community Member",
-      quote: "It feels safe because you meet through shared interests.",
-      image: "/Rectangle 40870.png",
-    },
-    {
-      name: "Mark,",
-      location: "London",
-      role: "Event Host",
-      quote:
-        "The events are what make this different. From art meetups to group dinners, everything is built around real activities. You meet people naturally.",
-      image: "/Rectangle 40871.png",
-    },
+    { name: "Adeel", location: "Dubai", roleKey: "testimonials.adeelRole" as const, quoteKey: "testimonials.adeelQuote" as const, image: "/Rectangle 40869.png" },
+    { name: "Noura", location: "Abu Dhabi", roleKey: "testimonials.nouraRole" as const, quoteKey: "testimonials.nouraQuote" as const, image: "/Rectangle 40870.png" },
+    { name: "Mark,", location: "London", roleKey: "testimonials.markRole" as const, quoteKey: "testimonials.markQuote" as const, image: "/Rectangle 40871.png" },
   ];
 
   return (
@@ -76,13 +58,13 @@ export default function TestimonialsSection() {
       {/* Heading */}
       <div className="text-center mb-12 md:mb-20">
         <p className="text-lg tracking-wide font-medium text-[#5A5A5A] mb-2">
-          Testimonials
+          {t("testimonials.label")}
         </p>
         <h2
           ref={headingRef}
           className="font-clash font-medium text-4xl md:text-5xl lg:text-6xl text-[#1B1B1B]"
         >
-          Real Stories From Real People
+          {t("testimonials.title")}
         </h2>
       </div>
  
@@ -116,10 +98,10 @@ export default function TestimonialsSection() {
               {testimonial.name}, {testimonial.location}
             </h3>
             {/* Role */}
-            <p className="text-sm text-[#1B1B1B] mb-3">{testimonial.role}</p>
+            <p className="text-sm text-[#1B1B1B] mb-3">{t(testimonial.roleKey)}</p>
             {/* Quote */}
             <p className="text-base text-[#1B1B1B] leading-relaxed">
-              {testimonial.quote}
+              {t(testimonial.quoteKey)}
             </p>
           </div>
         ))}
@@ -130,16 +112,7 @@ export default function TestimonialsSection() {
         <div className="max-w-7xl flex mx-auto">
           <div className="max-w-md text-left text-black">
             <p className="text-gray-600 text-lg leading-relaxed font-normal">
-              I didn’t want another social app. I wanted
-              <br />
-              people who actually show up.
-              <br />
-              <br />
-              Circle Society helped me find a local
-              <br />
-              community that meets weekly. It feels real,
-              <br />
-              not forced.
+              {t("testimonials.adeelQuote")}
             </p>
 
             <div className="mt-6">
@@ -147,7 +120,7 @@ export default function TestimonialsSection() {
                 Adeel, Dubai
               </p>
               <p className="text-gray-500 text-sm">
-                Joined a Fitness & Community Group
+                {t("testimonials.adeelRole")}
               </p>
             </div>
           </div>
@@ -169,20 +142,14 @@ export default function TestimonialsSection() {
   
           <div className="max-w-md text-left ml-10 mt-40">
             <p className="text-gray-600 text-lg leading-relaxed font-normal">
-              The events are what make this different. <br />
-              <br />
-              From art meetups to group dinners,
-              <br />
-              everything is built around real activities. You
-              <br />
-              meet people naturally.
+              {t("testimonials.markQuote")}
             </p>
 
             <div className="mt-6">
               <p className="font-semibold text-gray-800 text-lg">
                 Mark, London{" "}
               </p>
-              <p className="text-gray-500 text-sm">Event Host</p>
+              <p className="text-gray-500 text-sm">{t("testimonials.markRole")}</p>
             </div>
           </div>
         </div>
@@ -191,16 +158,12 @@ export default function TestimonialsSection() {
    
           <div className="max-w-md mt-60 text-left">
             <p className="text-gray-600 text-lg leading-relaxed font-normal">
-              It feels safe because you
-              <br />
-              meet through shared
-              <br />
-              interests.
+              {t("testimonials.nouraQuote")}
             </p>
 
             <div className="mt-6">
               <p className="font-semibold text-gray-800 text-lg">Noura, UAE</p>
-              <p className="text-gray-500 text-sm">Community Member</p>
+              <p className="text-gray-500 text-sm">{t("testimonials.nouraRole")}</p>
             </div>
           </div>
 

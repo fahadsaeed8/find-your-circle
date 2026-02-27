@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -29,16 +30,18 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const locale = (headersList.get("x-next-locale") || "en") as "en" | "ar";
   const whatsappNumber = "971568882716"; // +971 56 888 2716
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${fontSans.variable} ${fontMono.variable} antialiased`}
       >

@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 import HeaderSection from "./HeaderSection";
 
 export default function HeroSection() {
+  const { t } = useTranslations();
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [curtainColor, setCurtainColor] = useState("#F5F2ED");
@@ -521,7 +523,7 @@ export default function HeroSection() {
               data-enter-circle
               className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-xs min-[400px]:text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
             >
-              <span className="relative z-10">Enter the Circle</span>
+              <span className="relative z-10">{t("hero.enterCircle")}</span>
 
               {/* Button glow effect */}
               <div className="absolute inset-0 rounded-full bg-white/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -532,7 +534,7 @@ export default function HeroSection() {
               ref={instructionTextRef}
               className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-xs min-[400px]:text-sm tracking-wide z-20 px-4 text-center"
             >
-              Click to begin your journey
+              {t("hero.clickToBegin")}
             </p>
           </div>
         </div>
@@ -673,16 +675,15 @@ export default function HeroSection() {
             >
               <h1 className="mb-4 sm:mb-6 font-clash text-3xl min-[400px]:text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
                 <span className="block text-[#2d2d2d] md:text-[#1a1a1a]">
-                  YOUR SOCIAL LIFE
+                  {t("hero.yourSocialLife")}
                 </span>
                 <span className="block text-[#D99F4F] md:text-[#BF822E]">
-                  ALL IN ONE APP
+                  {t("hero.allInOneApp")}
                 </span>
               </h1>
               <div className="flex md:block justify-center md:justify-start items-center md:items-start">
                 <p className="mb-6 sm:mb-8 text-base lg:text-lg text-[#5A5A5A] max-w-xs md:max-w-md">
-                  Discover events, communities, and people around you, through
-                  shared experiences.
+                  {t("hero.discoverTagline")}
                 </p>
               </div>
 
@@ -694,7 +695,7 @@ export default function HeroSection() {
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for iOS
+                  {t("hero.downloadIos")}
                 </button>
 
                 <button
@@ -703,7 +704,7 @@ export default function HeroSection() {
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for Android
+                  {t("hero.downloadAndroid")}
                 </button>
               </div>
             </div>

@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const formatNumber = (num: number) => num.toLocaleString("en-US") + "+";
 
 export default function StatisticsSection() {
+  const { t } = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -70,14 +72,14 @@ export default function StatisticsSection() {
           {/* Stat 1: Downloads */}
           <div className="text-center stat-item">
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              <span className="number-1">0+</span> Active
+              <span className="number-1">0+</span> {t("stats.active")}
             </div>
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              Members
+              {t("stats.members")}
             </div>
             <div className="flex justify-center">
               <p className="text-lg font-normal w-[80%] md:w-[60%] leading-relaxed text-white opacity-90 md:text-[15px] px-2">
-                Active across cities and interest-based communities.{" "}
+                {t("stats.membersDesc")}{" "}
               </p>
             </div>
           </div>
@@ -88,11 +90,11 @@ export default function StatisticsSection() {
               <span className="number-2">0+</span>
             </div>
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              communities
+              {t("stats.communities")}
             </div>
             <div className="flex justify-center">
               <p className="text-lg font-normal w-[80%] md:w-[65%] leading-relaxed text-white opacity-90 md:text-[15px] px-2">
-                From fitness and food to faith, family, and business.{" "}
+                {t("stats.communitiesDesc")}{" "}
               </p>
             </div>
           </div>
@@ -103,11 +105,11 @@ export default function StatisticsSection() {
               <span className="number-3">0+</span>
             </div>
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              Events Hosted{" "}
+              {t("stats.eventsHosted")}{" "}
             </div>
             <div className="flex justify-center">
               <p className="text-lg font-normal w-[80%] md:w-[65%] leading-relaxed text-white opacity-90 md:text-[15px] px-2">
-                Events, meetups, and experiences happening every day.{" "}
+                {t("stats.eventsHostedDesc")}{" "}
               </p>
             </div>
           </div>
