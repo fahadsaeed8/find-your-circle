@@ -260,7 +260,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "hero.enterCircle": "ادخل الدائرة",
     "hero.clickToBegin": "انقر لبدء رحلتك",
     "hero.yourSocialLife": "حياتك الاجتماعية",
-    "hero.allInOneApp": "كل ذلك في تطبيق واحد",
+    "hero.allInOneApp": "كل ذلك في تطبيق\u00A0واحد",
     "hero.discoverTagline": "اكتشف الفعاليات والمجتمعات والأشخاص من حولك من خلال التجارب المشتركة.",
     "hero.downloadIos": "تنزيل لنظام آي أو إس",
     "hero.downloadAndroid": "تنزيل لنظام أندرويد",
