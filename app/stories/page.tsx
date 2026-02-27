@@ -1,8 +1,14 @@
+import { headers } from "next/headers";
 import Image from "next/image";
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
+import { getTranslation, type Locale } from "../../lib/translations";
 
-export default function StoriesPage() {
+export default async function StoriesPage() {
+  const headersList = await headers();
+  const locale = (headersList.get("x-next-locale") || "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
+
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
       <HeaderSection />
@@ -13,14 +19,14 @@ export default function StoriesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-3 ">
               <h1 className="font-clash  text-4xl md:text-4xl lg:text-7xl font-medium text-black/80 mb-4">
-                Love Stories
+                {t("stories.loveStoriesTitle")}
               </h1>
               <span
                 className="inline-block w-38 h-0.5 rounded-full mb-6 bg-black/60"
                 aria-hidden
               />
               <p className="text-black/70 text-lg md:text-xl leading-relaxed">
-                Real moments from couples who found their person — first dates, relationships, and connections that turned into something special.
+                {t("stories.loveStoriesSubtitle")}
               </p>
             </div>
             <div className="lg:col-span-2 relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden bg-white/10">
@@ -50,13 +56,13 @@ export default function StoriesPage() {
             </div>
             <div className="lg:col-span-3 order-1 lg:order-2">
               <h2 className="font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B] mb-5">
-                Real Couples, Real Love
+                {t("stories.realCouplesTitle")}
               </h2>
               <p className="text-[#5A5A5A] leading-relaxed mb-5">
-                Every match has a story. Here we share how people met their person on Circle Society — from the first message to the first date, and the moments that made them choose each other.
+                {t("stories.realCouplesP1")}
               </p>
               <p className="text-[#5A5A5A] leading-relaxed">
-                Whether you&apos;re looking for something serious or taking it slow, these stories show what&apos;s possible when you put yourself out there and find your circle.
+                {t("stories.realCouplesP2")}
               </p>
             </div>
           </div>
@@ -67,10 +73,10 @@ export default function StoriesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-center">
             <div className="lg:col-span-3">
               <p className="font-clash text-lg font-medium text-[#BF822E] mb-3">
-                More love stories coming soon
+                {t("stories.moreComingSoon")}
               </p>
               <p className="text-[#5A5A5A] text-sm md:text-base leading-relaxed">
-                We&apos;re gathering stories from couples who met on Circle Society. If you found your person here — whether it&apos;s a new spark or a lasting relationship — we&apos;d love to hear from you. Check back soon or join the app to share your story.
+                {t("stories.comingSoonDesc")}
               </p>
             </div>
             <div className="lg:col-span-2 relative aspect-[16/10] rounded-xl overflow-hidden bg-[#E8E5E0]/40">

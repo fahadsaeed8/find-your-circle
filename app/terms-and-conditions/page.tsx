@@ -19,7 +19,7 @@ export default async function TermsAndConditionsPage() {
 
         <div className="prose-policy space-y-8 text-[#1B1B1B]">
           <p className="leading-relaxed text-[#5A5A5A]">
-            {t("terms.welcome")} <span className="font-bold text-black">Circle Society.</span> {t("terms.welcomeDesc")}
+            {t("terms.welcome")} <span className="font-bold text-black">{t("brand.name")}.</span> {t("terms.welcomeDesc")}
           </p>
 
           <section>
@@ -103,7 +103,7 @@ export default async function TermsAndConditionsPage() {
 
           <section className="pt-4 mt-8 text-sm text-center md:text-start text-[#5A5A5A]">
             <p className="font-medium mb-1">{t("terms.companyInfo")}</p>
-            <p className="font-medium">Circle Society</p>
+            <p className="font-medium">{t("brand.name")}</p>
             <p>{t("terms.address")}</p>
             <p>Email: support@circlesociety.ae</p>
           </section>

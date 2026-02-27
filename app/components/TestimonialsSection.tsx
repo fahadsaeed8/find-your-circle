@@ -45,9 +45,9 @@ export default function TestimonialsSection() {
   }, [shouldAnimate]);
 
   const testimonials = [
-    { name: "Adeel", location: "Dubai", roleKey: "testimonials.adeelRole" as const, quoteKey: "testimonials.adeelQuote" as const, image: "/Rectangle 40869.png" },
-    { name: "Noura", location: "Abu Dhabi", roleKey: "testimonials.nouraRole" as const, quoteKey: "testimonials.nouraQuote" as const, image: "/Rectangle 40870.png" },
-    { name: "Mark,", location: "London", roleKey: "testimonials.markRole" as const, quoteKey: "testimonials.markQuote" as const, image: "/Rectangle 40871.png" },
+    { nameLocationKey: "testimonials.adeelNameLocation" as const, roleKey: "testimonials.adeelRole" as const, quoteKey: "testimonials.adeelQuote" as const, image: "/Rectangle 40869.png" },
+    { nameLocationKey: "testimonials.nouraNameLocation" as const, roleKey: "testimonials.nouraRole" as const, quoteKey: "testimonials.nouraQuote" as const, image: "/Rectangle 40870.png" },
+    { nameLocationKey: "testimonials.markNameLocation" as const, roleKey: "testimonials.markRole" as const, quoteKey: "testimonials.markQuote" as const, image: "/Rectangle 40871.png" },
   ];
 
   return (
@@ -82,7 +82,7 @@ export default function TestimonialsSection() {
             <div className="overflow-hidden rounded-2xl mb-4 w-full max-w-[380px] [&>span]:block [&>span]:w-full [&>span]:h-full [&>span>img]:block">
               <Image
                 src={testimonial.image}
-                alt={testimonial.name}
+                alt={t(testimonial.nameLocationKey)}
                 width={280}
                 height={280}
                 className="w-full h-auto object-cover"
@@ -95,7 +95,7 @@ export default function TestimonialsSection() {
             </div>
             {/* Name and Location */}
             <h3 className="font-semibold text-lg text-[#1B1B1B] mb-1">
-              {testimonial.name}, {testimonial.location}
+              {t(testimonial.nameLocationKey)}
             </h3>
             {/* Role */}
             <p className="text-sm text-[#1B1B1B] mb-3">{t(testimonial.roleKey)}</p>
@@ -117,7 +117,7 @@ export default function TestimonialsSection() {
 
             <div className="mt-6">
               <p className="font-semibold text-gray-800 text-lg">
-                Adeel, Dubai
+                {t("testimonials.adeelNameLocation")}
               </p>
               <p className="text-gray-500 text-sm">
                 {t("testimonials.adeelRole")}
@@ -147,7 +147,7 @@ export default function TestimonialsSection() {
 
             <div className="mt-6">
               <p className="font-semibold text-gray-800 text-lg">
-                Mark, London{" "}
+                {t("testimonials.markNameLocation")}{" "}
               </p>
               <p className="text-gray-500 text-sm">{t("testimonials.markRole")}</p>
             </div>
@@ -162,7 +162,7 @@ export default function TestimonialsSection() {
             </p>
 
             <div className="mt-6">
-              <p className="font-semibold text-gray-800 text-lg">Noura, UAE</p>
+              <p className="font-semibold text-gray-800 text-lg">{t("testimonials.nouraNameLocation")}</p>
               <p className="text-gray-500 text-sm">{t("testimonials.nouraRole")}</p>
             </div>
           </div>

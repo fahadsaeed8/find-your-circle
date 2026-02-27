@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { getTranslation, type Locale } from "../lib/translations";
 
 const fontSans = Inter({
   variable: "--font-geist-sans",
@@ -13,15 +14,20 @@ const fontMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Circle Society",
-  description: "Find your circle — connect, belong, thrive.",
-  icons: {
-    icon: "/LOGO CS-01.png",
-    shortcut: "/LOGO CS-01.png",
-    apple: "/LOGO CS-01.png",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const locale = (headersList.get("x-next-locale") || "en") as Locale;
+  const title = getTranslation(locale, "brand.name");
+  return {
+    title,
+    description: "Find your circle — connect, belong, thrive.",
+    icons: {
+      icon: "/LOGO CS-01.png",
+      shortcut: "/LOGO CS-01.png",
+      apple: "/LOGO CS-01.png",
+    },
+  };
+}
 
 /** iPhone notch/Dynamic Island: content top se start ho, nob ke neeche */
 export const viewport: Viewport = {
