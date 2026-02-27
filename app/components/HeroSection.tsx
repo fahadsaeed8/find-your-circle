@@ -718,10 +718,10 @@ export default function HeroSection() {
         */}
         <div className={`flex flex-1 items-center px-4 sm:px-6 md:px-8 lg:px-24 py-0 md:py-0 ${isAr ? "justify-end md:justify-center" : "justify-start md:justify-center"}`}>
           <div className="max-w-8xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Section - Text and CTA. Arabic: right-align (RTL) on all screens. */}
+            {/* Left Section - Text and CTA. Arabic: right-align; mobile: paragraph/heading right. */}
             <div
               ref={heroTitleRef}
-              className={`mt-10 md:-mt-20 lg:-mt-20 order-1 lg:order-1 w-full ${isAr ? "text-right" : "text-center md:text-left"}`}
+              className={`mt-10 md:-mt-20 lg:-mt-20 order-1 lg:order-1 w-full ${isAr ? "text-right max-md:justify-self-end" : "text-center md:text-left"}`}
               dir={isAr ? "rtl" : "ltr"}
             >
               <h1 className="mb-4 sm:mb-6 font-clash text-3xl min-[400px]:text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
@@ -732,8 +732,8 @@ export default function HeroSection() {
                   {t("hero.allInOneApp")}
                 </span>
               </h1>
-              <div className={`flex md:block items-center ${isAr ? "justify-end items-end" : "justify-center md:justify-start md:items-start"}`}>
-                <p className="mb-6 sm:mb-8 text-base lg:text-lg text-[#5A5A5A] max-w-xs md:max-w-md">
+              <div className={`flex md:block w-full ${isAr ? "justify-end items-end max-md:w-full" : "justify-center md:justify-start md:items-start"}`}>
+                <p className={`mb-6 sm:mb-8 text-base lg:text-lg text-[#5A5A5A] max-w-xs md:max-w-md ${isAr ? "text-right max-md:me-auto max-md:max-w-full" : ""}`}>
                   {t("hero.discoverTagline")}
                 </p>
               </div>
