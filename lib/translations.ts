@@ -141,6 +141,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     "contact.subtitle": "Questions, feedback, or want to bring your community to Circle Society? We'd love to hear from you.",
     "contact.sendMessageTitle": "Send a message",
     "contact.sendMessageDesc": "Fill out the form below and we'll get back to you within 24–48 hours.",
+    "contact.emailLabel": "Email",
+    "contact.supportEmail": "support@circlesociety.ae",
 
     // Store page
     "store.title": "Store",
@@ -365,6 +367,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     "contact.subtitle": "أسئلة أو ملاحظات أو تريد إحضار مجتمعك إلى مجتمع الدائرة؟ نحب أن نسمع منك.",
     "contact.sendMessageTitle": "إرسال رسالة",
     "contact.sendMessageDesc": "املأ النموذج أدناه وسنرد عليك خلال ٢٤–٤٨ ساعة.",
+    "contact.emailLabel": "البريد الإلكتروني",
+    "contact.supportEmail": "support@circlesociety.ae",
 
     "store.title": "المتجر",
     "store.subtitle": "استكشف المنتجات والمزيد من مجتمع الدائرة.",

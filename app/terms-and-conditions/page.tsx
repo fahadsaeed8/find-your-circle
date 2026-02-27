@@ -108,7 +108,7 @@ export default async function TermsAndConditionsPage() {
             <p className="font-medium mb-1">{t("terms.companyInfo")}</p>
             <p className="font-medium">{t("brand.name")}</p>
             <p>{t("terms.address")}</p>
-            <p>Email: support@circlesociety.ae</p>
+            <p>{t("contact.emailLabel")}: <a href={`mailto:${t("contact.supportEmail")}`} className="text-[#BF822E] hover:underline">{t("contact.supportEmail")}</a></p>
           </section>
         </div>
       </div>

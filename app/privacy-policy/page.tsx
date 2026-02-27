@@ -91,7 +91,7 @@ export default async function PrivacyPolicyPage() {
               {t("privacy.contact")}
             </h2>
             <p className="leading-relaxed text-[#5A5A5A]">
-              📧 support@circlesociety.ae
+              {t("contact.emailLabel")}: <a href={`mailto:${t("contact.supportEmail")}`} className="text-[#BF822E] hover:underline">{t("contact.supportEmail")}</a>
             </p>
           </section>
         </div>
