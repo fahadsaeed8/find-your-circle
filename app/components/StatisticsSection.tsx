@@ -5,13 +5,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
 import { useTranslations } from "../hooks/useTranslations";
+import { toArabicDigits } from "../../lib/arabicNumerals";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const formatNumber = (num: number) => num.toLocaleString("en-US") + "+";
-
 export default function StatisticsSection() {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
+  const isAr = locale === "ar";
+  const formatNumber = (num: number) =>
+    isAr ? toArabicDigits(num.toLocaleString("en-US")) + "+" : num.toLocaleString("en-US") + "+";
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -72,7 +74,7 @@ export default function StatisticsSection() {
           {/* Stat 1: Downloads */}
           <div className="text-center stat-item">
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              <span className="number-1">0+</span> {t("stats.active")}
+              <span className="number-1">{isAr ? "٠+" : "0+"}</span> {t("stats.active")}
             </div>
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
               {t("stats.members")}
@@ -87,7 +89,7 @@ export default function StatisticsSection() {
           {/* Stat 2: Active Communities */}
           <div className="text-center stat-item">
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              <span className="number-2">0+</span>
+              <span className="number-2">{isAr ? "٠+" : "0+"}</span>
             </div>
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
               {t("stats.communities")}
@@ -102,7 +104,7 @@ export default function StatisticsSection() {
           {/* Stat 3: Daily Posts */}
           <div className="text-center stat-item">
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              <span className="number-3">0+</span>
+              <span className="number-3">{isAr ? "٠+" : "0+"}</span>
             </div>
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
               {t("stats.eventsHosted")}{" "}

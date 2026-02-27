@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslations } from "../hooks/useTranslations";
+import { toArabicDigits } from "../../lib/arabicNumerals";
 
 function LocationIcon({ className }: { className?: string }) {
   return (
@@ -159,7 +160,7 @@ export default function FooterSection() {
       {/* Bottom strip - Arabic: copyright right, policy links left */}
       <div className="border-t border-[#E8E5E0] px-6 py-4 lg:pl-24" dir={isAr ? "rtl" : undefined}>
         <div className={`mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-black/70 ${isAr ? "sm:flex-row-reverse sm:justify-between" : "sm:justify-between"}`}>
-          <p>© {t("footer.rights")} {new Date().getFullYear()} {t("footer.circleSociety")}</p>
+          <p>© {t("footer.rights")} {isAr ? toArabicDigits(new Date().getFullYear()) : new Date().getFullYear()} {t("footer.circleSociety")}</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link
               href="/terms-and-conditions"
