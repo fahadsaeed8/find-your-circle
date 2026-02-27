@@ -2,8 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "../hooks/useTranslations";
+
+const LOCALE_COOKIE = "NEXT_LOCALE";
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
+
+function setLocaleCookie(locale: "en" | "ar") {
+  if (typeof document === "undefined") return;
+  document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+}
 
 function GlobeIcon({ className }: { className?: string }) {
   return (
@@ -26,9 +35,16 @@ function GlobeIcon({ className }: { className?: string }) {
 }
 
 export default function HeaderSection() {
+  const { t, locale } = useTranslations();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState<"eng" | "arb">("eng");
   const pathname = usePathname();
+  const router = useRouter();
+
+  const switchLocale = (newLocale: "en" | "ar") => {
+    if (newLocale === locale) return;
+    setLocaleCookie(newLocale);
+    router.refresh();
+  };
 
   const activeStyle = "linear-gradient(to bottom, #D99F4F, #BF822E)";
   const isActive = (path: string) => pathname === path;
@@ -63,8 +79,11 @@ export default function HeaderSection() {
           </div>
         </Link>
 
-        {/* Nav Links - Desktop Only, Centered */}
-        <nav className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide">
+        {/* Nav Links - Desktop Only, Centered. Arabic: start from right (RTL). */}
+        <nav
+          className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide"
+          dir={locale === "ar" ? "rtl" : "ltr"}
+        >
           <a
             href="#"
             className={navLinkClass("/about")}
@@ -74,7 +93,7 @@ export default function HeaderSection() {
             }}
             onMouseLeave={onNavMouseLeave("/about")}
           >
-            ABOUT
+            {t("nav.about")}
           </a>
           <a
             href="#"
@@ -85,7 +104,7 @@ export default function HeaderSection() {
             }}
             onMouseLeave={onNavMouseLeave("/stories")}
           >
-            Stories
+            {t("nav.stories")}
           </a>
           <a
             href="/store"
@@ -96,7 +115,7 @@ export default function HeaderSection() {
             }}
             onMouseLeave={onNavMouseLeave("/store")}
           >
-            STORE
+            {t("nav.store")}
           </a>
           <a
             href="/contact-us"
@@ -107,7 +126,7 @@ export default function HeaderSection() {
             }}
             onMouseLeave={onNavMouseLeave("/contact-us")}
           >
-            Contact Us
+            {t("nav.contactUs")}
           </a>
           <a
             href="/#download"
@@ -120,7 +139,7 @@ export default function HeaderSection() {
               e.currentTarget.style.background = "transparent";
             }}
           >
-            Download
+            {t("nav.download")}
           </a>
         </nav>
 
@@ -130,31 +149,33 @@ export default function HeaderSection() {
           <div
             className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#F5F2ED] px-2 py-1.5 sm:px-3 sm:py-2 border border-[#E8E5E0]"
             role="group"
-            aria-label="Language"
+            aria-label={t("nav.aria.language")}
           >
             <GlobeIcon className="w-3 h-3 sm:w-4 sm:h-4 md:block hidden text-[#5A5A5A] flex-shrink-0" />
             <button
               type="button"
-              onClick={() => setLang("eng")}
+              onClick={() => switchLocale("en")}
               className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
-                lang === "eng"
-                  ? "text-white bg-[#D4A14E]"
+                locale === "en"
+                  ? "text-white"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
               }`}
+              style={locale === "en" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
             >
               Eng
             </button>
             <span className="text-[#C4C0B8] hidden sm:inline">|</span>
             <button
               type="button"
-              onClick={() => setLang("arb")}
+              onClick={() => switchLocale("ar")}
               className={`text-xs sm:text-sm font-semibold uppercase tracking-wide px-1.5 sm:px-2 py-0.5 rounded transition-colors ${
-                lang === "arb"
-                  ? "text-white bg-[#D4A14E]"
+                locale === "ar"
+                  ? "text-white"
                   : "text-[#5A5A5A] hover:text-[#2d2d2d]"
               }`}
+              style={locale === "ar" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
             >
-              Arabic
+              عربي
             </button>
           </div>
 
@@ -162,7 +183,7 @@ export default function HeaderSection() {
             type="button"
             className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50 relative"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileMenuOpen ? t("nav.aria.menuClose") : t("nav.aria.menuOpen")}
             aria-expanded={mobileMenuOpen}
           >
             <span
@@ -195,48 +216,48 @@ export default function HeaderSection() {
             type="button"
             className="absolute inset-0 bg-black/40"
             onClick={() => setMobileMenuOpen(false)}
-            aria-label="Close menu"
+            aria-label={t("nav.aria.menuClose")}
           />
           <div
             className={`absolute top-0 right-0 h-full w-full max-w-[280px] bg-white shadow-xl flex flex-col pt-20 px-6 pb-6 transition-transform duration-200 ease-out ${
               mobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]">
+            <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]" dir={locale === "ar" ? "rtl" : "ltr"}>
               <Link
                 href="#"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                ABOUT
+                {t("nav.about")}
               </Link>
               <Link
                 href="#"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Stories
+                {t("nav.stories")}
               </Link>
               <Link
                 href="/store"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                STORE
+                {t("nav.store")}
               </Link>
               <Link
                 href="/contact-us"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Contact Us
+                {t("nav.contactUs")}
               </Link>
               <a
                 className="hover:opacity-80 transition-opacity py-2"
                 href="/#download"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Download
+                {t("nav.download")}
               </a>
             </nav>
           </div>

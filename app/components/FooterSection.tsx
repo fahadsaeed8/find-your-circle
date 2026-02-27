@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "../hooks/useTranslations";
+import { toArabicDigits } from "../../lib/arabicNumerals";
 
 function LocationIcon({ className }: { className?: string }) {
   return (
@@ -37,6 +39,8 @@ function PaperPlaneIcon({ className }: { className?: string }) {
 }
 
 export default function FooterSection() {
+  const { t, locale } = useTranslations();
+  const isAr = locale === "ar";
   const [email, setEmail] = useState("");
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -49,11 +53,11 @@ export default function FooterSection() {
   return (
     <footer className="bg-[#F5F2ED]">
       {/* Main footer - 3 column layout */}
-      <div className="px-6 py-10 md:py-12 lg:px-24">
+      <div className="px-6 -mt-3 md:mt-0 py-10 md:py-12 lg:px-24" dir={isAr ? "rtl" : undefined}>
         <div className="mx-auto max-w-7xl w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 place-items-center lg:place-items-start">
-            {/* Column 1 - Logo + description + CTA */}
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left w-full">
+            {/* Column 1 - Logo + description + CTA. Mobile: centered (en & ar). LG: en left, ar right */}
+            <div className={`flex flex-col w-full ${isAr ? "max-lg:items-center max-lg:text-center lg:items-start lg:text-right" : "items-center text-center lg:items-start lg:text-left"}`}>
               <Link href="/" className="inline-block mb-3">
                 <div
                   className="animate-rotate"
@@ -73,14 +77,14 @@ export default function FooterSection() {
                 </div>
               </Link>
               <p className="text-black/80 text-sm leading-relaxed mb-4 max-w-sm">
-                Your social life, all in one app. Discover events, communities, and people around you.
+                {t("footer.tagline")}
               </p>
               <Link
                 href="/contact-us"
                 className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-95 active:scale-[0.98] mb-4"
                 style={{ background: "linear-gradient(to bottom, #D99F4F, #BF822E)" }}
               >
-                Contact Us
+                {t("footer.contactUs")}
               </Link>
               {/* <div className="flex flex-row gap-2">
                 <a href="https://www.tiktok.com/@thecirclesociety.ae" target="blank" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="TikTok">
@@ -95,48 +99,46 @@ export default function FooterSection() {
               </div> */}
             </div>
 
-            {/* Column 2 - Quick Link */}
-            <div className="flex flex-col items-center lg:items-start w-full">
-              <h3 className="text-black font-semibold uppercase tracking-wide text-sm mb-3">Quick Link</h3>
-              <nav className="flex flex-col gap-2 text-sm">
-                <Link href="/" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Home</Link>
-                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">About</Link>
-                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Stories</Link>
-                <Link href="/store" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Store</Link>
-                <Link href="/contact-us" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Contact Us</Link>
-                <a href="/#download" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">Download</a>
+            {/* Column 2 - Quick Link. Mobile: centered (en & ar). LG: en start, ar centered */}
+            <div className={`flex flex-col w-full ${isAr ? "max-lg:items-center max-lg:text-center lg:items-center lg:text-center" : "items-center lg:items-start"}`}>
+              <h3 className="text-black font-semibold uppercase tracking-wide text-sm mb-3">{t("footer.quickLink")}</h3>
+              <nav className={`flex flex-col gap-2 text-sm ${isAr ? "items-center text-center" : ""}`}>
+                <Link href="/" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">{t("footer.home")}</Link>
+                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">{t("footer.about")}</Link>
+                <Link href="#" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">{t("footer.stories")}</Link>
+                <Link href="/store" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">{t("footer.store")}</Link>
+                <Link href="/contact-us" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">{t("footer.contactUs")}</Link>
+                <a href="/#download" className="text-black/80 hover:text-[#BF822E] transition-colors font-medium">{t("nav.download")}</a>
               </nav>
             </div>
 
-            {/* Column 3 - Contact Us + Subscribe + Follow us (light UI, same text) */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full">
-       
-
-              <h4 className="text-black font-semibold uppercase tracking-wide text-sm mb-2">Subscribe</h4>
+            {/* Column 3 - Subscribe + Follow us. Mobile: centered (en & ar). LG: en left, ar right */}
+            <div className={`flex flex-col w-full ${isAr ? "max-lg:items-center max-lg:text-center lg:items-start lg:text-right" : "items-center lg:items-start text-center lg:text-left"}`}>
+              <h4 className="text-black font-semibold uppercase tracking-wide text-sm mb-2">{t("footer.subscribe")}</h4>
               <p className="text-black/70 text-xs leading-relaxed mb-3 max-w-[280px]">
-                Don&apos;t miss to subscribe to our new feeds, kindly fill the form below.
+                {t("footer.subscribeDesc")}
               </p>
-              <form onSubmit={handleSubscribe} className="flex gap-2 w-full max-w-[280px] mx-auto lg:mx-0 mb-5">
+              <form onSubmit={handleSubscribe} className={`flex gap-2 w-full max-w-[280px] mb-5 ${isAr ? "flex-row-reverse max-lg:mx-auto lg:mx-0" : "mx-auto lg:mx-0"}`} dir={isAr ? "ltr" : undefined}>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email Address"
+                  placeholder={t("footer.emailPlaceholder")}
                   className="flex-1 min-w-0 rounded-full bg-white border border-[#E8E5E0] px-3 py-2.5 text-sm text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-[#BF822E]/40 focus:border-[#BF822E]"
-                  aria-label="Email address"
+                  aria-label={t("footer.emailPlaceholder")}
                 />
                 <button
                   type="submit"
                   className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 transition hover:opacity-95 active:scale-95"
                   style={{ background: "linear-gradient(to bottom, #D99F4F, #BF822E)" }}
-                  aria-label="Subscribe"
+                  aria-label={t("footer.aria.subscribe")}
                 >
                   <PaperPlaneIcon className="w-4 h-4" />
                 </button>
               </form>
 
-              <h4 className="text-black font-semibold uppercase tracking-wide text-sm mb-3">Follow us</h4>
-              <div className="flex gap-2">
+              <h4 className="text-black font-semibold uppercase tracking-wide text-sm mb-3">{t("footer.followUs")}</h4>
+              <div className={`flex gap-2 ${isAr ? "max-lg:justify-center lg:justify-start" : ""}`}>
                 <a href="https://www.facebook.com/thecirclesociety.ae/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-black/5 hover:bg-black/10 transition" aria-label="Facebook">
                   <Image src="/Vector (19).svg" alt="" width={18} height={18} className="w-4 h-4 md:w-5 md:h-5" />
                 </a>
@@ -155,17 +157,17 @@ export default function FooterSection() {
         </div>
       </div>
 
-      {/* Bottom strip */}
-      <div className="border-t border-[#E8E5E0] px-6 py-4 lg:pl-24">
-        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 text-sm text-black/70">
-          <p>© All rights reserved {new Date().getFullYear()} Circle Society</p>
+      {/* Bottom strip - Arabic: copyright right, policy links left */}
+      <div className="border-t border-[#E8E5E0] px-6 py-4 lg:pl-24" dir={isAr ? "rtl" : undefined}>
+        <div className={`mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-black/70 ${isAr ? "sm:flex-row-reverse sm:justify-between" : "sm:justify-between"}`}>
+          <p>© {t("footer.rights")} {isAr ? toArabicDigits(new Date().getFullYear()) : new Date().getFullYear()} {t("footer.circleSociety")}</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link
               href="/terms-and-conditions"
               className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium text-sm"
             >
               <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
-              Terms &amp; Conditions
+              {t("footer.terms")}
             </Link>
             <span className="text-black/50" aria-hidden>|</span>
             <Link
@@ -173,7 +175,7 @@ export default function FooterSection() {
               className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium text-sm"
             >
               <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
-              Privacy Policy
+              {t("footer.privacy")}
             </Link>
             <span className="text-black/50" aria-hidden>|</span>
             <Link
@@ -181,7 +183,7 @@ export default function FooterSection() {
               className="group text-black hover:text-[#BF822E] transition-colors flex items-center gap-1 font-medium text-sm"
             >
               <span className="text-black group-hover:text-[#BF822E] transition-colors" aria-hidden>•</span>
-              Refund &amp; Cancellation Policy
+              {t("footer.refundPolicy")}
             </Link>
           </nav>
         </div>

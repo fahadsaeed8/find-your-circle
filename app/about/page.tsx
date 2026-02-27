@@ -1,8 +1,14 @@
+import { headers } from "next/headers";
 import Image from "next/image";
 import HeaderSection from "../components/HeaderSection";
 import FooterSection from "../components/FooterSection";
+import { getTranslation, type Locale } from "../../lib/translations";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const headersList = await headers();
+  const locale = (headersList.get("x-next-locale") || "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
+
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
       <HeaderSection />
@@ -13,7 +19,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <h1 className="font-clash text-4xl text-center md:text-start md:text-4xl lg:text-7xl font-medium text-[#BF822E] mb-4">
-                About Us
+                {t("about.title")}
               </h1>
               <span
                 className="block mx-auto md:inline-block md:mx-0 w-16 h-1 rounded-full mb-6"
@@ -21,7 +27,7 @@ export default function AboutPage() {
                 aria-hidden
               />
               <p className="text-[#5A5A5A] text-lg md:text-xl leading-relaxed">
-                Circle Society is where your social life comes together — discover events, join communities, and connect with people around you through shared experiences.
+                {t("about.heroDesc")}
               </p>
             </div>
             <div className="relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden shadow-xl border border-[#E8E5E0]">
@@ -51,13 +57,13 @@ export default function AboutPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B] mb-6">
-                Who We Are
+                {t("about.whoWeAreTitle")}
               </h2>
               <p className="text-[#5A5A5A] text-base md:text-lg leading-relaxed mb-6">
-                We believe everyone deserves a place to belong. Circle Society brings events, faith communities, and local groups into one app so you can find your people and show up — in person — for what matters.
+                {t("about.whoWeAreDesc")}
               </p>
               <p className="text-[#5A5A5A] text-base leading-relaxed">
-                We’re building a home for real connections: discover what’s happening near you, join circles that share your values, and create moments that matter.
+                {t("about.whoWeAreDesc2")}
               </p>
             </div>
           </div>

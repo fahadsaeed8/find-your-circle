@@ -5,10 +5,13 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function EasyAndSafeFeaturesSection() {
+  const { t, locale } = useTranslations();
+  const isAr = locale === "ar";
   const backgroundRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const h2Ref1 = useRef<HTMLHeadingElement>(null);
@@ -86,23 +89,24 @@ export default function EasyAndSafeFeaturesSection() {
           ref={h2Ref1}
           className="mb-2 sm:mb-4 text-center font-clash text-3xl min-[400px]:text-4xl font-medium text-[#1B1B1B] md:text-5xl"
         >
-          What You Can Do on
+          {t("features.whatYouCanDo")}
         </h2>
         <h2
           ref={h2Ref2}
           className="mb-6 sm:mb-4 text-center font-clash text-3xl min-[400px]:text-4xl font-medium text-[#1B1B1B] md:text-5xl md:mb-4"
         >
-          The Circle Society{" "}
+          {t("features.theCircleSociety")}{" "}
         </h2>
 
-        {/* Feature Cards */}
+        {/* Feature Cards - Arabic: all centered */}
         <div
           ref={featureCardsRef}
           className="grid gap-6 sm:gap-8 md:grid-cols-3 md:gap-6 md:mt-20 lg:gap-8"
+          dir={isAr ? "rtl" : undefined}
         >
           {/* Feature 1: Community Groups */}
-          <div className="text-center feature-item">
-            <div className="mb-4 sm:mb-6 flex justify-center md:justify-start">
+          <div className={`feature-item ${isAr ? "text-center" : "text-center md:text-start"}`}>
+            <div className={`mb-4 sm:mb-6 flex justify-center ${isAr ? "" : "md:justify-start"}`}>
               <div className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[340px]">
                 <Image
                   src="/community groups.jpg.jpeg"
@@ -113,17 +117,17 @@ export default function EasyAndSafeFeaturesSection() {
                 />
               </div>
             </div>
-            <h4 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl text-center md:text-start font-medium text-[#1B1B1B]">
-              Join Communities{" "}
+            <h4 className={`mb-2 sm:mb-3 font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B] ${isAr ? "text-center" : "text-center md:text-start"}`}>
+              {t("features.joinCommunities")}{" "}
             </h4>
-            <p className="text-lg leading-relaxed w-[60%] sm:w-[80%] text-center md:text-start text-[#5A5A5A] md:text-[22px] mx-auto md:mx-0">
-              Discover groups around shared interests, passions, and lifestyles.
+            <p className={`text-lg leading-relaxed w-[60%] sm:w-[80%] text-[#5A5A5A] md:text-[22px] ${isAr ? "text-center mx-auto" : "text-center md:text-start mx-auto md:mx-0"}`}>
+              {t("features.joinCommunitiesDesc")}
             </p>
           </div>
 
           {/* Feature 2: Events You'll Love */}
-          <div className="text-center feature-item">
-            <div className="mb-4 sm:mb-6 flex justify-center md:justify-start">
+          <div className={`feature-item ${isAr ? "text-center" : "text-center md:text-start"}`}>
+            <div className={`mb-4 sm:mb-6 flex justify-center ${isAr ? "" : "md:justify-start"}`}>
               <div className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[340px]">
                 <Image
                   src="/events.jpg.jpeg"
@@ -134,18 +138,17 @@ export default function EasyAndSafeFeaturesSection() {
                 />
               </div>
             </div>
-            <h4 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl text-center md:text-start font-medium text-[#1B1B1B]">
-              Attend Events{" "}
+            <h4 className={`mb-2 sm:mb-3 font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B] ${isAr ? "text-center" : "text-center md:text-start"}`}>
+              {t("features.attendEvents")}{" "}
             </h4>
-            <p className="text-lg leading-relaxed w-[60%] sm:w-[80%] text-center md:text-start text-[#5A5A5A] md:text-[22px] mx-auto md:mx-0">
-              From small meetups to large gatherings — online discovery,
-              real-life fun.{" "}
+            <p className={`text-lg leading-relaxed w-[60%] sm:w-[80%] text-[#5A5A5A] md:text-[22px] ${isAr ? "text-center mx-auto" : "text-center md:text-start mx-auto md:mx-0"}`}>
+              {t("features.attendEventsDesc")}{" "}
             </p>
           </div>
 
           {/* Feature 3: Match & Connect */}
-          <div className="text-center feature-item">
-            <div className="mb-4 sm:mb-6 flex justify-center md:justify-start">
+          <div className={`feature-item ${isAr ? "text-center" : "text-center md:text-start"}`}>
+            <div className={`mb-4 sm:mb-6 flex justify-center ${isAr ? "" : "md:justify-start"}`}>
               <div className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[340px]">
                 <Image
                   src="/match & connect.jpg.jpeg"
@@ -156,12 +159,11 @@ export default function EasyAndSafeFeaturesSection() {
                 />
               </div>
             </div>
-            <h4 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl text-center md:text-start font-medium text-[#1B1B1B]">
-              Meet Naturally{" "}
+            <h4 className={`mb-2 sm:mb-3 font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B] ${isAr ? "text-center" : "text-center md:text-start"}`}>
+              {t("features.meetNaturally")}{" "}
             </h4>
-            <p className="text-lg leading-relaxed w-[60%] sm:w-[80%] text-center md:text-start text-[#5A5A5A] md:text-[22px] mx-auto md:mx-0">
-              Connections happen through shared moments, not forced
-              matching.{" "}
+            <p className={`text-lg leading-relaxed w-[60%] sm:w-[80%] text-[#5A5A5A] md:text-[22px] ${isAr ? "text-center mx-auto" : "text-center md:text-start mx-auto md:mx-0"}`}>
+              {t("features.meetNaturallyDesc")}{" "}
             </p>
           </div>
         </div>

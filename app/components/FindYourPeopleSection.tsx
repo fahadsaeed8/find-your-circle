@@ -5,10 +5,12 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FindYourPeopleSection() {
+  const { t } = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
@@ -139,34 +141,10 @@ export default function FindYourPeopleSection() {
   }, [shouldAnimate]);
 
   const activities = [
-    {
-      id: 1,
-      image: "/Frame 2131326922.svg",
-      label: "Bike Trips",
-      rotation: -8,
-      position: "top-left",
-    },
-    {
-      id: 2,
-      image: "/Frame 2131326924.svg",
-      label: "Hiking & Trekking",
-      rotation: 8,
-      position: "bottom-left",
-    },
-    {
-      id: 3,
-      image: "/Frame 2131326921.svg",
-      label: "Gym Crew",
-      rotation: 8,
-      position: "top-right",
-    },
-    {
-      id: 4,
-      image: "/Frame 2131326923.svg",
-      label: "Car Enthusiasts",
-      rotation: -8,
-      position: "bottom-right",
-    },
+    { id: 1, image: "/Frame 2131326922.svg", labelKey: "findYourPeople.bikeTrips" as const, rotation: -8, position: "top-left" },
+    { id: 2, image: "/Frame 2131326924.svg", labelKey: "findYourPeople.hiking" as const, rotation: 8, position: "bottom-left" },
+    { id: 3, image: "/Frame 2131326921.svg", labelKey: "findYourPeople.gymCrew" as const, rotation: 8, position: "top-right" },
+    { id: 4, image: "/Frame 2131326923.svg", labelKey: "findYourPeople.carEnthusiasts" as const, rotation: -8, position: "bottom-right" },
   ];
 
   return (
@@ -183,15 +161,14 @@ export default function FindYourPeopleSection() {
               ref={mobileHeadingRef}
               className="font-clash text-4xl text-white font-medium mb-4"
             >
-              Find Your People. Do What You Love.
+              {t("findYourPeople.title")}
             </h2>
             <div ref={mobileDescriptionRef}>
               <p className="text-sm min-[400px]:text-base sm:text-lg text-white leading-relaxed mb-3">
-                Circle Society is built around activities, not algorithms.
+                {t("findYourPeople.desc1")}
               </p>
               <p className="text-sm min-[400px]:text-base sm:text-lg text-white leading-relaxed">
-                Join communities, attend local events, and connect naturally
-                through what you enjoy doing in real life.
+                {t("findYourPeople.desc2")}
               </p>
             </div>
           </div>
@@ -205,7 +182,7 @@ export default function FindYourPeopleSection() {
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
               >
-                Download for iOS
+                {t("hero.downloadIos")}
               </button>
               <button
                 className="rounded-full px-6 py-2 text-xs text-[10px] min-[400px]:text-sm font-semibold text-white transition hover:opacity-90"
@@ -213,7 +190,7 @@ export default function FindYourPeopleSection() {
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
               >
-                Download for Android
+                {t("hero.downloadAndroid")}
               </button>
             </div>
           </div>
@@ -232,7 +209,7 @@ export default function FindYourPeopleSection() {
             >
               <Image
                 src={activities[0].image}
-                alt={activities[0].label}
+                alt={t(activities[0].labelKey)}
                 width={950}
                 height={950}
                 className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
@@ -253,7 +230,7 @@ export default function FindYourPeopleSection() {
             >
               <Image
                 src={activities[2].image}
-                alt={activities[2].label}
+                alt={t(activities[2].labelKey)}
                 width={950}
                 height={950}
                 className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
@@ -274,7 +251,7 @@ export default function FindYourPeopleSection() {
             >
               <Image
                 src={activities[3].image}
-                alt={activities[3].label}
+                alt={t(activities[3].labelKey)}
                 width={950}
                 height={950}
                 className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
@@ -294,7 +271,7 @@ export default function FindYourPeopleSection() {
             >
               <Image
                 src={activities[1].image}
-                alt={activities[1].label}
+                alt={t(activities[1].labelKey)}
                 width={950}
                 height={950}
                 className="w-[125px] min-[400px]:w-[140px] sm:w-[200px] h-auto rounded-xl"
@@ -318,7 +295,7 @@ export default function FindYourPeopleSection() {
               <div>
                 <Image
                   src={activities[0].image}
-                  alt={activities[0].label}
+                  alt={t(activities[0].labelKey)}
                   width={250}
                   height={250}
                   className="w-full h-auto rounded-xl max-w-[200px] md:max-w-[250px]"
@@ -337,7 +314,7 @@ export default function FindYourPeopleSection() {
               <div>
                 <Image
                   src={activities[1].image}
-                  alt={activities[1].label}
+                  alt={t(activities[1].labelKey)}
                   width={250}
                   height={250}
                   className="w-full h-auto rounded-xl max-w-[200px] md:max-w-[250px]"
@@ -356,20 +333,19 @@ export default function FindYourPeopleSection() {
                 ref={headingRef}
                 className="font-clash text-3xl text-white sm:text-4xl md:text-5xl lg:text-6xl font-medium mb-6"
               >
-                Find Your People. Do What You Love.
+                {t("findYourPeople.title")}
               </h2>
               <p
                 ref={descriptionRef}
                 className="text-lg sm:text-xl text-white md:text-lg leading-relaxed"
               >
-                Circle Society is built around activities, not algorithms.
+                {t("findYourPeople.desc1")}
               </p>
               <p
                 ref={descriptionRef}
                 className="text-lg sm:text-xl md:mt-5 text-white md:text-lg leading-relaxed"
               >
-                Join communities, attend local events, and connect naturally
-                through what you enjoy doing in real life.{" "}
+                {t("findYourPeople.desc2")}{" "}
               </p>
             </div>
 
@@ -382,7 +358,7 @@ export default function FindYourPeopleSection() {
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for Android
+                  {t("hero.downloadAndroid")}
                 </button>
                 <button
                   className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-xs sm:text-sm md:text-[16px] font-semibold text-white transition hover:opacity-90"
@@ -390,7 +366,7 @@ export default function FindYourPeopleSection() {
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for iOS
+                  {t("hero.downloadIos")}
                 </button>
               </div>
             </div>
@@ -407,7 +383,7 @@ export default function FindYourPeopleSection() {
               <div>
                 <Image
                   src={activities[2].image}
-                  alt={activities[2].label}
+                  alt={t(activities[2].labelKey)}
                   width={250}
                   height={250}
                   className="w-full h-auto rounded-xl max-w-[200px] md:max-w-[250px]"
@@ -426,7 +402,7 @@ export default function FindYourPeopleSection() {
               <div>
                 <Image
                   src={activities[3].image}
-                  alt={activities[3].label}
+                  alt={t(activities[3].labelKey)}
                   width={250}
                   height={250}
                   className="w-full h-auto rounded-xl max-w-[200px] md:max-w-[250px]"

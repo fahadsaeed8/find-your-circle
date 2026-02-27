@@ -5,10 +5,12 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HowCircleSocietyWorksSection() {
+  const { t } = useTranslations();
   const backgroundRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -91,7 +93,7 @@ export default function HowCircleSocietyWorksSection() {
           ref={headingRef}
           className="mb-12 sm:mb-40 text-center font-clash text-3xl sm:text-4xl font-medium text-[#1B1B1B] md:text-5xl lg:text-6xl"
         >
-          How Circle Society Works
+          {t("howItWorks.title")}
         </h2>
 
         {/* Steps Grid */}
@@ -131,11 +133,10 @@ export default function HowCircleSocietyWorksSection() {
             </div>
 
             <h3 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B]">
-              Discover Activities
+              {t("howItWorks.discoverActivities")}
             </h3>
             <p className="text-md leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
-              Take our fun quiz, no boring questions. Just tell us what lights
-              you up: Travel? Dogs? Memes?
+              {t("howItWorks.discoverActivitiesDesc")}
             </p>
           </div>
 
@@ -171,11 +172,10 @@ export default function HowCircleSocietyWorksSection() {
             </div>
 
             <h3 className="mb-2 sm:mb-3 font-clash text-2xl md:text-[27px] font-medium text-[#1B1B1B]">
-              Join a Community or Event
+              {t("howItWorks.joinCommunity")}
             </h3>
             <p className="text-md leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
-              Our matching engine compares your vibe with everyone else's to
-              find the strongest spark.
+              {t("howItWorks.joinCommunityDesc")}
             </p>
           </div>
 
@@ -211,11 +211,10 @@ export default function HowCircleSocietyWorksSection() {
             </div>
 
             <h3 className="mb-2 sm:mb-3 font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B]">
-              Build Real Connections
+              {t("howItWorks.buildConnections")}
             </h3>
             <p className="text-md leading-relaxed text-[#5A5A5A] md:text-base max-w-md mx-auto">
-              No swiping. No awkward intros. Just show up and see who you
-              matched with instantly.
+              {t("howItWorks.buildConnectionsDesc")}
             </p>
           </div>
         </div>

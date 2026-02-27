@@ -5,10 +5,13 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FaithCommunitiesSection() {
+  const { t, locale } = useTranslations();
+  const isAr = locale === "ar";
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -125,33 +128,34 @@ export default function FaithCommunitiesSection() {
             </div>
           </div>
 
-          {/* Mobile: Content Second, Desktop: Content Second (Right) */}
-          <div className="text-center md:ml-10 md:text-left order-1 md:order-2">
+          {/* Mobile: Content Second, Desktop: Content Second (Right). Arabic: right-aligned */}
+          <div
+            className={`order-1 md:order-2 ${isAr ? "text-right md:mr-10 md:text-right" : "text-center md:ml-10 md:text-left"}`}
+            dir={isAr ? "rtl" : undefined}
+          >
             <h2
               ref={headingRef}
               className="font-clash text-white text-4xl md:text-5xl lg:text-6xl font-medium mb-6"
             >
-              Communities Built on Faith & Real Life
+              {t("faith.title")}
             </h2>
             <p
               ref={descriptionRef}
               className="text-lg sm:text-xl text-white md:text-2xl mb-8 leading-relaxed"
             >
-              Circle Society connects people through faith-based groups, events,
-              and shared interests in real life.
+              {t("faith.desc")}
             </p>
 
-            {/* Download Buttons */}
-            <div ref={buttonsRef} className="max-w-6xl md:mt-10 w-full">
-              {/* Buttons */}
-              <div className="flex flex-row flex-wrap justify-center md:justify-start gap-3 sm:gap-4">
+            {/* Download Buttons - dir="ltr" when Arabic so justify-end stays visually right */}
+            <div ref={buttonsRef} className="max-w-6xl md:mt-10 w-full" dir={isAr ? "ltr" : undefined}>
+              <div className={`flex flex-row flex-wrap gap-3 sm:gap-4 ${isAr ? "justify-center md:justify-end" : "justify-center md:justify-start"}`}>
                 <button
                   className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-[10px] min-[380px]:text-xs min-[400px]:text-sm  md:text-[16px] font-semibold text-white transition hover:opacity-90"
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for Android
+                  {t("hero.downloadAndroid")}
                 </button>
                 <button
                   className="rounded-full px-6 py-2 sm:px-8 sm:py-2.5 text-[10px] min-[380px]:text-xs min-[400px]:text-sm md:text-[16px] font-semibold text-white transition hover:opacity-90"
@@ -159,7 +163,7 @@ export default function FaithCommunitiesSection() {
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for iOS
+                  {t("hero.downloadIos")}
                 </button>
               </div>
             </div>

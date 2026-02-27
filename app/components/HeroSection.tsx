@@ -3,11 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { useRouter } from "next/navigation";
 import { useShouldAnimate } from "../hooks/useShouldAnimate";
+import { useTranslations } from "../hooks/useTranslations";
 import HeaderSection from "./HeaderSection";
 
+const LOCALE_COOKIE = "NEXT_LOCALE";
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+function setLocaleCookie(locale: "en" | "ar") {
+  if (typeof document === "undefined") return;
+  document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+}
+
 export default function HeroSection() {
+  const { t, locale } = useTranslations();
+  const router = useRouter();
+  const isAr = locale === "ar";
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
+
+  const switchLocale = (newLocale: "en" | "ar") => {
+    if (newLocale === locale) return;
+    setLocaleCookie(newLocale);
+    router.refresh();
+  };
   const [ready, setReady] = useState(false);
   const [curtainColor, setCurtainColor] = useState("#F5F2ED");
   const [hasEntered, setHasEntered] = useState(false);
@@ -424,6 +443,39 @@ export default function HeroSection() {
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden touch-none"
           style={{ display: "flex", opacity: 1, touchAction: "none" }}
         >
+          {/* Language toggle on character screen - no header here, so user can switch before entering */}
+          <div
+            className="absolute top-4 right-4 z-[10002] flex items-center gap-1.5 rounded-full bg-white/10 px-2 py-1.5 backdrop-blur-sm border border-white/20"
+            role="group"
+            aria-label={locale === "ar" ? "اللغة" : "Language"}
+          >
+            <button
+              type="button"
+              onClick={() => switchLocale("en")}
+              className={`text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded transition-colors ${
+                locale === "en"
+                  ? "text-white"
+                  : "text-white/80 hover:text-white"
+              }`}
+              style={locale === "en" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
+            >
+              Eng
+            </button>
+            <span className="text-white/40 text-xs">|</span>
+            <button
+              type="button"
+              onClick={() => switchLocale("ar")}
+              className={`text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded transition-colors ${
+                locale === "ar"
+                  ? "text-white"
+                  : "text-white/80 hover:text-white"
+              }`}
+              style={locale === "ar" ? { background: "linear-gradient(to bottom, #D99F4F, #BF822E)" } : undefined}
+            >
+              عربي
+            </button>
+          </div>
+
           {/* Main Background - For entire hero section */}
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-black" />
 
@@ -521,7 +573,7 @@ export default function HeroSection() {
               data-enter-circle
               className="group relative px-6 py-2 lg:px-16 lg:py-4 font-clash my-8 lg:my-10 bg-white text-black rounded-full font-medium text-xs min-[400px]:text-sm sm:text-base md:text-lg lg:text-xl tracking-wide hover:bg-white/95 transition-all duration-500 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-100 cursor-pointer z-20"
             >
-              <span className="relative z-10">Enter the Circle</span>
+              <span className="relative z-10">{t("hero.enterCircle")}</span>
 
               {/* Button glow effect */}
               <div className="absolute inset-0 rounded-full bg-white/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -532,7 +584,7 @@ export default function HeroSection() {
               ref={instructionTextRef}
               className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 text-white/50 font-clash text-xs min-[400px]:text-sm tracking-wide z-20 px-4 text-center"
             >
-              Click to begin your journey
+              {t("hero.clickToBegin")}
             </p>
           </div>
         </div>
@@ -664,46 +716,49 @@ export default function HeroSection() {
           </div>
         </div>
         */}
-        <div className="flex flex-1 items-center  justify-start md:justify-center px-4 sm:px-6 md:px-8 lg:px-24 py-0 md:py-0">
+        <div className={`flex flex-1 items-center px-4 sm:px-6 md:px-8 lg:px-24 py-0 md:py-0 ${isAr ? "justify-end md:justify-center" : "justify-start md:justify-center"}`}>
           <div className="max-w-8xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Section - Text and CTA */}
+            {/* Left Section - Text and CTA. Arabic: right-align; mobile: paragraph/heading right. */}
             <div
               ref={heroTitleRef}
-              className="text-center md:text-left mt-10 md:-mt-20 lg:-mt-20 order-1 lg:order-1"
+              className={`mt-10 md:-mt-20 lg:-mt-20 order-1 lg:order-1 w-full ${isAr ? "text-right max-md:justify-self-end" : "text-center md:text-left"}`}
+              dir={isAr ? "rtl" : "ltr"}
             >
               <h1 className="mb-4 sm:mb-6 font-clash text-3xl min-[400px]:text-4xl lg:text-6xl xl:text-[58px] font-bold leading-tight">
                 <span className="block text-[#2d2d2d] md:text-[#1a1a1a]">
-                  YOUR SOCIAL LIFE
+                  {t("hero.yourSocialLife")}
                 </span>
                 <span className="block text-[#D99F4F] md:text-[#BF822E]">
-                  ALL IN ONE APP
+                  {t("hero.allInOneApp")}
                 </span>
               </h1>
-              <div className="flex md:block justify-center md:justify-start items-center md:items-start">
-                <p className="mb-6 sm:mb-8 text-base lg:text-lg text-[#5A5A5A] max-w-xs md:max-w-md">
-                  Discover events, communities, and people around you, through
-                  shared experiences.
+              <div className={`flex md:block w-full ${isAr ? "justify-end items-end max-md:w-full" : "justify-center md:justify-start md:items-start"}`}>
+                <p className={`mb-6 sm:mb-8 text-base lg:text-lg text-[#5A5A5A] max-w-xs md:max-w-md ${isAr ? "text-right max-md:me-auto max-md:max-w-full" : ""}`}>
+                  {t("hero.discoverTagline")}
                 </p>
               </div>
 
-              {/* Buttons */}
-              <div className="flex flex-row gap-3 sm:gap-4">
+              {/* Buttons - Arabic: right-aligned (dir=ltr so justify-end = right) */}
+              <div
+                className={`flex flex-row gap-3 sm:gap-4 ${isAr ? "w-full justify-end" : ""}`}
+                dir="ltr"
+              >
                 <button
-                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
+                  className={`rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 ${isAr ? "flex-initial" : "flex-1 sm:flex-initial"}`}
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for iOS
+                  {t("hero.downloadIos")}
                 </button>
 
                 <button
-                  className="rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 flex-1 sm:flex-initial"
+                  className={`rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs min-[400px]:text-sm md:text-base font-semibold text-white transition hover:opacity-90 ${isAr ? "flex-initial" : "flex-1 sm:flex-initial"}`}
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
                 >
-                  Download for Android
+                  {t("hero.downloadAndroid")}
                 </button>
               </div>
             </div>
