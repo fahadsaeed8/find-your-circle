@@ -51,55 +51,73 @@ export default async function AboutPage() {
 
         {/* Section 2 – Who We Are, Mission & Vision, What We Offer */}
         <section className="mb-20 md:mb-28">
-          <div className="space-y-12 md:space-y-16">
-            {/* Who We Are block */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl ring-2 ring-[#BF822E]/10 order-2 lg:order-1">
-                <Image
-                  src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80"
-                  alt="Community and belonging"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
-                <h2 className="font-clash text-2xl md:text-3xl font-medium text-[#1B1B1B] mb-5">
-                  {t("about.whoWeAreTitle")}
-                </h2>
-                <p className="text-[#5A5A5A] text-base md:text-lg leading-relaxed mb-5">
-                  {t("about.whoWeAreDesc")}
-                </p>
-                <p className="text-[#5A5A5A] text-base leading-relaxed">
-                  {t("about.whoWeAreDesc2")}
-                </p>
+          <div className="space-y-16 md:space-y-24">
+            {/* Who We Are – professional block */}
+            <div className="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#E8E5E0]/80">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[380px] order-2 lg:order-1">
+                  <Image
+                    src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80"
+                    alt="Community and belonging"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent lg:from-transparent lg:to-transparent" aria-hidden />
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#BF822E] to-[#D99F4F] lg:hidden" aria-hidden />
+                </div>
+                <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center order-1 lg:order-2 border-l-0 lg:border-l-4 border-[#BF822E]">
+                  <p className="text-[#BF822E] font-semibold text-xs uppercase tracking-[0.2em] mb-3">
+                    {t("about.whoWeAreTitle")}
+                  </p>
+                  <h2 className="font-clash text-2xl md:text-3xl lg:text-4xl font-medium text-[#1B1B1B] mb-6 leading-tight">
+                    {t("about.whoWeAreSubtitle")}
+                  </h2>
+                  <div className="h-px w-16 bg-[#BF822E]/40 mb-6" aria-hidden />
+                  <p className="text-[#5A5A5A] text-base md:text-lg leading-[1.7] mb-5">
+                    {t("about.whoWeAreDesc")}
+                  </p>
+                  <p className="text-[#5A5A5A] text-base leading-[1.7]">
+                    {t("about.whoWeAreDesc2")}
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Mission & Vision cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              <div className="bg-white rounded-2xl p-7 md:p-8 shadow-lg border border-[#E8E5E0] hover:shadow-xl transition-shadow">
-                <div className="w-11 h-11 rounded-xl mb-5 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #D99F4F, #BF822E)" }} aria-hidden>
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            {/* Mission & Vision – professional cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+              <article className="group bg-white rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#E8E5E0]/80 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] transition-shadow duration-300">
+                <div className="h-1 w-full bg-gradient-to-r from-[#BF822E] to-[#D99F4F]" aria-hidden />
+                <div className="p-8 md:p-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#BF822E]/10 text-[#BF822E] group-hover:bg-[#BF822E]/15 transition-colors" aria-hidden>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 className="font-clash text-xl md:text-2xl font-medium text-[#1B1B1B]">
+                      {t("about.missionTitle")}
+                    </h3>
+                  </div>
+                  <p className="text-[#5A5A5A] text-base leading-[1.7]">
+                    {t("about.missionDesc")}
+                  </p>
                 </div>
-                <h3 className="font-clash text-xl font-medium text-[#1B1B1B] mb-3">
-                  {t("about.missionTitle")}
-                </h3>
-                <p className="text-[#5A5A5A] text-base leading-relaxed">
-                  {t("about.missionDesc")}
-                </p>
-              </div>
-              <div className="bg-white rounded-2xl p-7 md:p-8 shadow-lg border border-[#E8E5E0] hover:shadow-xl transition-shadow">
-                <div className="w-11 h-11 rounded-xl mb-5 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #73542A, #5A4222)" }} aria-hidden>
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              </article>
+              <article className="group bg-white rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#E8E5E0]/80 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] transition-shadow duration-300">
+                <div className="h-1 w-full bg-gradient-to-r from-[#73542A] to-[#8B691E]" aria-hidden />
+                <div className="p-8 md:p-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#73542A]/10 text-[#73542A] group-hover:bg-[#73542A]/15 transition-colors" aria-hidden>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                    </div>
+                    <h3 className="font-clash text-xl md:text-2xl font-medium text-[#1B1B1B]">
+                      {t("about.visionTitle")}
+                    </h3>
+                  </div>
+                  <p className="text-[#5A5A5A] text-base leading-[1.7]">
+                    {t("about.visionDesc")}
+                  </p>
                 </div>
-                <h3 className="font-clash text-xl font-medium text-[#1B1B1B] mb-3">
-                  {t("about.visionTitle")}
-                </h3>
-                <p className="text-[#5A5A5A] text-base leading-relaxed">
-                  {t("about.visionDesc")}
-                </p>
-              </div>
+              </article>
             </div>
 
             {/* What We Offer */}
