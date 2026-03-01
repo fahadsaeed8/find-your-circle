@@ -84,8 +84,8 @@ export default function HeaderSection() {
           className="hidden md:flex flex-1 justify-center items-center gap-2 lg:gap-1 text-[16px] font-semibold uppercase tracking-wide"
           dir={locale === "ar" ? "rtl" : "ltr"}
         >
-          <a
-            href="#"
+          <Link
+            href="/about"
             className={navLinkClass("/about")}
             style={navLinkStyle("/about")}
             onMouseEnter={(e) => {
@@ -94,9 +94,9 @@ export default function HeaderSection() {
             onMouseLeave={onNavMouseLeave("/about")}
           >
             {t("nav.about")}
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/stories"
             className={navLinkClass("/stories")}
             style={navLinkStyle("/stories")}
             onMouseEnter={(e) => {
@@ -105,8 +105,8 @@ export default function HeaderSection() {
             onMouseLeave={onNavMouseLeave("/stories")}
           >
             {t("nav.stories")}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/store"
             className={navLinkClass("/store")}
             style={navLinkStyle("/store")}
@@ -116,8 +116,8 @@ export default function HeaderSection() {
             onMouseLeave={onNavMouseLeave("/store")}
           >
             {t("nav.store")}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/contact-us"
             className={navLinkClass("/contact-us")}
             style={navLinkStyle("/contact-us")}
@@ -127,8 +127,8 @@ export default function HeaderSection() {
             onMouseLeave={onNavMouseLeave("/contact-us")}
           >
             {t("nav.contactUs")}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#download"
             className="text-black px-4 py-2 rounded-full transition-all duration-150 hover:text-white hover:shadow-md"
             style={{ background: "transparent" }}
@@ -140,7 +140,7 @@ export default function HeaderSection() {
             }}
           >
             {t("nav.download")}
-          </a>
+          </Link>
         </nav>
 
         {/* Right: Language + Menu icon (dono header mein; mobile par language bhi yahi) */}
@@ -225,14 +225,14 @@ export default function HeaderSection() {
           >
             <nav className="flex flex-col gap-6 font-semibold uppercase tracking-wide text-black text-[16px]" dir={locale === "ar" ? "rtl" : "ltr"}>
               <Link
-                href="#"
+                href="/about"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("nav.about")}
               </Link>
               <Link
-                href="#"
+                href="/stories"
                 className="hover:opacity-80 transition-opacity py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
