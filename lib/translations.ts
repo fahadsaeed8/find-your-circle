@@ -265,6 +265,13 @@ export const translations: Record<Locale, Record<string, string>> = {
     "stories.loveStoriesSubtitle": "Real moments from couples who found their person — first dates, relationships, and connections that turned into something special.",
     "stories.realCouplesTitle": "Real Couples, Real Love",
     "stories.moreComingSoon": "More love stories coming soon",
+    "stories.heroHeading": "Real stories from real people",
+    "stories.heroLabel": "Stories",
+    "stories.connectionsTitle": "More than romance",
+    "stories.connectionsDesc": "Circle Society is where connections start — at events, in communities, and through shared moments. Many found love here; others found best friends, adventure buddies, or their next community. Every story is different.",
+    "stories.shareTitle": "Share your story",
+    "stories.shareDesc": "Met someone special on Circle Society? We'd love to hear from you. Your story could inspire others to find their circle.",
+    "stories.shareCta": "Join the app to share",
   },
   ar: {
     // Nav & Header
@@ -508,6 +515,13 @@ export const translations: Record<Locale, Record<string, string>> = {
     "stories.loveStoriesSubtitle": "لحظات حقيقية من أزواج وجدوا شريكهم — أول مواعيد وعلاقات وروابط تحولت إلى شيء مميز.",
     "stories.realCouplesTitle": "أزواج حقيقيون، حب حقيقي",
     "stories.moreComingSoon": "المزيد من قصص الحب قريباً",
+    "stories.heroHeading": "قصص حقيقية من أناس حقيقيين",
+    "stories.heroLabel": "قصص",
+    "stories.connectionsTitle": "أكثر من الحب",
+    "stories.connectionsDesc": "مجتمع الدائرة هو حيث تبدأ الروابط — في الفعاليات والمجتمعات ومن خلال اللحظات المشتركة. كثيرون وجدوا الحب هنا؛ وآخرون وجدوا أفضل الأصدقاء أو رفاق المغامرة أو مجتمعهم القادم. كل قصة مختلفة.",
+    "stories.shareTitle": "شارك قصتك",
+    "stories.shareDesc": "التقيت بشخص مميز على مجتمع الدائرة؟ نحب أن نسمع منك. قصتك قد تلهم آخرين لإيجاد دائرتهم.",
+    "stories.shareCta": "انضم للتطبيق للمشاركة",
   },
 };
 
