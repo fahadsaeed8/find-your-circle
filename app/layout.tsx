@@ -50,6 +50,15 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        {/* Clash Display - load in head so it works on production (localhost + live) */}
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.cdnfonts.com/css/clash-display"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${fontSans.variable} ${fontMono.variable} antialiased`}
       >
