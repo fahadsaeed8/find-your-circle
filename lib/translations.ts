@@ -291,7 +291,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "hero.allInOneApp": "كل ذلك في تطبيق\u00A0واحد",
     "hero.discoverTagline": "اكتشف الفعاليات والمجتمعات والأشخاص من حولك من خلال التجارب المشتركة.",
     "hero.downloadIos": "تنزيل لـ iOS",
-    "hero.downloadAndroid": "تنزيل لـ Android",
+    "hero.downloadAndroid": "تنزيل لـ أندرويد",
 
     "brand.name": "مجتمع الدائرة",
     "connections.title": "حيث تأتي",
