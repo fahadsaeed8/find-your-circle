@@ -84,14 +84,27 @@ export default function StatisticsSection() {
           ref={statsRef}
           className="grid gap-20 md:grid-cols-3 md:gap-6 lg:gap-8"
         >
-          {/* Stat 1: Downloads */}
+          {/* Stat 1: Active Members - Arabic: number upar, نشط عضو neeche ek line; English: original (0+ Active / Members two lines) */}
           <div className="text-center stat-item">
-            <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              <span className="number-1">{isAr ? "٠+" : "0+"}</span> {t("stats.active")}
-            </div>
-            <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
-              {t("stats.members")}
-            </div>
+            {isAr ? (
+              <>
+                <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
+                  <span className="number-1">٠+</span>
+                </div>
+                <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl whitespace-nowrap">
+                  {t("stats.active")} {t("stats.members")}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
+                  <span className="number-1">0+</span> {t("stats.active")}
+                </div>
+                <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
+                  {t("stats.members")}
+                </div>
+              </>
+            )}
             <div className="flex justify-center">
               <p className="text-lg font-normal w-[80%] md:w-[60%] leading-relaxed text-white opacity-90 md:text-[15px] px-2">
                 {t("stats.membersDesc")}{" "}
@@ -114,7 +127,7 @@ export default function StatisticsSection() {
             </div>
           </div>
 
-          {/* Stat 3: Daily Posts */}
+          {/* Stat 3: Events Hosted - number, label, then description in one line below (screenshot style) */}
           <div className="text-center stat-item">
             <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl">
               <span className="number-3">{isAr ? "٠+" : "0+"}</span>
@@ -123,7 +136,7 @@ export default function StatisticsSection() {
               {t("stats.eventsHosted")}{" "}
             </div>
             <div className="flex justify-center">
-              <p className="text-lg font-normal w-[80%] md:w-[65%] leading-relaxed text-white opacity-90 md:text-[15px] px-2">
+              <p className="text-lg font-normal w-[80%] md:w-full leading-relaxed text-white opacity-90 md:text-[15px] px-2 whitespace-nowrap">
                 {t("stats.eventsHostedDesc")}{" "}
               </p>
             </div>
