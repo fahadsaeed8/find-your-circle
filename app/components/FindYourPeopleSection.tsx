@@ -10,7 +10,8 @@ import { useTranslations } from "../hooks/useTranslations";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FindYourPeopleSection() {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
+  const isAr = locale === "ar";
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
@@ -181,6 +182,7 @@ export default function FindYourPeopleSection() {
                 style={{
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
+                dir={isAr ? "rtl" : "ltr"}
               >
                 {t("hero.downloadIos")}
               </button>
@@ -189,6 +191,7 @@ export default function FindYourPeopleSection() {
                 style={{
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
+                dir={isAr ? "rtl" : "ltr"}
               >
                 {t("hero.downloadAndroid")}
               </button>
@@ -357,6 +360,7 @@ export default function FindYourPeopleSection() {
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
+                  dir={isAr ? "rtl" : "ltr"}
                 >
                   {t("hero.downloadAndroid")}
                 </button>
@@ -365,6 +369,7 @@ export default function FindYourPeopleSection() {
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
+                  dir={isAr ? "rtl" : "ltr"}
                 >
                   {t("hero.downloadIos")}
                 </button>

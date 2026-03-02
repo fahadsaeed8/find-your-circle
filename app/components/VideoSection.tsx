@@ -5,7 +5,8 @@ import gsap from "gsap";
 import { useTranslations } from "../hooks/useTranslations";
 
 export default function VideoSection() {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
+  const isAr = locale === "ar";
   const heartBackgroundRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const footnoteRef = useRef<HTMLDivElement>(null);
@@ -126,6 +127,7 @@ export default function VideoSection() {
                 style={{
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
+                dir={isAr ? "rtl" : "ltr"}
               >
                 {t("hero.downloadIos")}
               </button>
@@ -135,6 +137,7 @@ export default function VideoSection() {
                 style={{
                   background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                 }}
+                dir={isAr ? "rtl" : "ltr"}
               >
                 {t("hero.downloadAndroid")}
               </button>

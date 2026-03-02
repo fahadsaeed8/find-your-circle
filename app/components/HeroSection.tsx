@@ -748,6 +748,7 @@ export default function HeroSection() {
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
+                  dir={isAr ? "rtl" : "ltr"}
                 >
                   {t("hero.downloadIos")}
                 </button>
@@ -757,6 +758,7 @@ export default function HeroSection() {
                   style={{
                     background: "linear-gradient(to bottom, #D99F4F, #BF822E)",
                   }}
+                  dir={isAr ? "rtl" : "ltr"}
                 >
                   {t("hero.downloadAndroid")}
                 </button>
