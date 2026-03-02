@@ -1,5 +1,4 @@
-/* Clash Display Font - Must be imported before Tailwind */
-@import url('https://fonts.cdnfonts.com/css/clash-display');
+/* Clash Display is loaded via <link> in app/layout.tsx for reliable loading on production */
 
 @import "tailwindcss";
 @source "./**/*.{tsx,ts,jsx,js}";
