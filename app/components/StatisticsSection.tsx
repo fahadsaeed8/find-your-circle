@@ -92,7 +92,7 @@ export default function StatisticsSection() {
                   <span className="number-1">٠+</span>
                 </div>
                 <div className="mb-2 text-3xl font-clash font-medium text-white md:text-4xl lg:text-4xl whitespace-nowrap">
-                  {t("stats.active")} {t("stats.members")}
+                  {t("stats.members")} {t("stats.active")}
                 </div>
               </>
             ) : (
