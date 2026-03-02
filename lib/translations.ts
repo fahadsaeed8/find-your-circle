@@ -290,8 +290,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     "hero.yourSocialLife": "حياتك الاجتماعية",
     "hero.allInOneApp": "كل ذلك في تطبيق\u00A0واحد",
     "hero.discoverTagline": "اكتشف الفعاليات والمجتمعات والأشخاص من حولك من خلال التجارب المشتركة.",
-    "hero.downloadIos": "تنزيل لنظام آي أو إس",
-    "hero.downloadAndroid": "تنزيل لنظام أندرويد",
+    "hero.downloadIos": "تنزيل لـ iOS",
+    "hero.downloadAndroid": "تنزيل لـ Android",
 
     "brand.name": "مجتمع الدائرة",
     "connections.title": "حيث تأتي",
